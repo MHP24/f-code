@@ -1,0 +1,79 @@
+.hero {
+  min-height: 90vh;
+  /* border: 2px red solid; */
+  display: flex;
+}
+
+.heroContainer {
+  /* border: 2px blue solid; */
+
+  width: 90%;
+  margin: 3em auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3em;
+  /* justify-content: center; */
+  justify-items: center;
+  /* place-items: center; */
+}
+
+.heroLeft,
+.heroRight {
+  width: 100%;
+}
+
+.heroLeft {
+  text-align: center;
+}
+
+.challengeCount {
+  font-size: var(--fs-7);
+  margin-top: .5em;
+}
+
+.heroPicture {
+  margin: auto;
+  width: 100%;
+  max-width: 500px;
+  background-color: var(--c2);
+  border-radius: 4%;
+  height: 550px;
+  max-height: 90vh;
+}
+
+.heroRight {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  width: 100%;
+}
+
+.heroTitle {
+  font-weight: 400;
+  width: 95%;
+  font-size: var(--fs-9);
+}
+
+.heroParagraph {
+  font-size: var(--fs-4);
+  margin: 1em 0;
+}
+
+@media (max-width: 1040px) {
+  .heroContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .heroRight {
+    text-align: center;
+    align-items: center;
+  }
+
+  .heroTitle {
+    font-size: var(--fs-7);
+  }
+  
+  .heroParagraph {
+    font-size: var(--fs-4);
+  }
+}

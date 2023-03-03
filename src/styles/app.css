@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap');
+
+:root {
+  --c1: #030C15;
+  --c2: #101821;
+  --c3: #FFFFFF;
+  --c4: #00b7ff;
+  --fs-1: .8rem;
+  --fs-2: 1rem;
+  --fs-3: 1.2rem;
+  --fs-4: 1.4rem;
+  --fs-5: 1.9rem;
+  --fs-6: 2rem;
+  --fs-7: 2.4rem;
+  --fs-8: 3rem;
+  --fs-9: 3.8rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Orbitron', sans-serif;
+  color: var(--c3);
+}
