@@ -1,0 +1,50 @@
+.card {
+  margin: auto;
+  display: grid;
+  grid-template-columns: .8fr 1fr;
+  gap: 2em;
+}
+
+.cardReverse {
+  width: 90%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr .8fr;
+  gap: 2em;
+}
+
+.sideA,
+.sideB {
+  width: 100%;
+}
+
+.sideA {
+  display: flex;
+  flex-direction: column;
+  gap: 3em;
+  margin: auto;
+}
+
+.title {
+  font-size: var(--fs-4);
+}
+
+.description {
+  font-size: var(--fs-3);
+}
+
+.video {
+  aspect-ratio: 16/9;
+  background-color: var(--c2);
+  border-radius: var(--br-1);
+}
+
+@media (max-width: 62rem) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+
+  .sideA {
+    gap: 2em;
+  }
+}

@@ -1,19 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap');
 
 :root {
+  /* Colors */
   --c1: #030C15;
   --c2: #101821;
   --c3: #FFFFFF;
   --c4: #00b7ff;
+
+  /* Font size */
   --fs-1: .8rem;
   --fs-2: 1rem;
-  --fs-3: 1.2rem;
-  --fs-4: 1.4rem;
-  --fs-5: 1.9rem;
-  --fs-6: 2rem;
-  --fs-7: 2.4rem;
-  --fs-8: 3rem;
-  --fs-9: 3.8rem;
+  --fs-3: 1.4rem;
+  --fs-4: 2rem;
+  --fs-5: 2.4rem;
+  --fs-6: 3.8rem;
+
+  /* Border radius */
+  --br-1: .6rem;
+  --br-2: 1.25rem;
+  --br-3: 2.5rem;
+  --br-4: 4%;
 }
 
 * {
@@ -22,4 +28,30 @@
   box-sizing: border-box;
   font-family: 'Orbitron', sans-serif;
   color: var(--c3);
+}
+
+
+body {
+  max-width: 120rem;
+  margin: auto;
+  background-color: var(--c1);
+}
+
+section {
+  width: 90%;
+  margin: auto;
+  margin-bottom: 10rem;
+}
+
+p {
+  line-height: 1.6;
+}
+
+@media (max-width: 43rem) {
+  :root {
+    --fs-3: 1.3rem;
+    --fs-4: 1.6rem;
+    --fs-5: 1.8rem;
+    --fs-6: 2.2rem;
+  }
 }

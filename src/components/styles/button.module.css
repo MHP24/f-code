@@ -6,7 +6,7 @@
   padding: .5em 3em;
   background-color: var(--c2);
   border: 2px var(--c3) solid;
-  border-radius: 40px;
+  border-radius: var(--br-3);
   text-align: center;
   font-weight: 700;
   transition: .3s;

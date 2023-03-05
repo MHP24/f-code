@@ -19,7 +19,7 @@ export const MainLayout: FC<PropsWithChildren<Props>> = ({ children, title = 'F-
         <meta name="og:description" content={pageDescription} />
       </Head>
 
-      <Navbar />
+      {/* <Navbar /> */}
 
       <main className={styles.main}>
         {children}

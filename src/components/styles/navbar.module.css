@@ -58,7 +58,6 @@
   }
 
   .navContainer {
-    /* border: 2px red solid; */
     margin: auto 0;
     align-items: flex-start;
   }
@@ -73,6 +72,4 @@
     margin-left: 2rem;
     justify-self: center;
   }
-
-
 }
