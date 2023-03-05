@@ -3,6 +3,7 @@
 :root {
   /* Colors */
   --c1: #030C15;
+  --c1-transparent: #020910e2;
   --c2: #101821;
   --c3: #FFFFFF;
   --c4: #00b7ff;
@@ -35,6 +36,7 @@ body {
   max-width: 120rem;
   margin: auto;
   background-color: var(--c1);
+  overflow-x: hidden;
 }
 
 section {

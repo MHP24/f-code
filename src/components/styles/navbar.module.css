@@ -8,11 +8,21 @@
   justify-content: space-between;
   background-color: var(--c2);
   padding: 1em;
+  transition: .3s transform;
+
 }
 
 .navContainer {
   display: flex;
   align-items: center;
+}
+
+.menuBtn {
+  position: fixed;
+  top: 3%;
+  right: 3%;
+  display: none;
+  z-index: 4;
 }
 
 .navTitle {
@@ -44,8 +54,11 @@
   0px 0px 15px var(--c4);
 }
 
-@media (max-width: 780px) {
+.hideMenu {
+  transform: translateY(0) translateX(0);
+}
 
+@media (max-width: 52rem) {
   .nav,
   .navContainer,
   .navLinks {
@@ -55,6 +68,10 @@
   .nav {
     height: 100vh;
     justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--c1-transparent);
   }
 
   .navContainer {
@@ -62,8 +79,16 @@
     align-items: flex-start;
   }
 
+  .menuBtn {
+    display: block;
+  }
+
   .navLinks {
     align-items: flex-start;
+  }
+
+  .hideMenu {
+    transform: translateY(-100%) translateX(-100%);
   }
 
   .navTitle {
