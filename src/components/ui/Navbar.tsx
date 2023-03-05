@@ -9,7 +9,7 @@ export const Navbar: FC = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
-  const navigateRoute = () => router.push('/auth/login');
+  const navigateRoute = () => router.push('/auth/sign_in');
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (

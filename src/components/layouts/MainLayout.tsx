@@ -14,9 +14,9 @@ export const MainLayout: FC<PropsWithChildren<Props>> = ({ children, title = 'F-
     <>
       <Head>
         <title>{title}</title>
-        <meta name="description" content={pageDescription} />
-        <meta name="og:title" content={title} />
-        <meta name="og:description" content={pageDescription} />
+        <meta name='description' content={pageDescription} />
+        <meta name='og:title' content={title} />
+        <meta name='og:description' content={pageDescription} />
       </Head>
 
       <Navbar />

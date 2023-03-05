@@ -3,3 +3,4 @@ export * from './Navbar';
 export * from './Button';
 export * from './DualCard';
 export * from './FeatureCard';
+export * from './FormInput';
