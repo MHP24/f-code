@@ -1,0 +1,59 @@
+.heading {
+  position: relative;
+}
+
+.searchBanner {
+  height: 60vh;
+  background-color: #171717;
+}
+
+/* Input + filter */
+.searcher {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  height: 4.5rem;
+  justify-content: center;
+  top: 90%;
+}
+
+.inputSearcher {
+  background-color: var(--c2);
+  border: none;
+  outline: none;
+  padding: 1.5em;
+  width: 550px;
+  font-size: var(--fs-2);
+  border-radius: var(--br-1) 0 0 var(--br-1);
+}
+
+.filterBtn {
+  cursor: pointer;
+  text-align: center;
+  height: 100%;
+  background-color: var(--c2);
+  font-size: var(--fs-2);
+  padding: 0 3em;
+  outline: none;
+  border: var(--c2) .3em solid;
+  border-left: var(--c3) .07rem solid;
+  border-radius: 0 var(--br-1) var(--br-1) 0;
+}
+
+/* Filters */
+.filters {
+  background-color: var(--c2);
+}
+
+.filterItem {
+  cursor: pointer;
+  list-style: none;
+  padding: 1em .5em;
+  text-align: left;
+  transition: .3s opacity;
+  font-size: var(--fs-1);
+}
+
+.filterItem:hover {
+  opacity: .7;
+}

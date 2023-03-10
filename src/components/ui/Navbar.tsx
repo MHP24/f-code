@@ -33,7 +33,7 @@ export const Navbar: FC = () => {
             </li>
 
             <li className={styles.navItem}>
-              <Link className={styles.navLink} href={'/'}>Challenges</Link>
+              <Link className={styles.navLink} href={'/challenges'}>Challenges</Link>
             </li>
 
             <li className={styles.navItem}>

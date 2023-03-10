@@ -8,7 +8,7 @@
   min-height: 480px;
   max-width: 100%;
   background-color: var(--c2);
-  padding: .8em;
+  padding: 2em .8em;
   border-radius: var(--br-1);
   text-align: center;
 }

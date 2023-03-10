@@ -1,0 +1,15 @@
+.challengesGrid {
+  margin: auto;
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  gap: 2em;
+}
+
+@media (max-width: 62rem) {
+  .challengesGrid {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+  }
+}
