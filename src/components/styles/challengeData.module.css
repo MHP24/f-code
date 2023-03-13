@@ -1,0 +1,13 @@
+.challengeData {
+  width: 100%;
+  height: calc(90vh - 1em);
+  overflow-y: scroll;
+  background-color: var(--c2);
+  padding: 1.5em;
+}
+
+.actions {
+  display: flex;
+  gap: 1em;
+  margin-bottom: 2em;
+}

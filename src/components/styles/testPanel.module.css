@@ -1,0 +1,13 @@
+.failedTitle,
+.successTitle {
+  font-size: var(--fs-4);
+  margin-bottom: 1em;
+}
+
+.failedTitle {
+  color: var(--c7);
+}
+
+.successTitle {
+  color: var(--c6);
+}

@@ -6,3 +6,6 @@ export * from './FeatureCard';
 export * from './FormInput';
 export * from './ChallengesGrid';
 export * from './ChallengeCard';
+export * from './ChallengeData';
+export * from './TestPanel';
+export * from './TestDropdown';

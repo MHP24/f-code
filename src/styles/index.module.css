@@ -1,6 +1,7 @@
 /* Hero section */
 .hero {
   min-height: 90vh;
+  padding-top: 2rem;
   display: flex;
 }
 
@@ -44,7 +45,7 @@
 }
 
 .heroTitle {
-  font-weight: 400;
+  font-weight: var(--fs-w-2);
   width: 95%;
   font-size: var(--fs-6);
 }
@@ -93,7 +94,7 @@
 }
 
 .exploreTitle {
-  font-weight: 400;
+  font-weight: var(--fs-w-2);
   font-size: var(--fs-5);
   text-align: center;
 }

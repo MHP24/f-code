@@ -1,4 +1,9 @@
 import { GetServerSideProps, NextPage } from 'next';
+import Editor from '@monaco-editor/react';
+import { MainLayout } from '@/components/layouts';
+import styles from '../../../styles/challenge.module.css';
+import { ChallengeData } from '@/components/ui';
+import { useState } from 'react';
 
 interface Props {
   language: string;
@@ -7,10 +12,28 @@ interface Props {
 
 const Challenge: NextPage<Props> = ({ language, challenge }) => {
   return (
-    <section>
-      <div> language {language}</div>
-      <div> challengeId {challenge}</div>
-    </section>
+    <MainLayout
+      title={challenge}
+      pageDescription={`${language} - Challenge ${challenge}`}
+    >
+      <div className={styles.challengePanel}>
+        <Editor
+          className={styles.editor}
+          height={'calc(90vh - 1em)'}
+          defaultLanguage='javascript'
+          theme={'vs-dark'}
+          options={{
+            fontSize: 18,
+            lineHeight: 1.4,
+            fontLigatures: true,
+            lineNumbers: 'off'
+          }}
+        />
+
+        <ChallengeData />
+
+      </div>
+    </MainLayout>
   );
 }
 
@@ -20,7 +43,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   if (!language || !challenge) {
     return {
       redirect: {
-        permanent: false,
+        permanent: true,
         destination: '/'
       }
     }

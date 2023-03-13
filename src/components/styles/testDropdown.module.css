@@ -1,0 +1,40 @@
+.testDropdown {
+  margin-bottom: .7em;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 50px 1fr 50px;
+  text-align: left;
+  background-color: var(--c1);
+  padding: .7em;
+  user-select: none;
+}
+
+.circle {
+  margin: auto;
+  background-color: var(--c6);
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}
+
+.testTitle,
+.dropIndicator {
+  font-size: var(--fs-2);
+  font-weight: var(--fs-w-3);
+  color: var(--c6);
+}
+
+.body {
+  padding: 1em;
+  background-color: var(--c1);
+  /* border: 2px red solid; */
+}
+
+.code {
+  background: var(--c8);
+  display: block;
+  width: 100%;
+  padding: .5em;
+}

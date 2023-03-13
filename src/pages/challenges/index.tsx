@@ -4,7 +4,7 @@ import { MainLayout } from '@/components/layouts';
 import styles from '@/styles/challenges.module.css';
 import { ChallengesGrid } from '@/components/ui';
 
-const index: NextPage = () => {
+const Challenges: NextPage = () => {
   const [showFilter, setShowFilter] = useState<Boolean>(false);
 
   return (
@@ -51,4 +51,4 @@ const index: NextPage = () => {
   );
 }
 
-export default index;
+export default Challenges;

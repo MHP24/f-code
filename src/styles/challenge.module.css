@@ -1,0 +1,15 @@
+.challengePanel {
+  display: flex;
+  /* border: 2px red solid; */
+  height: 90vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr .7fr;
+}
+
+.editor {
+  background-color: #1E1E1E;
+  /* background-color: var(--c1); */
+  width: 50%;
+  padding: .5em 0;
+}

@@ -31,7 +31,7 @@
 
 .challengeName {
   font-size: var(--fs-3);
-  font-weight: 600;
+  font-weight: var(--fs-w-3);
 }
 
 .challengeTags {
@@ -41,13 +41,13 @@
 }
 
 .challengeTag {
-  font-size: var(--fs-2);
+  font-size: var(--fs-1);
   border-radius: var(--br-1);
   list-style: none;
   text-align: center;
   padding: .2em.5em;
   background-color: var(--c5);
-  font-weight: 400;
+  font-weight: var(--fs-w-2);
 }
 
 .challengeDifficulty {
