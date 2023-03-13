@@ -9,6 +9,6 @@
   border-radius: var(--br-3);
   text-align: center;
   font-weight: var(--fs-w-3);
-  transition: .3s;
+  transition: .2s;
   max-width: 230px;
 }

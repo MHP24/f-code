@@ -19,7 +19,7 @@ const Challenge: NextPage<Props> = ({ language, challenge }) => {
       <div className={styles.challengePanel}>
         <Editor
           className={styles.editor}
-          height={'calc(90vh - 1em)'}
+          height={'calc(90vh - .2em)'}
           defaultLanguage='javascript'
           theme={'vs-dark'}
           options={{

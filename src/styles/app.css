@@ -5,15 +5,16 @@
 :root {
   /* Colors */
   --c1: #030C15;
-  --c1-transparent: #020910e2;
+  --c1-transparent: #020910E2;
   --c2: #101821;
   --c3: #FFFFFF;
   --c4: #00B7FF;
-  --c4-transparent: #00b7ff26;
+  --c4-transparent: #00B7FF26;
   --c5: #474747;
-  --c6: #32E4BA;
+  --c6: #4DFF8E;
   --c7: #FF5F5F;
   --c8: #14151F;
+  --c9: #043B2A7E;
 
   /* Font size */
   --fs-1: 1rem;

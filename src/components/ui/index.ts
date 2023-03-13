@@ -9,3 +9,4 @@ export * from './ChallengeCard';
 export * from './ChallengeData';
 export * from './TestPanel';
 export * from './TestDropdown';
+export * from './Loader';

@@ -1,6 +1,8 @@
+import Image from 'next/image';
 import { useState } from 'react';
 import styles from '../styles/testDropdown.module.css';
-
+import arrowUp from '/public/illustrations/arrow-up.svg';
+import arrowDown from '/public/illustrations/arrow-down.svg';
 
 export const TestDropdown = () => {
   const [showContent, setshowContent] = useState<boolean>(false);
@@ -13,7 +15,13 @@ export const TestDropdown = () => {
       >
         <div className={styles.circle}></div>
         <p className={styles.testTitle}>{`Test #1`}</p>
-        <p className={styles.dropIndicator}>{`*`}</p>
+        {/* <p className={styles.dropIndicator}>{`*`}</p> */}
+        {
+          showContent ?
+            <Image className={styles.arrowSuccess} src={arrowUp} alt={'arrow-up'} />
+            :
+            <Image className={styles.arrowSuccess} src={arrowDown} alt={'arrow-down'} />
+        }
       </div>
       {
         showContent && (

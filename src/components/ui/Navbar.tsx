@@ -25,7 +25,7 @@ export const Navbar: FC = () => {
       <nav className={`${styles.nav} ${!isOpen && styles.hideMenu}`}>
         <div className={styles.navContainer}>
           <Link className={styles.navLink} href={'/'}>
-            <h1 className={styles.navTitle}>F-Code</h1>
+            <h1 className={styles.navTitle}>{'{ f/code }'}</h1>
           </Link>
           <ul className={styles.navLinks}>
             <li className={styles.navItem}>
@@ -47,7 +47,7 @@ export const Navbar: FC = () => {
         </div>
         <Button
           text={'Join'}
-          size={1}
+          size={.9}
           fn={navigateRoute}
         />
       </nav>

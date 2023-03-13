@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Button, TestPanel } from '.';
+import { Button, Loader, TestPanel } from '.';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import styles from '../styles/challengeData.module.css';
@@ -61,16 +61,19 @@ export const ChallengeData: FC = () => {
 
       <div>
         {
-          instructions ?
-            <ReactMarkdown
-              className={styles.markdownArea}
-              remarkPlugins={[remarkGfm]}
-              children={markdownExample}
-            />
+          !true ?
+          <Loader/>
             :
-            <TestPanel
-              failed={false}
-            />
+            instructions ?
+              <ReactMarkdown
+                className={styles.markdownArea}
+                remarkPlugins={[remarkGfm]}
+                children={markdownExample}
+              />
+              :
+              <TestPanel
+                failed={false}
+              />
         }
       </div>
     </div>

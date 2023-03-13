@@ -11,9 +11,9 @@ export const TestPanel: FC<Props> = ({ failed }) => {
 
       {
         failed ?
-          <h2 className={styles.failedTitle}>{`Failed: 1 test didn't pass`}</h2>
+          <h2 className={styles.failedTitle}>{`✘ 1 test didn't pass`}</h2>
           :
-          <h2 className={styles.successTitle}>{`Success: All test passed!`}</h2>
+          <h2 className={styles.successTitle}>{`✔ all test passed!`}</h2>
 
       }
 

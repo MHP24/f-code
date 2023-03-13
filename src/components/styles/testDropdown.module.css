@@ -26,10 +26,19 @@
   color: var(--c6);
 }
 
+.arrowSuccess {
+  margin: auto;
+  height: 20px;
+  width: 20px;
+}
+
 .body {
   padding: 1em;
   background-color: var(--c1);
-  /* border: 2px red solid; */
+}
+
+.header:hover {
+  background-color: var(--c9);
 }
 
 .code {

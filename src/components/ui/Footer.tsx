@@ -8,7 +8,7 @@ export const Footer = () => {
   return (
     <footer className={styles.footer}>
 
-      <h2 className={styles.footerTitle}>F-Code</h2>
+      <h2 className={styles.footerTitle}>{'{ f/code }'}</h2>
 
       <div className={styles.medias}>
         <Link

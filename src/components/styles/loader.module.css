@@ -1,0 +1,62 @@
+.loaderContainer {
+  height: 500px;
+  max-height: 100%;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 3em;
+}
+
+.loader {
+  font-size: var(--fs-6);
+  animation: loading 1.5s infinite linear alternate;
+}
+
+@keyframes loading {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: .9;
+    color: var(--c1);
+  }
+}
+
+.barContainer {
+  width: 70%;
+  display: grid;
+  grid-template-columns: 1fr;
+  overflow: hidden;
+  border-radius: var(--br-3);
+}
+
+.barBackground,
+.bar {
+  padding: .4em;
+  grid-column: 1/1;
+  grid-row: 1/1;
+  border-radius: var(--br-3);
+}
+
+.barBackground {
+  background-color: var(--c1);
+}
+
+.bar {
+  background-color: var(--c6);
+  animation: loadingBar 8s;
+}
+
+@keyframes loadingBar {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.subTitle {
+  font-size: var(--fs-2);
+}
