@@ -62,7 +62,7 @@ export const ChallengeData: FC = () => {
       <div>
         {
           !true ?
-          <Loader/>
+            <Loader />
             :
             instructions ?
               <ReactMarkdown

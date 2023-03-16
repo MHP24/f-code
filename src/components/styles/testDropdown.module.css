@@ -11,20 +11,36 @@
   user-select: none;
 }
 
-.circle {
+.successCircle,
+.failedCircle {
   margin: auto;
-  background-color: var(--c6);
   height: 20px;
   width: 20px;
   border-radius: 50%;
 }
 
-.testTitle,
-.dropIndicator {
+.successCircle {
+  background-color: var(--c6);
+}
+
+.failedCircle {
+  background-color: var(--c7);
+}
+
+.successTitle,
+.failedTitle {
   font-size: var(--fs-2);
   font-weight: var(--fs-w-3);
+}
+
+.successTitle {
   color: var(--c6);
 }
+
+.failedTitle {
+  color: var(--c7);
+}
+
 
 .arrowSuccess {
   margin: auto;

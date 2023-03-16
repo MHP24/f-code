@@ -5,12 +5,14 @@ import styles from '../styles/challengeCard.module.css';
 export const ChallengeCard = () => {
   return (
     <Link
-      href={`/challenges/javascript/213`}
+      href={`/challenges/typescript/challenge_name_id`}
       className={styles.challengeCard}
     >
       <div className={styles.imageContainer}>
         <Image
           className={styles.challengeTech}
+          width={90}
+          height={90}
           src={require('/public/techs/typescript.svg')}
           alt={'JavaScript'}
         />

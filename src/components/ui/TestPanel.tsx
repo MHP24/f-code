@@ -17,13 +17,11 @@ export const TestPanel: FC<Props> = ({ failed }) => {
 
       }
 
-
-      <TestDropdown />
-      <TestDropdown />
-      <TestDropdown />
-      <TestDropdown />
-      <TestDropdown />
-      <TestDropdown />
+      <TestDropdown passed={true} />
+      <TestDropdown passed={true} />
+      <TestDropdown passed={false} />
+      <TestDropdown passed={true} />
+      <TestDropdown passed={true} />
     </div>
   );
 }

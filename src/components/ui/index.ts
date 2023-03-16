@@ -10,3 +10,6 @@ export * from './ChallengeData';
 export * from './TestPanel';
 export * from './TestDropdown';
 export * from './Loader';
+export * from './LeaderboardRow';
+export * from './Leaderboard';
+export * from './LeaderboardCard';

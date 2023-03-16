@@ -57,9 +57,9 @@ export const AuthLayout: FC<PropsWithChildren<Props>> = ({ children, title, page
 
               {
                 title === 'Sign in' ?
-                <Link className={styles.link} href='/auth/sign_up'>Not registered?&nbsp;&nbsp;Create an account</Link>
-                :
-                <Link className={styles.link} href='/auth/sign_in'>Already registered?&nbsp;&nbsp;Sign in here</Link>
+                  <Link className={styles.link} href='/auth/sign_up'>Not registered?&nbsp;&nbsp;Create an account</Link>
+                  :
+                  <Link className={styles.link} href='/auth/sign_in'>Already registered?&nbsp;&nbsp;Sign in here</Link>
               }
 
               <div className={styles.formBtn}>

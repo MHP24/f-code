@@ -1,0 +1,24 @@
+.leaderboardRow {
+  display: grid;
+  grid-template-columns: 50px 1fr 100px 100px 75px;
+  background-color: var(--c2);
+  padding: 1em;
+  margin-bottom: .7em;
+  gap: 1em;
+  border-radius: var(--br-1);
+}
+
+.leaderboardCol {
+  font-size: var(--fs-1);
+  text-align: center;
+}
+
+@media (max-width: 43rem) {
+  .leaderboardRow {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .leaderboardCol:last-of-type {
+    grid-column: 3/-1;
+  }
+}

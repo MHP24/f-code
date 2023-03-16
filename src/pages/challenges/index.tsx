@@ -45,7 +45,6 @@ const Challenges: NextPage = () => {
 
       <section>
         <ChallengesGrid/>
-
       </section>
     </MainLayout>
   );

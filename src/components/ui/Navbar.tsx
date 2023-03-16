@@ -37,7 +37,7 @@ export const Navbar: FC = () => {
             </li>
 
             <li className={styles.navItem}>
-              <Link className={styles.navLink} href={'/'}>Leaderboard</Link>
+              <Link className={styles.navLink} href={'/leaderboard'}>Leaderboard</Link>
             </li>
 
             <li className={styles.navItem}>

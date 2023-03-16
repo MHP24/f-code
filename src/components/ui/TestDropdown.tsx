@@ -1,10 +1,14 @@
+import { FC, useState } from 'react';
 import Image from 'next/image';
-import { useState } from 'react';
-import styles from '../styles/testDropdown.module.css';
 import arrowUp from '/public/illustrations/arrow-up.svg';
 import arrowDown from '/public/illustrations/arrow-down.svg';
+import styles from '../styles/testDropdown.module.css';
 
-export const TestDropdown = () => {
+interface Props {
+  passed: boolean;
+}
+
+export const TestDropdown: FC<Props> = ({ passed }) => {
   const [showContent, setshowContent] = useState<boolean>(false);
 
   return (
@@ -13,8 +17,8 @@ export const TestDropdown = () => {
         onClick={() => setshowContent(!showContent)}
         role='button'
       >
-        <div className={styles.circle}></div>
-        <p className={styles.testTitle}>{`Test #1`}</p>
+        <div className={passed ? styles.successCircle : styles.failedCircle}></div>
+        <p className={passed ? styles.successTitle : styles.failedTitle}>{`Test #1`}</p>
         {/* <p className={styles.dropIndicator}>{`*`}</p> */}
         {
           showContent ?

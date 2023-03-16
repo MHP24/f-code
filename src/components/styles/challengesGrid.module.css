@@ -2,14 +2,15 @@
   margin: auto;
   margin-top: 4rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  /* grid-template-columns: 1fr 1fr;
+  justify-content: center; */
   justify-content: center;
   gap: 2em;
 }
 
 @media (max-width: 62rem) {
   .challengesGrid {
-    grid-template-columns: 1fr;
     max-width: 600px;
   }
 }
