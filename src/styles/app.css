@@ -48,6 +48,11 @@ body {
   margin: auto;
   background-color: var(--c1);
   overflow-x: hidden;
+  background-image: url('/background.svg');
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 section {
@@ -75,7 +80,6 @@ code {
 
 @media (max-width: 43rem) {
   :root {
-    --fs-1: .8rem;
     --fs-2: 1rem;
     --fs-3: 1.3rem;
     --fs-4: 1.6rem;

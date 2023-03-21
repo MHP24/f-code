@@ -8,7 +8,6 @@
   text-decoration: none;
   transition: .3s transform;
   align-items: center;
-  /* border: 2px red solid; */
 }
 
 .challengeCard:hover {
@@ -22,8 +21,6 @@
 
 .challengeTech {
   margin: auto;
-  /* border: 2px red solid; */
-  /* width: 100%; */
 }
 
 .challengeData {
@@ -61,6 +58,7 @@
 }
 
 @media (max-width: 43rem) {
+
   .challengeCard,
   .challengeTags {
     grid-template-columns: 1fr;
