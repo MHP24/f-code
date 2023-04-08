@@ -67,9 +67,9 @@ export const ChallengeData: FC = () => {
             instructions ?
               <ReactMarkdown
                 className={styles.markdownArea}
-                remarkPlugins={[remarkGfm]}
-                children={markdownExample}
-              />
+                remarkPlugins={[remarkGfm]}>
+                {markdownExample}
+              </ReactMarkdown>
               :
               <TestPanel
                 failed={false}
