@@ -35,7 +35,7 @@ const login = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
     await db.connect();
     const user = await User.findOne({ email }).select('_id username role password').lean();
-    if (!user) return res.status(400).json({ error: 'This user does not exists' });
+    if (!user) return res.status(400).json({ error: 'This user does not exist' });
     if (!bcrypt.compareSync(password, user.password!)) return res.status(400).json({ error: 'Wrong password' });
     await db.disconnect();
 
