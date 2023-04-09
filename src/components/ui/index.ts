@@ -13,3 +13,4 @@ export * from './Loader';
 export * from './LeaderboardRow';
 export * from './Leaderboard';
 export * from './LeaderboardCard';
+export * from './ErrorLabel';

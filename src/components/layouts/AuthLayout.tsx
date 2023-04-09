@@ -2,7 +2,7 @@ import { FC, PropsWithChildren } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button, Footer } from '../ui';
+import { Footer } from '../ui';
 import styles from './styles/authLayout.module.css';
 
 interface Props {
@@ -23,14 +23,15 @@ export const AuthLayout: FC<PropsWithChildren<Props>> = ({ children, title, page
 
       <main className={styles.main}>
         <div className={styles.authContainer}>
-          <div className={styles.imageContainer}>
+          {/* <div className={styles.imageContainer}>
             <Image
               className={styles.image}
-              src={require(`/public/pictures/${image}`)}
+              src={`/pictures/${image}`}
+              fill
               alt={`${title} picture`}
               priority={true}
             />
-          </div>
+          </div> */}
 
           <div className={styles.formContainer}>
             <h2 className={styles.authTitle}>{`${title} to F-Code`}</h2>
@@ -51,27 +52,14 @@ export const AuthLayout: FC<PropsWithChildren<Props>> = ({ children, title, page
               </div>
             </div>
 
-            <form className={styles.form}>
-              {children}
+            {children}
 
-
-              {
-                title === 'Sign in' ?
-                  <Link className={styles.link} href='/auth/sign_up'>Not registered?&nbsp;&nbsp;Create an account</Link>
-                  :
-                  <Link className={styles.link} href='/auth/sign_in'>Already registered?&nbsp;&nbsp;Sign in here</Link>
-              }
-
-              <div className={styles.formBtn}>
-                <Button
-                  text={title}
-                  size={1.1}
-                  w={250}
-                  fn={() => { }}
-                />
-              </div>
-
-            </form>
+            {
+              title === 'Sign in' ?
+                <Link className={styles.link} href='/auth/sign_up'>Not registered?&nbsp;&nbsp;Create an account</Link>
+                :
+                <Link className={styles.link} href='/auth/sign_in'>Already registered?&nbsp;&nbsp;Sign in here</Link>
+            }
           </div>
         </div>
       </main>

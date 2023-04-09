@@ -5,14 +5,16 @@ interface Props {
   size: number;
   variant?: boolean;
   w?: number;
-  fn: () => void;
+  disabled?: boolean;
+  fn?: () => void;
 }
 
-export const Button: FC<Props> = ({ text, size, w = 0, fn, variant }) => {
+export const Button: FC<Props> = ({ text, size, w = 0, fn, variant, disabled = false }) => {
   return (
     <button
       className={`${styles.button} button`}
-      onClick={() => fn()}
+      disabled={disabled}
+      onClick={() => fn && fn()}
     >
       {text}
 

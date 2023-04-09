@@ -6,7 +6,7 @@ type Data = {
   message: string
 }
 
-export default async function (req: NextApiRequest, res: NextApiResponse<Data>) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   if (req.method === 'GET' && process.env.NODE_ENV !== 'production') {
     await db.connect();
     await User.deleteMany();

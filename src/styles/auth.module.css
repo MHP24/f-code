@@ -1,0 +1,28 @@
+.form {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  gap: 2em;
+  width: 100%;
+  max-width: 450px;
+}
+
+.formBtn {
+  margin: auto;
+  display: flex;
+}
+
+.errorContainer {
+  position: absolute;
+  z-index: 10;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  text-align: center;
+}
+
+.errorMessage {
+  color: var(--c7);
+  font-size: var(--fs-2);
+  font-weight: var(--fs-w-3);
+}
