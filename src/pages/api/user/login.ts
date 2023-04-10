@@ -50,6 +50,7 @@ const login = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
         role
       }
     });
+    
   } catch (error) {
     await db.disconnect();
     console.error({ error });

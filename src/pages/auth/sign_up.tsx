@@ -79,7 +79,7 @@ const SignUp: NextPage = () => {
         <div className={styles.formBtn}>
           <Button
             disabled={error.hasError}
-            text={'Sign in'}
+            text={'Sign up'}
             size={1.1}
             w={250}
           />

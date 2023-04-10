@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, useReducer } from 'react';
+import { FC, PropsWithChildren, useEffect, useReducer } from 'react';
 import { AuthContext, authReducer } from './';
 import { IAuthOutput, IAuthState, ILoginUser, IRegisterUser } from '../../interfaces';
 import Cookies from 'js-cookie';
@@ -16,10 +16,20 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, INITIAL_STATE);
   const router = useRouter();
 
-  /*
-  TODO: useEffect and validate token
+  useEffect(() => {
+    if (!Cookies.get('token')) return;
 
-  */
+    (async () => {
+      try {
+        const { data } = await fCodeApi.get('/user/validate-token');
+        const { token, user } = data;
+        Cookies.set('token', token);
+        dispatch({ type: '[Auth] - Login', payload: user });
+      } catch (error) {
+        Cookies.remove('token');
+      }
+    })();
+  }, []);
 
   const registerUser = async (userData: IRegisterUser): Promise<IAuthOutput> => {
     try {
