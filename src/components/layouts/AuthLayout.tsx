@@ -1,8 +1,6 @@
 import { FC, PropsWithChildren } from 'react';
-import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Footer } from '../ui';
 import styles from './styles/authLayout.module.css';
 import { MainLayout } from './MainLayout';
 
@@ -14,20 +12,10 @@ interface Props {
 
 export const AuthLayout: FC<PropsWithChildren<Props>> = ({ children, title, pageDescription, image }) => {
   return (
-
-    // TODO FIX LAYOUT AUTH INTO MAIN
     <>
-      {/* <Head>
-        <title>{title}</title>
-        <meta name='description' content={pageDescription} />
-        <meta name='og:title' content={title} />
-        <meta name='og:description' content={pageDescription} />
-      </Head> */}
-
       <MainLayout
-        pageDescription=''
-        title=''
-
+        pageDescription={pageDescription}
+        title={title}
       >
         <main className={styles.main}>
           <div className={styles.authContainer}>
@@ -69,10 +57,6 @@ export const AuthLayout: FC<PropsWithChildren<Props>> = ({ children, title, page
           </div>
         </main>
       </MainLayout>
-
-
-      {/* <Footer /> */}
     </>
-
   );
 }
