@@ -1,8 +1,10 @@
-import { FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './styles/authLayout.module.css';
 import { MainLayout } from './MainLayout';
+import { ClientSafeProvider, LiteralUnion, getProviders, signIn } from 'next-auth/react';
+import { BuiltInProviderType } from 'next-auth/providers';
 
 interface Props {
   title: string;
@@ -11,6 +13,16 @@ interface Props {
 }
 
 export const AuthLayout: FC<PropsWithChildren<Props>> = ({ children, title, pageDescription, image }) => {
+
+  const [providers, setProviders] = useState<Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      const _providers = await getProviders();
+      setProviders(_providers);
+    })()
+  }, []);
+
   return (
     <>
       <MainLayout
@@ -29,20 +41,25 @@ export const AuthLayout: FC<PropsWithChildren<Props>> = ({ children, title, page
               <h2 className={styles.authTitle}>{`${title} to F-Code`}</h2>
 
               <div className={styles.providers}>
-                <div className={styles.provider}>
-                  <Image
-                    className={styles.providerImage}
-                    src={require('/public/media/github.svg')}
-                    alt={'GitHub'}
-                  />
-                </div>
-                <div className={styles.provider}>
-                  <Image
-                    className={styles.providerImage}
-                    src={require('/public/media/google-logo.png')}
-                    alt={'GitHub'}
-                  />
-                </div>
+                {
+                  providers &&
+                  Object.values(providers).map(({ id, name }: ClientSafeProvider) => {
+                    if (id !== 'credentials') {
+                      return (
+                        <button className={styles.provider} key={id} onClick={() => signIn(id)}>
+                          <Image
+                            className={styles.providerImage}
+                            src={require(`/public/media/${id}.svg`)}
+                            alt={name}
+                            width={52}
+                            height={49}
+                          />
+                        </button>
+                      );
+                    }
+                  })
+
+                }
               </div>
 
               {children}

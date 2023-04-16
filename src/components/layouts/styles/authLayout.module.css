@@ -54,15 +54,13 @@
   place-items: center;
   padding: .7em;
   transition: .2s;
+  aspect-ratio: 4/4;
+  border: none;
+  outline: none;
 }
 
 .provider:hover {
   opacity: .85;
-}
-
-.providerImage {
-  width: 3.2rem;
-  height: 3.2em;
 }
 
 .authTitle {

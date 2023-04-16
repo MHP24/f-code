@@ -1,19 +1,11 @@
 import mongoose, { Schema, model, Model } from 'mongoose';
-import { IUser } from '../interfaces';
+import { IUser } from '@/interfaces';
 
 const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  provider: {
-    type: String,
-    enum: {
-      values: ['F-Code', 'GitHub', 'Gmail'],
-      message: '{VALUE}, invalid provider',
-      required: true
-    }
-  },
-  picture: { type: String, default: '@', required: true },
+  picture: { type: String, default: 'no-picture', required: true },
   score: { type: Number, default: 0, required: true },
   role: {
     type: String,

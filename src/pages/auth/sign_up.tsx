@@ -1,4 +1,4 @@
-import { NextPage } from 'next';
+import { NextPage, GetServerSideProps } from 'next';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { AuthLayout } from '@/components/layouts';
 import { Button, ErrorLabel, FormInput } from '@/components/ui';
@@ -6,6 +6,7 @@ import { regExValidators } from '@/utils';
 import styles from '@/styles/auth.module.css';
 import { useContext, useState } from 'react';
 import { AuthContext } from '@/context';
+import { getSession, signIn } from 'next-auth/react';
 
 interface Inputs {
   username: string;
@@ -18,6 +19,7 @@ const SignUp: NextPage = () => {
   const [error, setError] = useState({ hasError: false, message: '' });
   const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
 
+
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const { hasError, message = '' } = await registerUser(data);
     if (hasError) {
@@ -27,6 +29,9 @@ const SignUp: NextPage = () => {
       }, 5000);
       return;
     }
+
+    const { email, password } = data;
+    await signIn('credentials', { email, password });
   };
 
   return (
@@ -90,6 +95,20 @@ const SignUp: NextPage = () => {
   );
 }
 
+
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const session = await getSession({ req });
+
+  if (session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    };
+  }
+
+  return { props: {} };
+}
+
 export default SignUp;
-
-

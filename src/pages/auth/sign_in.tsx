@@ -1,11 +1,10 @@
-import { NextPage } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { regExValidators } from '@/utils';
 import { Button, ErrorLabel, FormInput } from '@/components/ui';
 import { AuthLayout } from '@/components/layouts';
 import styles from '@/styles/auth.module.css';
-import { useContext, useState } from 'react';
-import { AuthContext } from '@/context';
+import { getSession, signIn } from 'next-auth/react';
 
 interface Inputs {
   email: string;
@@ -13,19 +12,11 @@ interface Inputs {
 };
 
 const SignIn: NextPage = () => {
-  const { loginUser } = useContext(AuthContext);
   const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
-  const [error, setError] = useState({ hasError: false, message: '' });
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const { hasError, message = '' } = await loginUser(data);
-    if (hasError) {
-      setError({ ...error, hasError, message });
-      setTimeout(() => {
-        setError({ ...error, hasError: false, message: '' });
-      }, 5000);
-      return;
-    }
+    const { email, password } = data;
+    await signIn('credentials', { email, password });
   };
 
   return (
@@ -35,12 +26,12 @@ const SignIn: NextPage = () => {
       image={'sign_in.jpg'}
     >
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
-        {
+        {/* {
           error.hasError &&
           <div className={styles.errorContainer}>
             <p className={styles.errorMessage}>{error.message}</p>
           </div>
-        }
+        } */}
 
         <div>
           <FormInput
@@ -72,6 +63,21 @@ const SignIn: NextPage = () => {
       </form>
     </AuthLayout>
   );
+}
+
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const session = await getSession({ req });
+
+  if (session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    };
+  }
+
+  return { props: {} };
 }
 
 export default SignIn;

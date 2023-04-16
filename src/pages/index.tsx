@@ -9,7 +9,7 @@ export default function Home() {
         <div className={styles.heroContainer}>
           <div className={styles.heroLeft}>
             <div className={styles.heroPicture}></div>
-            <h3 className={styles.challengeCount}>{'+50 Challenges'}</h3>
+            <p className={styles.challengeCount}>{'+50 Challenges'}</p>
           </div>
 
           <div className={styles.heroRight}>
