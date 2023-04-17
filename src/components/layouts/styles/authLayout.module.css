@@ -6,20 +6,18 @@
 
 .authContainer {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  /* margin: 4em; */
+  grid-template-columns: 1.1fr 1.2fr;
   width: 100%;
   min-height: 100%;
   background-color: var(--c1);
-  /* border: .1rem var(--c3) solid; */
   box-shadow: var(--b-sh-1);
   border-radius: var(--br-1);
 }
 
-
-.imageContainer {
-  /* border: 2px red solid; */
+.contentContainer {
+  border-right: 2px var(--c2) solid;
   display: grid;
+  padding: 2.5em 3em;
   place-items: center;
 }
 
@@ -81,6 +79,10 @@
     width: 100%;
     max-width: 550px;
     grid-template-columns: 1fr;
+  }
+
+  .contentContainer {
+    display: none;
   }
 
   .imageContainer {

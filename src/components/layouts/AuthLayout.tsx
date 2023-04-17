@@ -5,6 +5,8 @@ import styles from './styles/authLayout.module.css';
 import { MainLayout } from './MainLayout';
 import { ClientSafeProvider, LiteralUnion, getProviders, signIn } from 'next-auth/react';
 import { BuiltInProviderType } from 'next-auth/providers';
+import { slides } from '../../static/authSlider.json';
+import { Slider } from '../ui';
 
 interface Props {
   title: string;
@@ -23,6 +25,7 @@ export const AuthLayout: FC<PropsWithChildren<Props>> = ({ children, title, page
     })()
   }, []);
 
+
   return (
     <>
       <MainLayout
@@ -31,10 +34,8 @@ export const AuthLayout: FC<PropsWithChildren<Props>> = ({ children, title, page
       >
         <main className={styles.main}>
           <div className={styles.authContainer}>
-            <div className={styles.imageContainer}>
-              <div className={styles.imageSignIn}>
-
-              </div>
+            <div className={styles.contentContainer}>
+              <Slider slides={slides} />
             </div>
 
             <div className={styles.formContainer}>

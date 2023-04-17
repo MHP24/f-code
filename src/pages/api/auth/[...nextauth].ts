@@ -45,11 +45,12 @@ export const authOptions = {
   /* Callbacks */
   callbacks: {
     async jwt({ token, account, user }: any) {
+      console.log({ token, account, user })
       if (account) {
         token.accessToken = account.access_token;
         switch (account.type) {
           case 'oauth':
-            token.user = await dbUsers.oAuthenticate(user.email, user.name, user.image);
+            token.user = await dbUsers.oAuthenticate(user?.email!, user?.name!, user?.image!);
             break;
 
           case 'credentials':
@@ -60,7 +61,7 @@ export const authOptions = {
       return token;
     },
 
-    async session({ session, token, user }: any) {
+    async session({ session, token }: any) {
       session.accesToken = token.accessToken;
       session.user = token.user;
       return session;

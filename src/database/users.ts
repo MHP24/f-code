@@ -22,6 +22,7 @@ export const checkUser = async (email: string, password: string) => {
   } catch (error) {
     await db.disconnect();
     console.error(error);
+    return null;
   }
 }
 
