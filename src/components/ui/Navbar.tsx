@@ -21,7 +21,7 @@ export const Navbar: FC = () => {
         <Button
           text={'Menu'}
           size={1}
-          w={30}
+          w={250}
           fn={toggleMenu}
         />
       </div>
@@ -54,12 +54,14 @@ export const Navbar: FC = () => {
             <Button
               text={'Logout'}
               size={.9}
+              w={250}
               fn={logoutUser}
             />
             :
             <Button
               text={'Join'}
               size={.9}
+              w={250}
               fn={navigateRoute}
             />
 

@@ -86,7 +86,6 @@ const SignUp: NextPage = () => {
             disabled={error.hasError}
             text={'Sign up'}
             size={1.1}
-            w={250}
           />
         </div>
       </form>

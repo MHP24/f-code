@@ -2,7 +2,7 @@
 
 :root {
   /* Colors */
-  --c1: #030C15;
+  /* --c1: #030C15;
   --c1-transparent: #020910E2;
   --c2: #101821;
   --c3: #FFFFFF;
@@ -12,6 +12,18 @@
   --c6: #4DFF8E;
   --c7: #FF5F5F;
   --c8: #14151F;
+  --c9: #043B2A7E; */
+
+  --c1: #070707;
+  --c1-transparent: #070707e2;
+  --c2: #101010;
+  --c3: #FFFFFF;
+  --c4: #00B7FF;
+  --c4-transparent: #00B7FF26;
+  --c5: #474747;
+  --c6: #4DFF8E;
+  --c7: #FF5F5F;
+  --c8: #131313;
   --c9: #043B2A7E;
 
   /* Font size */
@@ -38,6 +50,10 @@
   --b-sh-1-: rgba(255, 255, 255, 0.759) 0px 1px 3px 0px, rgba(255, 255, 255, 0.622) 0px 1px 2px 0px;
 }
 
+html {
+  scrollbar-width: thin;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -51,8 +67,7 @@ body {
   max-width: 120rem;
   margin: auto;
   background-color: var(--c1);
-  /* overflow-x: hidden; */
-  background-image: url('/background.svg');
+  background-image: url('/bg.svg');
   background-position: center;
   background-attachment: fixed;
   background-size: cover;

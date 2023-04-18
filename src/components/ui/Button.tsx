@@ -10,6 +10,7 @@ interface Props {
 }
 
 export const Button: FC<Props> = ({ text, size, w = 0, fn, variant, disabled = false }) => {
+
   return (
     <button
       className={`${styles.button} button`}
@@ -24,7 +25,7 @@ export const Button: FC<Props> = ({ text, size, w = 0, fn, variant, disabled = f
           background-color: ${variant ? 'var(--c3)' : 'var(--c1)'};
           border: var(--c3) 3px solid;
           color: ${variant ? 'var(--c1)' : 'var(--c3)'};
-          ${w && `max-width: ${w}px;`}
+          ${w > 0 ? `max-width: ${w}px;` : 'width: 100%;'}
         }
 
         .button:hover {

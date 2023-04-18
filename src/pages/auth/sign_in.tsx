@@ -57,7 +57,6 @@ const SignIn: NextPage = () => {
           <Button
             text={'Sign in'}
             size={1.1}
-            w={250}
           />
         </div>
       </form>

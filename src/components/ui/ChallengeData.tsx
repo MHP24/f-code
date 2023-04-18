@@ -50,11 +50,13 @@ export const ChallengeData: FC = () => {
           text={'Instructions'}
           variant={instructions}
           size={1}
+          w={250}
         />
         <Button
           fn={() => setInstructions(false)}
           text={'Results'}
           size={1}
+          w={250}
           variant={!instructions}
         />
       </div>

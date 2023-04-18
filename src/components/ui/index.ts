@@ -14,5 +14,3 @@ export * from './LeaderboardRow';
 export * from './Leaderboard';
 export * from './LeaderboardCard';
 export * from './ErrorLabel';
-export * from './Slider';
-export * from './SliderCard';

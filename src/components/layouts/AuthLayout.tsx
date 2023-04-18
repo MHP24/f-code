@@ -2,11 +2,10 @@ import { FC, PropsWithChildren, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './styles/authLayout.module.css';
-import { MainLayout } from './MainLayout';
 import { ClientSafeProvider, LiteralUnion, getProviders, signIn } from 'next-auth/react';
 import { BuiltInProviderType } from 'next-auth/providers';
-import { slides } from '../../static/authSlider.json';
-import { Slider } from '../ui';
+import { Navbar } from '../ui';
+import Head from 'next/head';
 
 interface Props {
   title: string;
@@ -27,18 +26,29 @@ export const AuthLayout: FC<PropsWithChildren<Props>> = ({ children, title, page
 
 
   return (
-    <>
-      <MainLayout
-        pageDescription={pageDescription}
-        title={title}
-      >
-        <main className={styles.main}>
-          <div className={styles.authContainer}>
-            <div className={styles.contentContainer}>
-              <Slider slides={slides} />
+    <div>
+      <Head>
+        <title>{title}</title>
+        <meta name='description' content={pageDescription} />
+        <meta name='og:title' content={title} />
+        <meta name='og:description' content={pageDescription} />
+      </Head>
+      <Navbar />
+      <main className={styles.main}>
+        <div className={styles.authContainer}>
+          <div className={styles.contentContainer}>
+            <div className={styles.contentImageContainer}>
+              <Image
+                className={styles.contentImage}
+                src={'/pictures/astronaut.jpg'}
+                fill
+                alt={`${title} picture`}
+              />
             </div>
+          </div>
 
-            <div className={styles.formContainer}>
+          <div className={styles.formContainer}>
+            <div className={styles.form}>
               <h2 className={styles.authTitle}>{`${title} to F-Code`}</h2>
 
               <div className={styles.providers}>
@@ -73,8 +83,8 @@ export const AuthLayout: FC<PropsWithChildren<Props>> = ({ children, title, page
               }
             </div>
           </div>
-        </main>
-      </MainLayout>
-    </>
+        </div>
+      </main>
+    </div>
   );
 }
