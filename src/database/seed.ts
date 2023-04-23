@@ -74,6 +74,106 @@ export const seedData: SeedData = {
       tags: ['tag1', 'tag2'],
       active: true,
       creatorId: '1232103132130198390'
+    },
+    {
+      slug: 'the_best_sum',
+      language: 'typescript',
+      difficulty: 3,
+      instructions: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent blandit volutpat mi in condimentum. Pellentesque ultricies est leo, quis dignissim nisl luctus vel. Fusce quam leo, venenatis ut nulla at, feugiat fringilla orci. Mauris ut risus odio. Nullam tempor cursus accumsan. Morbi consectetur sollicitudin elit, vitae dapibus sem suscipit sed. Maecenas massa eros, lobortis vel neque non, rhoncus pulvinar ante. Suspendisse vel efficitur metus.',
+      functionName: 'sumNumbers',
+      parameters: ['n1', 'n2'],
+      cases: [
+        {
+          parameters: [1, 2],
+          expectedOutput: 3
+        },
+        {
+          parameters: [2, 6],
+          expectedOutput: 8
+        },
+        {
+          parameters: [3, -10],
+          expectedOutput: -7
+        }
+      ],
+      tags: ['tag1', 'tag2'],
+      active: true,
+      creatorId: '1232103132130198390'
+    },
+    {
+      slug: 'the_worst_division',
+      language: 'python3',
+      difficulty: 1,
+      instructions: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent blandit volutpat mi in condimentum. Pellentesque ultricies est leo, quis dignissim nisl luctus vel. Fusce quam leo, venenatis ut nulla at, feugiat fringilla orci. Mauris ut risus odio. Nullam tempor cursus accumsan. Morbi consectetur sollicitudin elit, vitae dapibus sem suscipit sed. Maecenas massa eros, lobortis vel neque non, rhoncus pulvinar ante. Suspendisse vel efficitur metus.',
+      functionName: 'divNumbers',
+      parameters: ['n1', 'n2'],
+      cases: [
+        {
+          parameters: [1, 2],
+          expectedOutput: 0.5
+        },
+        {
+          parameters: [6, 2],
+          expectedOutput: 3
+        },
+        {
+          parameters: [20, -10],
+          expectedOutput: -2
+        }
+      ],
+      tags: ['tag1', 'tag2'],
+      active: true,
+      creatorId: '1232103132130198390'
+    },
+    {
+      slug: 'the_best_multiply',
+      language: 'javascript',
+      difficulty: 4,
+      instructions: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent blandit volutpat mi in condimentum. Pellentesque ultricies est leo, quis dignissim nisl luctus vel. Fusce quam leo, venenatis ut nulla at, feugiat fringilla orci. Mauris ut risus odio. Nullam tempor cursus accumsan. Morbi consectetur sollicitudin elit, vitae dapibus sem suscipit sed. Maecenas massa eros, lobortis vel neque non, rhoncus pulvinar ante. Suspendisse vel efficitur metus.',
+      functionName: 'multiplyNumbers',
+      parameters: ['n1', 'n2'],
+      cases: [
+        {
+          parameters: [1, 2],
+          expectedOutput: 2
+        },
+        {
+          parameters: [6, 2],
+          expectedOutput: 12
+        },
+        {
+          parameters: [20, -10],
+          expectedOutput: -200
+        }
+      ],
+      tags: ['tag1', 'tag2'],
+      active: true,
+      creatorId: '1232103132130198390'
+    },
+    {
+      slug: 'the_hardest_array',
+      language: 'typescript',
+      difficulty: 4,
+      instructions: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent blandit volutpat mi in condimentum. Pellentesque ultricies est leo, quis dignissim nisl luctus vel. Fusce quam leo, venenatis ut nulla at, feugiat fringilla orci. Mauris ut risus odio. Nullam tempor cursus accumsan. Morbi consectetur sollicitudin elit, vitae dapibus sem suscipit sed. Maecenas massa eros, lobortis vel neque non, rhoncus pulvinar ante. Suspendisse vel efficitur metus.',
+      functionName: 'concatArraysByCount',
+      parameters: ['n1', 'n2'],
+      cases: [
+        {
+          parameters: [1, 2],
+          expectedOutput: [1, 2, 3, 4]
+        },
+        {
+          parameters: [6, 2],
+          expectedOutput: [3, 4, 5, 6]
+        },
+        {
+          parameters: [20, -10],
+          expectedOutput: [10, 20, 30, 40]
+        }
+      ],
+      tags: ['tag1', 'tag2'],
+      active: true,
+      creatorId: '1232103132130198390'
     }
   ]
 }

@@ -5,11 +5,28 @@
   width: 100%;
   display: grid;
   grid-template-columns: 1fr .7fr;
+  /* border: 2px blue solid; */
+}
+
+.editorContainer {
+  position: relative;
+  /* border: 2px red solid; */
+}
+
+.submitContainer {
+  position: absolute;
+  bottom: 3%;
+  right: 5%;
 }
 
 .editor {
   background-color: #1E1E1E;
   /* background-color: var(--c1); */
-  width: 50%;
+  /* width: 50%; */
   padding: .5em 0;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  right: 0%;
+  bottom: 0%;
 }

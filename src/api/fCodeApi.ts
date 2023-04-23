@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const fCodeApi = axios.create({
-  baseURL: '/api'
+  baseURL: 'http://localhost:3000/api'
 });
 
 export default fCodeApi;

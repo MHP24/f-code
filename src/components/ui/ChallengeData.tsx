@@ -39,25 +39,29 @@ npm run start \
 *** \
 '
 
-export const ChallengeData: FC = () => {
-  const [instructions, setInstructions] = useState(true);
+interface Props {
+  instructions: string;
+}
+
+export const ChallengeData: FC<Props> = ({ instructions }) => {
+  const [tab, setTab] = useState(true);
 
   return (
     <div className={styles.challengeData}>
       <div className={styles.actions}>
         <Button
-          fn={() => setInstructions(true)}
+          fn={() => setTab(true)}
           text={'Instructions'}
-          variant={instructions}
+          variant={tab}
           size={1}
           w={250}
         />
         <Button
-          fn={() => setInstructions(false)}
+          fn={() => setTab(false)}
           text={'Results'}
           size={1}
           w={250}
-          variant={!instructions}
+          variant={!tab}
         />
       </div>
 
@@ -66,11 +70,11 @@ export const ChallengeData: FC = () => {
           !true ?
             <Loader />
             :
-            instructions ?
+            tab ?
               <ReactMarkdown
                 className={styles.markdownArea}
                 remarkPlugins={[remarkGfm]}>
-                {markdownExample}
+                {instructions}
               </ReactMarkdown>
               :
               <TestPanel

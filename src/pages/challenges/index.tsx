@@ -1,11 +1,26 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NextPage } from 'next/types';
 import { MainLayout } from '@/components/layouts';
 import styles from '@/styles/challenges.module.css';
 import { ChallengesGrid } from '@/components/ui';
+import { IChallengeSearch } from '@/interfaces';
+import { fCodeApi } from '@/api';
 
 const Challenges: NextPage = () => {
   const [showFilter, setShowFilter] = useState<Boolean>(false);
+  const [challenges, setChallenges] = useState<IChallengeSearch[] | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data } = await fCodeApi.get('/challenges/search');
+        setChallenges(data);
+      } catch (error) {
+        setChallenges([]);
+      }
+    })();
+  }, []);
+
 
   return (
     <MainLayout
@@ -44,7 +59,7 @@ const Challenges: NextPage = () => {
       </header>
 
       <section>
-        <ChallengesGrid/>
+        <ChallengesGrid challenges={challenges} />
       </section>
     </MainLayout>
   );

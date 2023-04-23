@@ -17,3 +17,11 @@ export interface IChallenge {
   active: boolean;
   creatorId: string;
 }
+
+export interface IChallengeSearch {
+  _id: string;
+  slug: string;
+  language: string;
+  difficulty: number;
+  tags: string[];
+}

@@ -9,7 +9,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Compil
     case 'POST':
       return handleSolve(req, res)
     default:
-      res.status(400).json({ error: 'Bad request' });
+      return res.status(400).json({ error: 'Bad request' });
   }
 }
 

@@ -2,7 +2,7 @@ import mongoose, { Schema, model, Model } from 'mongoose';
 import { IChallenge } from '@/interfaces';
 
 const challengeSchema = new Schema({
-  slug: { type: String, required: true, unique: true },
+  slug: { type: String, required: true },
   language: { type: String, required: true },
   difficulty: { type: Number, required: true },
   instructions: { type: String, required: true },
