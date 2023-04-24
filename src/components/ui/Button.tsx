@@ -32,6 +32,11 @@ export const Button: FC<Props> = ({ text, size, w = 0, fn, variant, disabled = f
           background-color: var(--c3);
           color: var(--c2);
         }
+
+        .button:disabled:hover {
+          background-color: var(--c1);
+          color: var(--c3);
+        }
       `}</style>
     </button >
 

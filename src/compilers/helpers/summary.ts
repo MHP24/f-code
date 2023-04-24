@@ -4,7 +4,6 @@ import { IExecutionSummary, IDataOutput } from '@/interfaces';
 interface ISummaryProps {
   results: ICodeExecution;
   outputs: any[];
-
 }
 
 export const generateSummary = (

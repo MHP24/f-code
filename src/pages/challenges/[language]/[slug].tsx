@@ -7,6 +7,7 @@ import { Button, ChallengeData } from '@/components/ui';
 import { fCodeApi } from '@/api';
 import axios from 'axios';
 import styles from '../../../styles/challenge.module.css';
+import { IExecutionState } from '@/interfaces';
 
 interface Props {
   _id: string;
@@ -16,10 +17,11 @@ interface Props {
 }
 
 const Challenge: NextPage<Props> = ({ _id, language, slug, instructions }) => {
-  const [executionData, setExecutionData] = useState({
+  const [executionData, setExecutionData] = useState<IExecutionState>({
     executed: false,
     isExecuting: false,
     executionFailed: false,
+    error: null,
     data: {}
   });
 
@@ -36,19 +38,18 @@ const Challenge: NextPage<Props> = ({ _id, language, slug, instructions }) => {
         ...executionData,
         executed: true,
         executionFailed: false,
+        error: null,
         data
       });
+
     } catch (error) {
       setExecutionData({
         ...executionData,
         executed: true,
         executionFailed: true,
-        data:
-        {
-          error: axios.isAxiosError(error) ?
-            error.response?.data.error
-            : 'Unexpected error'
-        }
+        error: axios.isAxiosError(error) ?
+          `${error.response?.data.error}`
+          : 'Unexpected error'
       });
     }
   }
@@ -63,7 +64,7 @@ const Challenge: NextPage<Props> = ({ _id, language, slug, instructions }) => {
         <div className={styles.editorContainer}>
           <Editor
             className={styles.editor}
-            defaultLanguage='javascript'
+            defaultLanguage={language}
             theme={'vs-dark'}
             onMount={handleEditor}
             options={{

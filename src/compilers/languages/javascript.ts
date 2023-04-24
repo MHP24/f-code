@@ -12,7 +12,7 @@ interface IValidateFnProps {
   code: string;
 }
 
-const validateFunction = (
+export const validateFunction = (
   { functionName, parameters, code }: IValidateFnProps
 ): IDataOutput<IFunctionValidation> => {
   try {
@@ -49,7 +49,7 @@ interface IExecutionParams {
   cases: any[];
 }
 
-const executeJavaScriptCode = (
+export const executeJavaScriptCode = (
   { functionExec, functionName, cases }: IExecutionParams
 ): IDataOutput<ICodeExecution> => {
   try {
@@ -71,7 +71,7 @@ const executeJavaScriptCode = (
 
 export const handleJavaScriptExecution = (
   { functionName, parameters, cases, code }: IExecutionCase
-): HandlerOutput | any => {
+): HandlerOutput => {
   const fnValidation = validateFunction({ functionName, parameters, code });
   if (fnValidation.hasError) return fnValidation;
 

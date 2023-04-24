@@ -12,8 +12,8 @@ export const ErrorChallenge: FC<Props> = ({ detailError }) => {
       <Image
         className={styles.image}
         src={'/illustrations/sad.svg'}
-        width={200}
-        height={200}
+        width={170}
+        height={170}
         alt='error-sad-illustration'
       />
       <p className={styles.error}>{detailError}</p>

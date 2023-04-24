@@ -3,14 +3,16 @@ import { Button, ErrorChallenge, Loader, TestPanel } from '.';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import styles from '../styles/challengeData.module.css';
+import { IExecutionState, IExecutionSummary } from '@/interfaces';
 
 interface Props {
   instructions: string;
-  solveData: any;
+  solveData: IExecutionState;
 }
 
 export const ChallengeData: FC<Props> = ({ instructions, solveData }) => {
   const [tab, setTab] = useState(true);
+  const { data: { errors, cases } } = solveData as { data: IExecutionSummary };
 
   useEffect(() => {
     solveData.executed && setTab(false);
@@ -49,13 +51,13 @@ export const ChallengeData: FC<Props> = ({ instructions, solveData }) => {
               </ReactMarkdown>
               :
               (
-                solveData.executed && !solveData.executionFailed ?
+                solveData && solveData.executed && !solveData.executionFailed ?
                   <TestPanel
-                    errors={solveData.data.errors}
-                    cases={solveData.data.cases}
+                    errors={errors}
+                    cases={cases}
                   />
                   :
-                  <ErrorChallenge detailError={solveData.data.error} />
+                  <ErrorChallenge detailError={`${solveData.error}`} />
               )
         }
       </div>

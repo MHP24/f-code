@@ -9,7 +9,6 @@ interface Props {
   caseStructure: string;
   expectedOutput: string;
   expectedType: string;
-  isCorrect: boolean;
   output: string;
   passed: boolean;
 }
@@ -41,15 +40,15 @@ export const TestDropdown: FC<Props> = ({
             <code className={styles.code}>
               <p>Test: {caseStructure}</p>
               <p>Returns: &nbsp;{expectedType}</p>
-              
+
               <div>
                 <p>Expected:</p>
-                <p className={styles.successDetail}>{expectedOutput}</p>
+                <p className={`${styles.successDetail} ${styles.detail}`}>{JSON.stringify(expectedOutput)}</p>
               </div>
 
               <div>
                 <p>Actual:</p>
-                <p className={`${passed ? styles.successDetail : styles.failedDetail} ${styles.detail}`}>{output}</p>
+                <p className={`${passed ? styles.successDetail : styles.failedDetail} ${styles.detail}`}>{JSON.stringify(output)}</p>
               </div>
 
             </code>

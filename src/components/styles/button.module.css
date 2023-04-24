@@ -11,3 +11,13 @@
   font-weight: var(--fs-w-3);
   transition: .2s;
 }
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button:disabled:hover {
+  background-color: transparent;
+  color: #fff;
+}

@@ -156,19 +156,19 @@ export const seedData: SeedData = {
       difficulty: 4,
       instructions: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent blandit volutpat mi in condimentum. Pellentesque ultricies est leo, quis dignissim nisl luctus vel. Fusce quam leo, venenatis ut nulla at, feugiat fringilla orci. Mauris ut risus odio. Nullam tempor cursus accumsan. Morbi consectetur sollicitudin elit, vitae dapibus sem suscipit sed. Maecenas massa eros, lobortis vel neque non, rhoncus pulvinar ante. Suspendisse vel efficitur metus.',
       functionName: 'concatArraysByCount',
-      parameters: ['n1', 'n2'],
+      parameters: ['arraySteps'],
       cases: [
         {
-          parameters: [1, 2],
-          expectedOutput: [1, 2, 3, 4]
+          parameters: [2],
+          expectedOutput: [2]
         },
         {
-          parameters: [6, 2],
-          expectedOutput: [3, 4, 5, 6]
+          parameters: [6],
+          expectedOutput: [2, 4, 6]
         },
         {
-          parameters: [20, -10],
-          expectedOutput: [10, 20, 30, 40]
+          parameters: [24],
+          expectedOutput: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24]
         }
       ],
       tags: ['tag1', 'tag2'],

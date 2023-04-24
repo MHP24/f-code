@@ -65,8 +65,6 @@ export const Footer = () => {
       <hr className={styles.hr} />
       <p className={styles.copyright}>
         2023 F-Code
-        <br />
-        <span>All rights reserved</span>
       </p>
 
 

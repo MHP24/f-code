@@ -1,4 +1,4 @@
-import { handleJavaScriptExecution } from '@/compilers';
+import { handleJavaScriptExecution, handleTypeScriptExecution } from '@/compilers';
 import { HandlerOutput, ICaseSchema, IExecutionCase } from '@/interfaces';
 
 interface Props {
@@ -17,7 +17,8 @@ type TLanguages = {
 
 export const handleExecution = (data: Props) => {
   const languages: TLanguages = {
-    'javascript': handleJavaScriptExecution
+    'javascript': handleJavaScriptExecution,
+    'typescript': handleTypeScriptExecution
   }
   const handlerFn = languages[data.language];
   return (
