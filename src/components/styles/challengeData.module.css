@@ -1,6 +1,5 @@
 .challengeData {
   width: 100%;
-  /* height: calc(90vh - .2em); */
   overflow-y: scroll;
   background-color: var(--c2);
   padding: 1.5em;

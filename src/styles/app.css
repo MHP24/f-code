@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap');
 
 :root {
   /* Colors */
@@ -25,6 +25,8 @@
   --c7: #FF5F5F;
   --c8: #131313;
   --c9: #043B2A7E;
+  --c10: #3b040467;
+  --c11: #f3d9d9;
 
   /* Font size */
   --fs-1: 1rem;
@@ -32,11 +34,11 @@
   --fs-3: 1.4rem;
   --fs-4: 2rem;
   --fs-5: 2.4rem;
-  --fs-6: 3.8rem;
+  --fs-6: 3.9rem;
 
   /* Font weight */
-  --fs-w-1: 200;
-  --fs-w-2: 400;
+  --fs-w-1: 300;
+  --fs-w-2: 500;
   --fs-w-3: 700;
 
 
@@ -60,7 +62,7 @@ html {
   box-sizing: border-box;
   color: var(--c3);
   font-weight: var(--fs-w-2);
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 body {

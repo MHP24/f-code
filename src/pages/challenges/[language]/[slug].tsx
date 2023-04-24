@@ -1,12 +1,12 @@
+import { useRef, useState } from 'react';
 import { GetServerSideProps, NextPage } from 'next';
 import Editor from '@monaco-editor/react';
 import { editor } from 'monaco-editor';
-import { MainLayout } from '@/components/layouts';
-import styles from '../../../styles/challenge.module.css';
+import { ChallengeLayout } from '@/components/layouts';
 import { Button, ChallengeData } from '@/components/ui';
-import { useRef } from 'react';
 import { fCodeApi } from '@/api';
 import axios from 'axios';
+import styles from '../../../styles/challenge.module.css';
 
 interface Props {
   _id: string;
@@ -16,28 +16,45 @@ interface Props {
 }
 
 const Challenge: NextPage<Props> = ({ _id, language, slug, instructions }) => {
-  const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
+  const [executionData, setExecutionData] = useState({
+    executed: false,
+    isExecuting: false,
+    executionFailed: false,
+    data: {}
+  });
 
+  const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
   const handleEditor = (editor: editor.IStandaloneCodeEditor) => editorRef.current = editor;
 
   const submitCode = async () => {
     const { current } = editorRef;
-
     const code = current!.getValue();
 
     try {
       const { data } = await fCodeApi.post(`/challenges/solve?challengeId=${_id}`, { code });
-      console.log({ data });
-    } catch (error: any) {
-      if (axios.isAxiosError(error)) {
-        console.log(error.response?.data.error);
-      }
-
+      setExecutionData({
+        ...executionData,
+        executed: true,
+        executionFailed: false,
+        data
+      });
+    } catch (error) {
+      setExecutionData({
+        ...executionData,
+        executed: true,
+        executionFailed: true,
+        data:
+        {
+          error: axios.isAxiosError(error) ?
+            error.response?.data.error
+            : 'Unexpected error'
+        }
+      });
     }
   }
 
   return (
-    <MainLayout
+    <ChallengeLayout
       title={`${(slug.replace(/\_+/gi, ' '))
         .replace(/^\w/gi, w => w.toUpperCase())}`}
       pageDescription={`${language} - Challenge ${slug}`}
@@ -67,9 +84,10 @@ const Challenge: NextPage<Props> = ({ _id, language, slug, instructions }) => {
 
         <ChallengeData
           instructions={instructions}
+          solveData={executionData}
         />
       </div>
-    </MainLayout>
+    </ChallengeLayout>
   );
 }
 

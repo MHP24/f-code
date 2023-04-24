@@ -5,21 +5,29 @@ import arrowDown from '/public/illustrations/arrow-down.svg';
 import styles from '../styles/testDropdown.module.css';
 
 interface Props {
+  caseNumber: number;
+  caseStructure: string;
+  expectedOutput: string;
+  expectedType: string;
+  isCorrect: boolean;
+  output: string;
   passed: boolean;
 }
 
-export const TestDropdown: FC<Props> = ({ passed }) => {
+export const TestDropdown: FC<Props> = ({
+  caseNumber, passed, expectedOutput,
+  expectedType, caseStructure, output
+}) => {
   const [showContent, setshowContent] = useState<boolean>(false);
 
   return (
     <div className={styles.testDropdown}>
-      <div className={styles.header}
+      <div className={`${styles.header} ${passed ? styles.headerSuccess : styles.headerFailed}`}
         onClick={() => setshowContent(!showContent)}
         role='button'
       >
         <div className={passed ? styles.successCircle : styles.failedCircle}></div>
-        <p className={passed ? styles.successTitle : styles.failedTitle}>{`Test #1`}</p>
-        {/* <p className={styles.dropIndicator}>{`*`}</p> */}
+        <p className={passed ? styles.successTitle : styles.failedTitle}>{`Test #${caseNumber}`}</p>
         {
           showContent ?
             <Image className={styles.arrowSuccess} src={arrowUp} alt={'arrow-up'} />
@@ -30,12 +38,21 @@ export const TestDropdown: FC<Props> = ({ passed }) => {
       {
         showContent && (
           <div className={styles.body}>
-            <p className={styles.code}>
-              Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Harum neque, dolores
-              inventore magni alias voluptatum amet veniam
-              dicta laboriosam reiciendis!
-            </p>
+            <code className={styles.code}>
+              <p>Test: {caseStructure}</p>
+              <p>Returns: &nbsp;{expectedType}</p>
+              
+              <div>
+                <p>Expected:</p>
+                <p className={styles.successDetail}>{expectedOutput}</p>
+              </div>
+
+              <div>
+                <p>Actual:</p>
+                <p className={`${passed ? styles.successDetail : styles.failedDetail} ${styles.detail}`}>{output}</p>
+              </div>
+
+            </code>
           </div>
         )
       }

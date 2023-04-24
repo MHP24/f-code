@@ -7,7 +7,10 @@ export interface ICodeExecution {
 }
 
 export interface ISummaryCase {
+  caseStructure: string;
   expectedOutput: string;
+  expectedType: string;
+  outputType: string;
   output: string;
   isCorrect: boolean;
 }

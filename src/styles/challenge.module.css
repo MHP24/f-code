@@ -1,16 +1,19 @@
 .challengePanel {
   display: flex;
-  /* border: 2px red solid; */
   height: 90vh;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr .7fr;
-  /* border: 2px blue solid; */
+}
+
+@media (max-width: 56rem) {
+  .challengePanel {
+    height: 100vh;
+  }
 }
 
 .editorContainer {
   position: relative;
-  /* border: 2px red solid; */
 }
 
 .submitContainer {
@@ -21,8 +24,6 @@
 
 .editor {
   background-color: #1E1E1E;
-  /* background-color: var(--c1); */
-  /* width: 50%; */
   padding: .5em 0;
   position: absolute;
   top: 0%;

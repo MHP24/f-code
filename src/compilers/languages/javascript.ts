@@ -55,10 +55,13 @@ const executeJavaScriptCode = (
   try {
     const vm = new VM({ timeout: 1000 });
     const outputs = cases.map(({ parameters }) => {
-      return (vm.run(`
-        ${functionExec}
-        ${functionName}(${parameters.join(', ')});
-      `));
+      return ({
+        execution: vm.run(`
+          ${functionExec}
+          ${functionName}(${parameters.join(', ')});
+        `),
+        caseStructure: `${functionName}(${parameters.join(', ')});`
+      });
     });
     return { hasError: false, data: { outputs } }
   } catch (error) {
@@ -68,7 +71,7 @@ const executeJavaScriptCode = (
 
 export const handleJavaScriptExecution = (
   { functionName, parameters, cases, code }: IExecutionCase
-): HandlerOutput => {
+): HandlerOutput | any => {
   const fnValidation = validateFunction({ functionName, parameters, code });
   if (fnValidation.hasError) return fnValidation;
 

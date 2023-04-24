@@ -45,7 +45,6 @@ export const authOptions = {
   /* Callbacks */
   callbacks: {
     async jwt({ token, account, user }: any) {
-      console.log({ token, account, user })
       if (account) {
         token.accessToken = account.access_token;
         switch (account.type) {

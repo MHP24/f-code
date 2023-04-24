@@ -1,27 +1,35 @@
 import { FC } from 'react';
 import { TestDropdown } from '.';
 import styles from '../styles/testPanel.module.css';
+import { ISummaryCase } from '@/interfaces';
 interface Props {
-  failed: boolean;
+  errors: number;
+  cases: ISummaryCase[];
 }
 
-export const TestPanel: FC<Props> = ({ failed }) => {
+export const TestPanel: FC<Props> = ({ errors, cases }) => {
   return (
     <div className={styles.testPanel}>
 
       {
-        failed ?
-          <h2 className={styles.failedTitle}>{`✘ 1 test didn't pass`}</h2>
+        errors > 0 ?
+          <h2 className={styles.failedTitle}>{`✘ ${errors} test${errors > 1 && 's'} didn't pass`}</h2>
           :
-          <h2 className={styles.successTitle}>{`✔ all test passed!`}</h2>
-
+          <h2 className={styles.successTitle}>{`✔ All test passed!`}</h2>
       }
 
-      <TestDropdown passed={true} />
-      <TestDropdown passed={true} />
-      <TestDropdown passed={false} />
-      <TestDropdown passed={true} />
-      <TestDropdown passed={true} />
+      <ul>
+        {
+          cases.map(({ isCorrect, ...restProps }: ISummaryCase, i) => (
+            <TestDropdown
+              key={`challenge-summary-${isCorrect}${restProps.output}${restProps.expectedOutput}`}
+              caseNumber={i + 1}
+              passed={isCorrect}
+              {...restProps}
+            />
+          ))
+        }
+      </ul>
     </div>
   );
 }

@@ -1,50 +1,20 @@
-import { FC, useState } from 'react';
-import { Button, Loader, TestPanel } from '.';
+import { FC, useEffect, useState } from 'react';
+import { Button, ErrorChallenge, Loader, TestPanel } from '.';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import styles from '../styles/challengeData.module.css';
 
-
-const markdownExample =
-  ' \
-\
-\
-\## Installation Guide \
-\
-\n### 1. Install dependencies \
-``` \
-npm install \
-``` \
-\n\
-\n\
-this is an example text without styles\
-\
-\n### 2. Setup database \
-> Complete DB_CONFIG from __config.js__ \
-\`\`\` \
-  DB_CONFIG: { \
-    host: \'localhost\', \
-    user: \'root\', \
-    password: \'example\', \
-    database: \'dbName\', \
-  } \
-\`\`\` \n\
-### Tables\n \
-\
-### 3. Run project \
-``` \
-npm run start \
-``` \
-#\
-*** \
-'
-
 interface Props {
   instructions: string;
+  solveData: any;
 }
 
-export const ChallengeData: FC<Props> = ({ instructions }) => {
+export const ChallengeData: FC<Props> = ({ instructions, solveData }) => {
   const [tab, setTab] = useState(true);
+
+  useEffect(() => {
+    solveData.executed && setTab(false);
+  }, [solveData]);
 
   return (
     <div className={styles.challengeData}>
@@ -62,6 +32,7 @@ export const ChallengeData: FC<Props> = ({ instructions }) => {
           size={1}
           w={250}
           variant={!tab}
+          disabled={!solveData.executed}
         />
       </div>
 
@@ -77,9 +48,15 @@ export const ChallengeData: FC<Props> = ({ instructions }) => {
                 {instructions}
               </ReactMarkdown>
               :
-              <TestPanel
-                failed={false}
-              />
+              (
+                solveData.executed && !solveData.executionFailed ?
+                  <TestPanel
+                    errors={solveData.data.errors}
+                    cases={solveData.data.cases}
+                  />
+                  :
+                  <ErrorChallenge detailError={solveData.data.error} />
+              )
         }
       </div>
     </div>

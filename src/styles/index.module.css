@@ -8,7 +8,7 @@
 .heroContainer {
   margin: auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr .96fr;
   gap: 3em;
   justify-items: center;
 }

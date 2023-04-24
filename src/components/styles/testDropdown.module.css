@@ -53,13 +53,32 @@
   background-color: var(--c1);
 }
 
-.header:hover {
+.headerSuccess:hover {
   background-color: var(--c9);
 }
 
+.headerFailed:hover {
+  background-color: var(--c10);
+}
+
 .code {
+  font-size: var(--fs-1);
   background: var(--c8);
-  display: block;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   padding: .5em;
+  gap: 1em;
+}
+
+.detail {
+  font-weight: var(--fs-w-2);
+}
+
+.successDetail {
+  color: var(--c6);
+}
+
+.failedDetail {
+  color: var(--c7);
 }

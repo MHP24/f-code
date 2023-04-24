@@ -4,24 +4,25 @@ import { IExecutionSummary, IDataOutput } from '@/interfaces';
 interface ISummaryProps {
   results: ICodeExecution;
   outputs: any[];
+
 }
 
 export const generateSummary = (
   { results, outputs }: ISummaryProps
 ): IDataOutput<IExecutionSummary> => {
-  console.log({ results });
   const { outputs: solveOutputs } = results;
 
   if (results.outputs!.length === outputs.length) {
     const cases = outputs.map(({ expectedOutput }, i) => {
       return {
+        caseStructure: solveOutputs![i].caseStructure,
         expectedType: typeof expectedOutput,
-        outputType: typeof solveOutputs![i],
+        outputType: typeof solveOutputs![i].execution,
         expectedOutput,
-        output: solveOutputs![i],
+        output: solveOutputs![i].execution,
         isCorrect: (
-          `${expectedOutput}` === `${solveOutputs![i]}` /* Array, objects cases (!== ref) */
-          && typeof expectedOutput === typeof solveOutputs![i])
+          `${expectedOutput}` === `${solveOutputs![i].execution}` /* Array, objects cases (!== ref) */
+          && typeof expectedOutput === typeof solveOutputs![i].execution)
       };
     });
 
