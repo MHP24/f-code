@@ -52,6 +52,7 @@
   --b-sh-1-: rgba(255, 255, 255, 0.759) 0px 1px 3px 0px, rgba(255, 255, 255, 0.622) 0px 1px 2px 0px;
 }
 
+
 html {
   scrollbar-width: thin;
 }
@@ -111,3 +112,4 @@ code {
     --fs-6: 2.2rem;
   }
 }
+

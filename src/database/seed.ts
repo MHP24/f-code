@@ -18,7 +18,7 @@ interface SeedChallenge {
   functionName: string;
   parameters: string[];
   cases: {
-    parameters: any[];
+    call: string;
     expectedOutput: any;
   }[];
   tags: string[];
@@ -59,16 +59,45 @@ export const seedData: SeedData = {
       parameters: ['n1', 'n2'],
       cases: [
         {
-          parameters: [1, 2],
+          call: 'sumNumbers(1, 2)',
           expectedOutput: 3
         },
         {
-          parameters: [2, 6],
+          call: 'sumNumbers(2, 6)',
           expectedOutput: 8
         },
         {
-          parameters: [3, -10],
+          call: 'sumNumbers(3, -10)',
           expectedOutput: -7
+        }
+      ],
+      tags: ['tag1', 'tag2'],
+      active: true,
+      creatorId: '1232103132130198390'
+    },
+    {
+      slug: 'check',
+      language: 'javascript',
+      difficulty: 3,
+      instructions: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent blandit volutpat mi in condimentum. Pellentesque ultricies est leo, quis dignissim nisl luctus vel. Fusce quam leo, venenatis ut nulla at, feugiat fringilla orci. Mauris ut risus odio. Nullam tempor cursus accumsan. Morbi consectetur sollicitudin elit, vitae dapibus sem suscipit sed. Maecenas massa eros, lobortis vel neque non, rhoncus pulvinar ante. Suspendisse vel efficitur metus.',
+      functionName: 'checkFn',
+      parameters: ['n1', 'n2'],
+      cases: [
+        {
+          call: `checkFn("asd", 1)`,
+          expectedOutput: "asd1"
+        },
+        {
+          call: "checkFn(2, '6')",
+          expectedOutput: '26'
+        },
+        {
+          call: 'checkFn(true, -10)',
+          expectedOutput: -9
+        },
+        {
+          call: 'checkFn("A", "b")',
+          expectedOutput: `Ab`
         }
       ],
       tags: ['tag1', 'tag2'],
@@ -84,15 +113,15 @@ export const seedData: SeedData = {
       parameters: ['n1', 'n2'],
       cases: [
         {
-          parameters: [1, 2],
+          call: 'sumNumbers(1, 2)',
           expectedOutput: 3
         },
         {
-          parameters: [2, 6],
+          call: 'sumNumbers(2, 6)',
           expectedOutput: 8
         },
         {
-          parameters: [3, -10],
+          call: 'sumNumbers(3, -10)',
           expectedOutput: -7
         }
       ],
@@ -100,51 +129,121 @@ export const seedData: SeedData = {
       active: true,
       creatorId: '1232103132130198390'
     },
+    // {
+    //   slug: 'object_testing',
+    //   language: 'javascript',
+    //   difficulty: 4,
+    //   instructions: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent blandit volutpat mi in condimentum. Pellentesque ultricies est leo, quis dignissim nisl luctus vel. Fusce quam leo, venenatis ut nulla at, feugiat fringilla orci. Mauris ut risus odio. Nullam tempor cursus accumsan. Morbi consectetur sollicitudin elit, vitae dapibus sem suscipit sed. Maecenas massa eros, lobortis vel neque non, rhoncus pulvinar ante. Suspendisse vel efficitur metus.',
+    //   functionName: 'unionOfObjects',
+    //   parameters: ['obj1', 'obj2'],
+    //   cases: [
+    //     {
+    //       call: 'unionOfObjects({}, {})',
+    //       expectedOutput: null
+    //     },
+    //     {
+    //       call: `unionOfObjects({a: '1', b: 3}, {j: true})`,
+    //       expectedOutput: { a: '1', b: 3, j: true }
+    //     },
+    //     {
+    //       call: `unionOfObjects({}, {j: true})`,
+    //       expectedOutput: { j: true }
+    //     },
+    //   ],
+    //   tags: ['tag1', 'tag2'],
+    //   active: true,
+    //   creatorId: '1232103132130198390'
+    // },
     {
-      slug: 'the_worst_division',
-      language: 'python3',
-      difficulty: 1,
+      slug: 'can_i_exit',
+      language: 'javascript',
+      difficulty: 4,
       instructions: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent blandit volutpat mi in condimentum. Pellentesque ultricies est leo, quis dignissim nisl luctus vel. Fusce quam leo, venenatis ut nulla at, feugiat fringilla orci. Mauris ut risus odio. Nullam tempor cursus accumsan. Morbi consectetur sollicitudin elit, vitae dapibus sem suscipit sed. Maecenas massa eros, lobortis vel neque non, rhoncus pulvinar ante. Suspendisse vel efficitur metus.',
-      functionName: 'divNumbers',
-      parameters: ['n1', 'n2'],
+      functionName: 'canExit',
+      parameters: ['maze'],
       cases: [
         {
-          parameters: [1, 2],
-          expectedOutput: 0.5
+          call: `canExit([
+            [' ', ' ', 'W', ' ', 'S'],
+            [' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', 'W', ' '],
+            ['W', 'W', ' ', 'W', 'W'],
+            [' ', ' ', ' ', ' ', 'E']
+          ])`,
+          expectedOutput: true
         },
         {
-          parameters: [6, 2],
-          expectedOutput: 3
+          call: `canExit([
+            [' ', ' ', 'W', 'W', 'S'],
+            [' ', ' ', ' ', 'W', ' '],
+            [' ', ' ', ' ', 'W', ' '],
+            ['W', 'W', ' ', 'W', 'W'],
+            [' ', ' ', ' ', ' ', 'E']
+          ])`,
+          expectedOutput: false
         },
         {
-          parameters: [20, -10],
-          expectedOutput: -2
-        }
+          call: `canExit([
+            [' ', ' ', 'W', 'W', 'S'],
+            [' ', ' ', ' ', 'W', ' '],
+            [' ', ' ', ' ', 'W', ' '],
+            ['W', 'W', ' ', ' ', 'W'],
+            [' ', ' ', ' ', ' ', 'E']
+          ])
+          `,
+          expectedOutput: false
+        },
+        {
+          call: `canExit([
+            ['E', ' ', ' ', ' ', 'S']
+          ])
+          `,
+          expectedOutput: true
+        },
+        {
+          call: `canExit([
+            ['E', ' ', 'W', ' ', 'S']
+          ])
+          `,
+          expectedOutput: false
+        },
       ],
       tags: ['tag1', 'tag2'],
       active: true,
       creatorId: '1232103132130198390'
     },
     {
-      slug: 'the_best_multiply',
+      slug: 'optimize_gifts',
       language: 'javascript',
       difficulty: 4,
       instructions: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent blandit volutpat mi in condimentum. Pellentesque ultricies est leo, quis dignissim nisl luctus vel. Fusce quam leo, venenatis ut nulla at, feugiat fringilla orci. Mauris ut risus odio. Nullam tempor cursus accumsan. Morbi consectetur sollicitudin elit, vitae dapibus sem suscipit sed. Maecenas massa eros, lobortis vel neque non, rhoncus pulvinar ante. Suspendisse vel efficitur metus.',
-      functionName: 'multiplyNumbers',
-      parameters: ['n1', 'n2'],
+      functionName: 'getMaxGifts',
+      parameters: ['giftsCities', 'maxGifts', 'maxCities'],
       cases: [
         {
-          parameters: [1, 2],
-          expectedOutput: 2
+          call: `getMaxGifts([12, 3, 11, 5, 7], 20, 3)`,
+          expectedOutput: 20
         },
         {
-          parameters: [6, 2],
-          expectedOutput: 12
+          call: `getMaxGifts([50], 15, 1)`,
+          expectedOutput: 0
         },
         {
-          parameters: [20, -10],
-          expectedOutput: -200
-        }
+          call: `getMaxGifts([50], 100, 1)
+          `,
+          expectedOutput: 50
+        },
+        {
+          call: `getMaxGifts([50, 70], 100, 1)
+
+          `,
+          expectedOutput: 70
+        },
+        {
+          call: `getMaxGifts([50, 70, 30], 100, 2)
+          `,
+          expectedOutput: 100
+        },
       ],
       tags: ['tag1', 'tag2'],
       active: true,
@@ -159,21 +258,22 @@ export const seedData: SeedData = {
       parameters: ['arraySteps'],
       cases: [
         {
-          parameters: [2],
+          call: 'concatArraysByCount(2)',
           expectedOutput: [2]
         },
         {
-          parameters: [6],
+          call: 'concatArraysByCount(6)',
           expectedOutput: [2, 4, 6]
         },
         {
-          parameters: [24],
+          call: 'concatArraysByCount(24)',
           expectedOutput: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24]
         }
       ],
       tags: ['tag1', 'tag2'],
       active: true,
       creatorId: '1232103132130198390'
-    }
+    },
+
   ]
 }

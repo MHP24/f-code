@@ -8,22 +8,25 @@ import { fCodeApi } from '@/api';
 import axios from 'axios';
 import styles from '../../../styles/challenge.module.css';
 import { IExecutionState } from '@/interfaces';
+import { buildFunction } from '@/utils';
 
 interface Props {
   _id: string;
   instructions: string;
   language: string;
   slug: string;
+  initialValue: string;
 }
 
-const Challenge: NextPage<Props> = ({ _id, language, slug, instructions }) => {
-  const [executionData, setExecutionData] = useState<IExecutionState>({
+const Challenge: NextPage<Props> = ({ _id, language, slug, instructions, initialValue }) => {
+  const initialState = {
     executed: false,
     isExecuting: false,
     executionFailed: false,
     error: null,
     data: {}
-  });
+  };
+  const [executionData, setExecutionData] = useState<IExecutionState>(initialState);
 
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
   const handleEditor = (editor: editor.IStandaloneCodeEditor) => editorRef.current = editor;
@@ -34,6 +37,7 @@ const Challenge: NextPage<Props> = ({ _id, language, slug, instructions }) => {
 
     try {
       const { data } = await fCodeApi.post(`/challenges/solve?challengeId=${_id}`, { code });
+
       setExecutionData({
         ...executionData,
         executed: true,
@@ -71,8 +75,9 @@ const Challenge: NextPage<Props> = ({ _id, language, slug, instructions }) => {
               fontSize: 18,
               lineHeight: 1.4,
               fontLigatures: true,
-              lineNumbers: 'off'
+              lineNumbers: 'off',
             }}
+            value={initialValue}
           />
           <div className={styles.submitContainer}>
             <Button
@@ -106,9 +111,12 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
   try {
     const { data } = await fCodeApi.get(`/challenges/search?language=${language}&slug=${slug}`);
+    const [response] = data;
+    const initialValue = buildFunction(language, response.functionName, response.parameters);
     return {
       props: {
-        ...data[0]
+        ...response,
+        initialValue
       }
     }
   } catch (error) {

@@ -1,6 +1,6 @@
 
 export interface ICaseSchema {
-  parameters: any[];
+  call: string;
   expectedOutput: any;
 }
 

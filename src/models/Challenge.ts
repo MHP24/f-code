@@ -10,7 +10,7 @@ const challengeSchema = new Schema({
   parameters: { type: [String], required: true },
   cases: {
     type: [{
-      parameters: [Schema.Types.Mixed],
+      call: String,
       expectedOutput: Schema.Types.Mixed,
     }], required: true
   },

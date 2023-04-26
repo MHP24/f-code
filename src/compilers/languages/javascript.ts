@@ -54,13 +54,15 @@ export const executeJavaScriptCode = (
 ): IDataOutput<ICodeExecution> => {
   try {
     const vm = new VM({ timeout: 1000 });
-    const outputs = cases.map(({ parameters }) => {
+    const outputs = cases.map(({ call }) => {
+      // ${functionName}(${parameters.join(', ')});
       return ({
         execution: vm.run(`
           ${functionExec}
-          ${functionName}(${parameters.join(', ')});
+          ${call}
         `),
-        caseStructure: `${functionName}(${parameters.join(', ')});`
+        // caseStructure: `${functionName}(${parameters.join(', ')});`
+        caseStructure: `${call}`
       });
     });
     return { hasError: false, data: { outputs } }
