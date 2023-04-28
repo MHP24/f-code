@@ -105,56 +105,6 @@ export const seedData: SeedData = {
       creatorId: '1232103132130198390'
     },
     {
-      slug: 'the_best_sum',
-      language: 'typescript',
-      difficulty: 3,
-      instructions: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent blandit volutpat mi in condimentum. Pellentesque ultricies est leo, quis dignissim nisl luctus vel. Fusce quam leo, venenatis ut nulla at, feugiat fringilla orci. Mauris ut risus odio. Nullam tempor cursus accumsan. Morbi consectetur sollicitudin elit, vitae dapibus sem suscipit sed. Maecenas massa eros, lobortis vel neque non, rhoncus pulvinar ante. Suspendisse vel efficitur metus.',
-      functionName: 'sumNumbers',
-      parameters: ['n1', 'n2'],
-      cases: [
-        {
-          call: 'sumNumbers(1, 2)',
-          expectedOutput: 3
-        },
-        {
-          call: 'sumNumbers(2, 6)',
-          expectedOutput: 8
-        },
-        {
-          call: 'sumNumbers(3, -10)',
-          expectedOutput: -7
-        }
-      ],
-      tags: ['tag1', 'tag2'],
-      active: true,
-      creatorId: '1232103132130198390'
-    },
-    // {
-    //   slug: 'object_testing',
-    //   language: 'javascript',
-    //   difficulty: 4,
-    //   instructions: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent blandit volutpat mi in condimentum. Pellentesque ultricies est leo, quis dignissim nisl luctus vel. Fusce quam leo, venenatis ut nulla at, feugiat fringilla orci. Mauris ut risus odio. Nullam tempor cursus accumsan. Morbi consectetur sollicitudin elit, vitae dapibus sem suscipit sed. Maecenas massa eros, lobortis vel neque non, rhoncus pulvinar ante. Suspendisse vel efficitur metus.',
-    //   functionName: 'unionOfObjects',
-    //   parameters: ['obj1', 'obj2'],
-    //   cases: [
-    //     {
-    //       call: 'unionOfObjects({}, {})',
-    //       expectedOutput: null
-    //     },
-    //     {
-    //       call: `unionOfObjects({a: '1', b: 3}, {j: true})`,
-    //       expectedOutput: { a: '1', b: 3, j: true }
-    //     },
-    //     {
-    //       call: `unionOfObjects({}, {j: true})`,
-    //       expectedOutput: { j: true }
-    //     },
-    //   ],
-    //   tags: ['tag1', 'tag2'],
-    //   active: true,
-    //   creatorId: '1232103132130198390'
-    // },
-    {
       slug: 'can_i_exit',
       language: 'javascript',
       difficulty: 4,
@@ -274,6 +224,30 @@ export const seedData: SeedData = {
       active: true,
       creatorId: '1232103132130198390'
     },
-
+    {
+      slug: 'fixing_the_calculator',
+      language: 'python',
+      difficulty: 3,
+      instructions: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent blandit volutpat mi in condimentum. Pellentesque ultricies est leo, quis dignissim nisl luctus vel. Fusce quam leo, venenatis ut nulla at, feugiat fringilla orci. Mauris ut risus odio. Nullam tempor cursus accumsan. Morbi consectetur sollicitudin elit, vitae dapibus sem suscipit sed. Maecenas massa eros, lobortis vel neque non, rhoncus pulvinar ante. Suspendisse vel efficitur metus.',
+      functionName: 'calibrate_calculator',
+      parameters: ['n1', 'n2', 'operation'],
+      cases: [
+        {
+          call: 'calibrate_calculator(2, 5, "sum")',
+          expectedOutput: `{'output': 7}`
+        },
+        {
+          call: 'calibrate_calculator(10, 5, "multiply")',
+          expectedOutput: `{'output': 50}`
+        },
+        {
+          call: 'calibrate_calculator(10, 5, "impossible operation")',
+          expectedOutput: `{'output': "this operation does not exists"}`
+        },
+      ],
+      tags: ['tag1', 'tag2'],
+      active: true,
+      creatorId: '1232103132130198390'
+    }
   ]
 }

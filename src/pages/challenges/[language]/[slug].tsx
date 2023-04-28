@@ -37,7 +37,7 @@ const Challenge: NextPage<Props> = ({ _id, language, slug, instructions, initial
 
     try {
       const { data } = await fCodeApi.post(`/challenges/solve?challengeId=${_id}`, { code });
-
+      console.log({ data });
       setExecutionData({
         ...executionData,
         executed: true,

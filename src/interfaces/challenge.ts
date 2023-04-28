@@ -18,6 +18,11 @@ export interface IChallenge {
   creatorId: string;
 }
 
+export interface IChallengeRequest extends IChallenge {
+  parametersCount: number;
+  solution: string;
+}
+
 export interface IChallengeSearch {
   _id: string;
   slug: string;

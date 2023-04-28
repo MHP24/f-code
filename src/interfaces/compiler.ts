@@ -3,7 +3,8 @@ export interface IFunctionValidation {
 }
 
 export interface ICodeExecution {
-  outputs: any[];
+  outputs?: any[];
+  output?: any[];
 }
 
 export interface ISummaryCase {

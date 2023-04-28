@@ -82,5 +82,8 @@ export const handleJavaScriptExecution = (
   if (executionData.hasError) return executionData;
 
   const { data } = executionData as { data: ICodeExecution };
+
+  // console.log({ asd: data.outputs });
+
   return generateSummary({ results: data, outputs: cases });
 }
