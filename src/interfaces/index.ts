@@ -5,3 +5,4 @@ export * from './authOutput';
 export * from './challenge';
 export * from './compiler';
 export * from './executionState'
+export * from './solve';

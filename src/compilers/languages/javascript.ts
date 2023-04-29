@@ -55,13 +55,11 @@ export const executeJavaScriptCode = (
   try {
     const vm = new VM({ timeout: 1000 });
     const outputs = cases.map(({ call }) => {
-      // ${functionName}(${parameters.join(', ')});
       return ({
         execution: vm.run(`
           ${functionExec}
           ${call}
         `),
-        // caseStructure: `${functionName}(${parameters.join(', ')});`
         caseStructure: `${call}`
       });
     });
@@ -82,8 +80,5 @@ export const handleJavaScriptExecution = (
   if (executionData.hasError) return executionData;
 
   const { data } = executionData as { data: ICodeExecution };
-
-  // console.log({ asd: data.outputs });
-
   return generateSummary({ results: data, outputs: cases });
 }

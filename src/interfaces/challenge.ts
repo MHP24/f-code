@@ -25,8 +25,14 @@ export interface IChallengeRequest extends IChallenge {
 
 export interface IChallengeSearch {
   _id: string;
+  creatorId?: string;
   slug: string;
   language: string;
   difficulty: number;
   tags: string[];
+}
+
+export interface IChallengeContext {
+  language?: string;
+  isNative?: boolean;
 }

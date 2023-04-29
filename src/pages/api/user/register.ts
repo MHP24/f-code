@@ -40,7 +40,6 @@ const register = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     if (!user) {
       const newUser = new User({ username, email, password: bcrypt.hashSync(password) });
       newUser.save({ validateBeforeSave: true });
-      await db.disconnect();
 
       const { _id, role } = newUser;
 
@@ -53,11 +52,11 @@ const register = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       });
     }
 
-    await db.disconnect();
     res.status(400).json({ error: 'This user already exists' });
   } catch (error) {
-    await db.disconnect();
     console.error({ error });
     res.status(400).json({ error: 'Unexpected error, try again' });
+  } finally {
+    await db.disconnect();
   }
 }

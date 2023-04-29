@@ -13,7 +13,7 @@ export const getChallenges = async (language: string, slug: string): Promise<ICh
       })
       .lean().select(`
         _id slug language difficulty tags
-        ${slug && language && 'instructions functionName cases parameters'}
+        ${slug && language && 'creatorId instructions functionName cases parameters'}
       `);
     return challenges;
   } catch (error) {

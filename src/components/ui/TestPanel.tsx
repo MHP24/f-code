@@ -23,7 +23,7 @@ export const TestPanel: FC<Props> = ({ errors, cases }) => {
           cases &&
           cases.map(({ isCorrect, ...restProps }: ISummaryCase, i) => (
             <TestDropdown
-              key={`challenge-summary-${isCorrect}${restProps.output}${restProps.expectedOutput}`}
+              key={i}
               caseNumber={i + 1}
               passed={isCorrect}
               {...restProps}

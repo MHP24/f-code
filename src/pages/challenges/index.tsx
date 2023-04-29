@@ -49,7 +49,6 @@ const Challenges: NextPage = () => {
                 <li className={styles.filterItem}>JavaScript</li>
                 <li className={styles.filterItem}>Python</li>
                 <li className={styles.filterItem}>TypeScript</li>
-                <li className={styles.filterItem}>Html+Css</li>
               </ul>
             }
 

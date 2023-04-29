@@ -1,8 +1,9 @@
-import { FC, useState } from 'react';
+import { FC, useContext, useState } from 'react';
 import Image from 'next/image';
 import arrowUp from '/public/illustrations/arrow-up.svg';
 import arrowDown from '/public/illustrations/arrow-down.svg';
 import styles from '../styles/testDropdown.module.css';
+import { ChallengeContext } from '@/context';
 
 interface Props {
   caseNumber: number;
@@ -18,6 +19,8 @@ export const TestDropdown: FC<Props> = ({
   expectedType, caseStructure, output
 }) => {
   const [showContent, setshowContent] = useState<boolean>(false);
+
+  const { isNative } = useContext(ChallengeContext)
 
   return (
     <div className={styles.testDropdown}>
@@ -43,12 +46,22 @@ export const TestDropdown: FC<Props> = ({
 
               <div>
                 <p>Expected:</p>
-                <p className={`${styles.successDetail} ${styles.detail}`}>{JSON.stringify(expectedOutput)}</p>
+                {
+                  isNative ?
+                    <p className={`${styles.successDetail} ${styles.detail}`}>{JSON.stringify(expectedOutput)}</p>
+                    :
+                    <p className={`${styles.successDetail} ${styles.detail}`}>{expectedOutput ?? 'undefined'}</p>
+                }
               </div>
 
               <div>
                 <p>Actual:</p>
-                <p className={`${passed ? styles.successDetail : styles.failedDetail} ${styles.detail}`}>{JSON.stringify(output)}</p>
+                {
+                  isNative ?
+                    <p className={`${passed ? styles.successDetail : styles.failedDetail} ${styles.detail}`}>{JSON.stringify(output ?? 'undefined')}</p>
+                    :
+                    <p className={`${passed ? styles.successDetail : styles.failedDetail} ${styles.detail}`}>{output ?? 'undefined'}</p>
+                }
               </div>
 
             </code>

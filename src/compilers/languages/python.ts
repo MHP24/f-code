@@ -1,5 +1,8 @@
 import { PythonShell } from 'python-shell';
-import { HandlerOutput, ICaseSchema, ICodeExecution, IDataOutput, IExecutionCase, IFunctionValidation } from '@/interfaces';
+import {
+  HandlerOutput, ICaseSchema, ICodeExecution,
+  IDataOutput, IExecutionCase, IFunctionValidation
+} from '@/interfaces';
 import { generateSummarySimplified } from '../helpers';
 
 interface IValidateFnProps {
@@ -55,6 +58,7 @@ const executeCase = async (
 ): Promise<IDataOutput<ICodeExecution>> => {
   try {
     const output = await PythonShell.runString(
+      `from pprint import pprint\n` +
       `${functionExec}` +
       `\n${call}`,
       { mode: 'text', timeout: 1000 });
@@ -83,10 +87,10 @@ const processExecutions = async ({ functionExec, cases }: IProcessExecution) => 
       { call, expectedOutput }: { call: string, expectedOutput: string }
     ) => {
       const input =
-        `print({'output': ${call}})\n` +
-        `print(type(${call}))\n` +
-        `print(${expectedOutput})\n` +
-        `print(type(${expectedOutput}['output']))\n` +
+        `pprint(${call})\n` +
+        `pprint(type(${call}))\n` +
+        `pprint(${expectedOutput}['output'])\n` +
+        `pprint(type(${expectedOutput}['output']))\n` +
         `print(${expectedOutput}['output'] == ${call})`
       return (
         await executeCase({ functionExec, call: input })

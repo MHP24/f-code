@@ -6,6 +6,9 @@ interface ISummaryProps {
   outputs: any[];
 }
 
+
+//TODO: function gen summary that recieves an array and 1 for js && py
+
 export const generateSummary = (
   { results, outputs }: ISummaryProps
 ): IDataOutput<IExecutionSummary> => {
@@ -26,7 +29,7 @@ export const generateSummary = (
     });
 
     const correctSolves = cases.filter(({ isCorrect }) => isCorrect).length;
-    const accuracy = (cases.length / correctSolves * 100) >> 0;
+    const accuracy = (correctSolves * 100 / cases.length) >> 0;
 
     return {
       hasError: false,
@@ -63,19 +66,19 @@ export const generateSummarySimplified = (
     4 isCorrect 'True' | 'False'
   */
   if (results!.length === cases.length) {
-    const summary = cases.map(({ expectedOutput, call }, i) => {
+    const summary = cases.map(({ call }, i) => {
       return {
         caseStructure: call,
         expectedType: results![i].data.output[3],
         outputType: results![i].data.output[1],
-        expectedOutput: expectedOutput.replace(/\"/gi, "'"),
+        expectedOutput: results![i].data.output[2].replace(/\"/gi, "'"),
         output: results![i].data.output[0].replace(/\"/gi, "'"),
         isCorrect: results![i].data.output[4] === 'True'
       };
     });
 
     const correctSolves = summary.filter(({ isCorrect }) => isCorrect).length;
-    const accuracy = (cases.length / correctSolves * 100) >> 0;
+    const accuracy = (correctSolves * 100 / cases.length) >> 0;
 
     return {
       hasError: false,
