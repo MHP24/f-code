@@ -9,18 +9,18 @@ import { fCodeApi } from '@/api';
 const Challenges: NextPage = () => {
   const [showFilter, setShowFilter] = useState<Boolean>(false);
   const [challenges, setChallenges] = useState<IChallengeSearch[] | null>(null);
+  const [slug, setSlug] = useState('');
 
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await fCodeApi.get('/challenges/search');
+        const { data } = await fCodeApi.get(`/challenges/search?language=`);
         setChallenges(data);
       } catch (error) {
         setChallenges([]);
       }
     })();
   }, []);
-
 
   return (
     <MainLayout
@@ -31,10 +31,12 @@ const Challenges: NextPage = () => {
         <div className={styles.searchBanner}>
         </div>
 
-        <div className={styles.searcher}>
+        <form className={styles.searcher}
+        >
           <input
             className={styles.inputSearcher}
             type='text'
+            value={slug}
             placeholder='Search...' />
           <div className={styles.filter}>
             <button
@@ -53,7 +55,7 @@ const Challenges: NextPage = () => {
             }
 
           </div>
-        </div>
+        </form>
 
       </header>
 

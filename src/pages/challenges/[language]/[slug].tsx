@@ -13,6 +13,7 @@ import { buildFunction } from '@/utils';
 import { db } from '@/database';
 import { Solve } from '@/models';
 import styles from '../../../styles/challenge.module.css';
+import { useRouter } from 'next/router';
 
 interface Props {
   _id: string;
@@ -27,6 +28,7 @@ interface Props {
 const Challenge: NextPage<Props> = (
   { _id, creatorId, language, slug,
     instructions, difficulty, initialValue }) => {
+
   const initialState = {
     executed: false,
     isExecuting: false,
@@ -34,22 +36,20 @@ const Challenge: NextPage<Props> = (
     error: null,
     data: {}
   };
+
   const [executionData, setExecutionData] = useState<IExecutionState>(initialState);
-
   const { isLoggedIn, user } = useContext(AuthContext);
-
   const { updateChallengeContext } = useContext(ChallengeContext)
+  const router = useRouter();
 
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
   const handleEditor = (editor: editor.IStandaloneCodeEditor) => editorRef.current = editor;
 
   const submitCode = async () => {
-
     updateChallengeContext(language);
 
     const { current } = editorRef;
     const code = current!.getValue();
-
 
     try {
       const { data } = await fCodeApi.post(`/challenges/solve?challengeId=${_id}`, { code });
@@ -105,11 +105,21 @@ const Challenge: NextPage<Props> = (
             value={initialValue}
           />
           <div className={styles.submitContainer}>
-            <Button
-              text={'Run tests'}
-              size={1.1}
-              fn={submitCode}
-            />
+            {
+              isLoggedIn ?
+                <Button
+                  text={'Run tests'}
+                  size={1.1}
+                  fn={submitCode}
+                />
+                :
+                <Button
+                  text={'Sign in to submit your solution!'}
+                  size={1.1}
+                  fn={() => router.push('/auth/sign_in')}
+                />
+            }
+
           </div>
         </div>
 

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { IChallengeSearch } from '@/interfaces';
 import { ChallengeCard } from './ChallengeCard';
 import styles from '../styles/challengesGrid.module.css'
@@ -7,7 +7,9 @@ interface Props {
   challenges: IChallengeSearch[] | null;
 }
 
-export const ChallengesGrid: FC<Props> = ({ challenges }) => {
+export const ChallengesGrid: FC<Props> = memo(({ challenges }) => {
+  console.log('rendered...')
+
   return (
     !challenges ?
       <p>Loading</p>
@@ -24,4 +26,6 @@ export const ChallengesGrid: FC<Props> = ({ challenges }) => {
         }
       </div>
   );
-}
+});
+
+ChallengesGrid.displayName = 'ChallengesGrid';

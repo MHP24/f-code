@@ -65,6 +65,7 @@
   }
 
   .challengeCard {
+    width: 100%;
     max-width: 300px;
     margin: auto;
     text-align: center;
