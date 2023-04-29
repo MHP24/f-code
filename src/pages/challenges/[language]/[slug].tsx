@@ -1,5 +1,5 @@
-import { useContext, useRef, useState } from 'react';
-import { AuthContext, ChallengeContext } from '@/context';
+import { useContext, useRef } from 'react';
+import { AuthContext } from '@/context';
 import { GetServerSideProps, NextPage } from 'next';
 import { getSession } from 'next-auth/react';
 import Editor from '@monaco-editor/react';
@@ -7,13 +7,12 @@ import { editor } from 'monaco-editor';
 import { ChallengeLayout } from '@/components/layouts';
 import { Button, ChallengeData } from '@/components/ui';
 import { fCodeApi } from '@/api';
-import axios from 'axios';
-import { IExecutionState } from '@/interfaces';
 import { buildFunction } from '@/utils';
 import { db } from '@/database';
 import { Solve } from '@/models';
 import styles from '../../../styles/challenge.module.css';
 import { useRouter } from 'next/router';
+import { useSubmit } from '@/hooks';
 
 interface Props {
   _id: string;
@@ -29,59 +28,12 @@ const Challenge: NextPage<Props> = (
   { _id, creatorId, language, slug,
     instructions, difficulty, initialValue }) => {
 
-  const initialState = {
-    executed: false,
-    isExecuting: false,
-    executionFailed: false,
-    error: null,
-    data: {}
-  };
-
-  const [executionData, setExecutionData] = useState<IExecutionState>(initialState);
   const { isLoggedIn, user } = useContext(AuthContext);
-  const { updateChallengeContext } = useContext(ChallengeContext)
-  const router = useRouter();
+  const { submitCode, execution } = useSubmit(language);
 
+  const router = useRouter();
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
   const handleEditor = (editor: editor.IStandaloneCodeEditor) => editorRef.current = editor;
-
-  const submitCode = async () => {
-    updateChallengeContext(language);
-
-    const { current } = editorRef;
-    const code = current!.getValue();
-
-    try {
-      const { data } = await fCodeApi.post(`/challenges/solve?challengeId=${_id}`, { code });
-
-      if (data.accuracy === 100) {
-        await fCodeApi.post(`/challenges/submit?challengeId=${_id}`, {
-          code,
-          creatorId,
-          userId: user?._id,
-          difficulty
-        });
-      }
-
-      setExecutionData({
-        ...executionData,
-        executed: true,
-        executionFailed: false,
-        error: null,
-        data
-      });
-
-    } catch (error) {
-      setExecutionData({
-        ...executionData,
-        executed: true,
-        executionFailed: true,
-        error: axios.isAxiosError(error) ?
-          `${error.response?.data.error}`
-          : 'Unexpected error'
-      });
-    }
-  }
 
   return (
     <ChallengeLayout
@@ -110,7 +62,7 @@ const Challenge: NextPage<Props> = (
                 <Button
                   text={'Run tests'}
                   size={1.1}
-                  fn={submitCode}
+                  fn={() => submitCode(_id, editorRef.current!.getValue(), creatorId, user?._id!, Number(difficulty))}
                 />
                 :
                 <Button
@@ -125,7 +77,7 @@ const Challenge: NextPage<Props> = (
 
         <ChallengeData
           instructions={instructions}
-          solveData={executionData}
+          solveData={execution}
         />
       </div>
     </ChallengeLayout>

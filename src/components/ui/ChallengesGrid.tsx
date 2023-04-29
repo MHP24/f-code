@@ -8,11 +8,9 @@ interface Props {
 }
 
 export const ChallengesGrid: FC<Props> = memo(({ challenges }) => {
-  console.log('rendered...')
-
   return (
     !challenges ?
-      <p>Loading</p>
+      <p>No results</p>
       :
 
       <div className={styles.challengesGrid}>

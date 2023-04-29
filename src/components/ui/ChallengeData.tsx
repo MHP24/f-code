@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState, memo } from 'react';
 import { Button, ErrorChallenge, Loader, TestPanel } from '.';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -10,7 +10,7 @@ interface Props {
   solveData: IExecutionState;
 }
 
-export const ChallengeData: FC<Props> = ({ instructions, solveData }) => {
+export const ChallengeData: FC<Props> = memo(({ instructions, solveData }) => {
   const [tab, setTab] = useState(true);
   const { data: { errors, cases } } = solveData as { data: IExecutionSummary };
 
@@ -63,4 +63,6 @@ export const ChallengeData: FC<Props> = ({ instructions, solveData }) => {
       </div>
     </div>
   );
-}
+})
+
+ChallengeData.displayName = 'ChallengeData';

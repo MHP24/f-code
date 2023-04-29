@@ -5,22 +5,30 @@ import styles from '@/styles/challenges.module.css';
 import { ChallengesGrid } from '@/components/ui';
 import { IChallengeSearch } from '@/interfaces';
 import { fCodeApi } from '@/api';
+import useSWR from 'swr';
+
 
 const Challenges: NextPage = () => {
   const [showFilter, setShowFilter] = useState<Boolean>(false);
-  const [challenges, setChallenges] = useState<IChallengeSearch[] | null>(null);
-  const [slug, setSlug] = useState('');
+  // const [challenges, setChallenges] = useState<IChallengeSearch[] | null>(null);
+  // const [slug, setSlug] = useState('');
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await fCodeApi.get(`/challenges/search?language=`);
-        setChallenges(data);
-      } catch (error) {
-        setChallenges([]);
-      }
-    })();
-  }, []);
+  const { data, error, isLoading } = useSWR<IChallengeSearch[]>('/api/challenges',
+    async (url) => {
+      const { data } = await fCodeApi.get(url);
+      return data;
+    })
+
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       const { data } = await fCodeApi.get(`/challenges/search?language=`);
+  //       setChallenges(data);
+  //     } catch (error) {
+  //       setChallenges([]);
+  //     }
+  //   })();
+  // }, []);
 
   return (
     <MainLayout
@@ -36,7 +44,7 @@ const Challenges: NextPage = () => {
           <input
             className={styles.inputSearcher}
             type='text'
-            value={slug}
+            // value={slug}
             placeholder='Search...' />
           <div className={styles.filter}>
             <button
@@ -60,7 +68,12 @@ const Challenges: NextPage = () => {
       </header>
 
       <section>
-        <ChallengesGrid challenges={challenges} />
+        {
+          isLoading ?
+            <p>Loading.....</p>
+            :
+            <ChallengesGrid challenges={data || null} />
+        }
       </section>
     </MainLayout>
   );
