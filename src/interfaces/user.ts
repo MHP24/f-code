@@ -2,11 +2,12 @@ export interface IUser {
   _id: string;
   username: string;
   email: string;
-  password?: string;
+  password: string;
   picture: string;
   score: number;
   role: string;
   active: boolean;
+  provider: string;
   createdAt?: string;
   updatedAt?: string;
 }

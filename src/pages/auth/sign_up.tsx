@@ -31,7 +31,7 @@ const SignUp: NextPage = () => {
     }
 
     const { email, password } = data;
-    await signIn('credentials', { email, password });
+    await signIn('credentials', { email: `${email}@fcode`, password });
   };
 
   return (

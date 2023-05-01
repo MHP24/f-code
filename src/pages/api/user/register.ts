@@ -18,8 +18,7 @@ type Data =
 export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   switch (req.method) {
     case 'POST':
-      register(req, res);
-      break;
+      return register(req, res);
     default:
       res.status(400).json({ error: 'Bad request' });
       break;
@@ -30,15 +29,17 @@ const register = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   try {
     const { username = '', email = '', password = '' } = req.body;
 
-    if (!username.match(regExValidators.charactersAndNumbersOnly)) return res.status(400).json({ error: 'Invalid username' });
-    if (!email.match(regExValidators.email)) return res.status(400).json({ error: 'Invalid email' });
-    if (!password.match(regExValidators.securePassword)) return res.status(400).json({ error: 'Weak password' });
+    if (!username.match(regExValidators.charactersAndNumbersOnly)) res.status(400).json({ error: 'Invalid username' });
+    if (!email.match(regExValidators.email)) res.status(400).json({ error: 'Invalid email' });
+    if (!password.match(regExValidators.securePassword)) res.status(400).json({ error: 'Weak password' });
 
     await db.connect();
-    const user: IUser | null = await User.findOne({ $or: [{ email }, { username }] });
 
+    console.log({ username, email, password });
+    const user: IUser | null = await User.findOne({ $and: [{ email: `${email}@fcode` }, { username }, { provider: 'f-code' }] });
+    console.log({ user });
     if (!user) {
-      const newUser = new User({ username, email, password: bcrypt.hashSync(password) });
+      const newUser = new User({ username, email: `${email}@fcode`, password: bcrypt.hashSync(password) });
       newUser.save({ validateBeforeSave: true });
 
       const { _id, role } = newUser;

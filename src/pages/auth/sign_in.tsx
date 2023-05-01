@@ -16,7 +16,7 @@ const SignIn: NextPage = () => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const { email, password } = data;
-    await signIn('credentials', { email, password });
+    await signIn('credentials', { email: `${email}@fcode`, password });
   };
 
   return (

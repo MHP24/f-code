@@ -47,12 +47,16 @@ export const authOptions = {
     async jwt({ token, account, user }: any) {
       if (account) {
         token.accessToken = account.access_token;
+        // account.provider
         switch (account.type) {
           case 'oauth':
-            token.user = await dbUsers.oAuthenticate(user?.email!, user?.name!, user?.image!);
+            console.log({ account });
+            console.log({ user });
+            token.user = await dbUsers.oAuthenticate(user?.email!, user?.name!, user?.image!, account.provider);
             break;
 
           case 'credentials':
+            console.log({ account });
             token.user = user;
             break;
         }
