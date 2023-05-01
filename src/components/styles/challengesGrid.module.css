@@ -2,6 +2,7 @@
   margin: auto;
   margin-top: 4rem;
   display: grid;
+  overflow: hidden;
   grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
   /* grid-template-columns: 1fr 1fr;
   justify-content: center; */

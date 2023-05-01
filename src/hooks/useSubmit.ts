@@ -23,7 +23,7 @@ export const useSubmit = (language: string) => {
     userId: string, difficulty: number) => {
 
     try {
-      updateChallengeContext(language)
+      updateChallengeContext(language);
       const { data } = await fCodeApi.post(`/challenges/solve?challengeId=${_id}`, { code });
 
       if (data.accuracy === 100) {

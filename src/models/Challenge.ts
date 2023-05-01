@@ -1,4 +1,5 @@
-import mongoose, { Schema, model, Model } from 'mongoose';
+import mongoose, { Schema, model, PaginateModel } from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
 import { IChallenge } from '@/interfaces';
 
 const challengeSchema = new Schema({
@@ -25,4 +26,6 @@ const challengeSchema = new Schema({
   timestamps: true,
 });
 
-export const Challenge: Model<IChallenge> = mongoose.models.Challenge || model('Challenge', challengeSchema);
+challengeSchema.plugin(mongoosePaginate);
+
+export const Challenge = (mongoose.models.Challenge || model<IChallenge>('Challenge', challengeSchema)) as PaginateModel<IChallenge>;

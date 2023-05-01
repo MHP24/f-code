@@ -97,8 +97,8 @@ export const getServerSideProps: GetServerSideProps = async (req) => {
   }
 
   try {
-    const { data } = await fCodeApi.get(`/challenges/search?language=${language}&slug=${slug}`);
-    const [response] = data;
+    const { data: { docs } } = await fCodeApi.get(`/challenges/search?language=${language}&slug=${slug}`);
+    const [response] = docs;
 
     const session = await getSession(req) as any;
 

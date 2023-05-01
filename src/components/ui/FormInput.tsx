@@ -6,6 +6,7 @@ interface Props {
   label?: string;
   placeHolder: string;
   type?: string;
+  className?: string;
 }
 
 export const FormInput: FC<Props> = forwardRef(({ name, label = '', placeHolder, type = 'text', ...rest }, ref: LegacyRef<HTMLInputElement>) => {

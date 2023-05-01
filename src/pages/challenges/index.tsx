@@ -1,82 +1,122 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { GetServerSideProps } from 'next';
 import { NextPage } from 'next/types';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { MainLayout } from '@/components/layouts';
-import styles from '@/styles/challenges.module.css';
 import { ChallengesGrid } from '@/components/ui';
 import { IChallengeSearch } from '@/interfaces';
-import { fCodeApi } from '@/api';
-import useSWR from 'swr';
+import { FormInput } from '@/components/ui';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import styles from '@/styles/challenges.module.css';
+import { usePagination } from '@/hooks';
+interface Inputs {
+  search: string;
+};
 
+interface Props {
+  search: string;
+  language: string;
+}
 
-const Challenges: NextPage = () => {
-  const [showFilter, setShowFilter] = useState<Boolean>(false);
-  // const [challenges, setChallenges] = useState<IChallengeSearch[] | null>(null);
-  // const [slug, setSlug] = useState('');
+const languages = [
+  {
+    url: 'javascript',
+    name: 'JavaScript'
+  },
+  {
+    url: 'typescript',
+    name: 'TypeScript'
+  },
+  {
+    url: 'python',
+    name: 'Python'
+  }
+]
 
-  const { data, error, isLoading } = useSWR<IChallengeSearch[]>('/api/challenges',
-    async (url) => {
-      const { data } = await fCodeApi.get(url);
-      return data;
-    })
+const Challenges: NextPage<Props> = ({ search, language }) => {
+  const [inputSearch, setInputSearch] = useState<string>(search);
+  const { register, handleSubmit } = useForm<Inputs>();
+  const { data, hasMore, size, setSize } =
+    usePagination<IChallengeSearch>(`/challenges/search?slug=${inputSearch}&language=${language}`);
+  const router = useRouter();
 
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const { data } = await fCodeApi.get(`/challenges/search?language=`);
-  //       setChallenges(data);
-  //     } catch (error) {
-  //       setChallenges([]);
-  //     }
-  //   })();
-  // }, []);
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const { search } = data;
+    const searchQuery = search
+      .trim()
+      .replace(/\s+/gi, ' ')
+      .replace(/\s/gi, '_')
+      .toLocaleLowerCase();
+
+    router.replace(
+      `/challenges${!router.query.language
+        ? `?search=${searchQuery}`
+        : `?language=${router.query.language}` +
+        (searchQuery ? `&search=${searchQuery}` : '')}`);
+
+    setInputSearch(searchQuery);
+  };
 
   return (
     <MainLayout
       title={'F-Code Challenges'}
-      pageDescription={'Search and start resolving some challenge'}
+      pageDescription={'Search and start solving some challenge'}
     >
       <header className={styles.heading}>
-        <div className={styles.searchBanner}>
-        </div>
-
         <form className={styles.searcher}
+          onSubmit={handleSubmit(onSubmit)}
         >
-          <input
+          <FormInput
             className={styles.inputSearcher}
-            type='text'
-            // value={slug}
-            placeholder='Search...' />
-          <div className={styles.filter}>
-            <button
-              className={styles.filterBtn}
-              onClick={() => setShowFilter(!showFilter)}
-            >
-              {'Filter'}
-            </button>
-            {
-              showFilter &&
-              <ul className={styles.filters}>
-                <li className={styles.filterItem}>JavaScript</li>
-                <li className={styles.filterItem}>Python</li>
-                <li className={styles.filterItem}>TypeScript</li>
-              </ul>
-            }
+            placeHolder={'Search...'}
+            type={'search'}
+            {...register('search', { required: false })}
+          />
 
-          </div>
+          <ul className={styles.languagesLink}>
+            {
+              languages.map(({ url, name }, i) => {
+                const queryParams = router.query.search ? `&search=${router.query.search}` : '';
+                return (
+                  <li className={styles.filter} key={`${url}${i}`}>
+                    <Link href={`/challenges?language=${url}${queryParams}`}
+                      className={styles.languageLink}
+                    >
+                      {name}
+                    </Link>
+                  </li>
+                )
+              })
+            }
+          </ul>
         </form>
 
       </header>
 
-      <section>
+
+      <section className={styles.challengesContainer}>
         {
-          isLoading ?
-            <p>Loading.....</p>
-            :
-            <ChallengesGrid challenges={data || null} />
+          <ChallengesGrid
+            challenges={data || []}
+            setSize={setSize}
+            size={size}
+            hasMore={hasMore ?? false}
+          />
         }
       </section>
-    </MainLayout>
+    </MainLayout >
   );
 }
 
 export default Challenges;
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const { search = '', language = '' } = query;
+  return {
+    props: {
+      search,
+      language
+    }
+  }
+}

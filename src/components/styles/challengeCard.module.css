@@ -6,12 +6,12 @@
   border-radius: var(--br-1);
   background-color: var(--c2);
   text-decoration: none;
-  transition: .3s transform;
+  transition: .3s opacity;
   align-items: center;
 }
 
 .challengeCard:hover {
-  transform: scale(1.02);
+ opacity: .8;
 }
 
 .imageContainer,

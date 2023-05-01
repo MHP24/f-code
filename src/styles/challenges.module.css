@@ -2,60 +2,74 @@
   position: relative;
 }
 
-.searchBanner {
+.heading {
   height: 60vh;
   background-color: #171717;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 4em 1em;
 }
 
-/* Input + filter */
 .searcher {
-  position: absolute;
-  width: 100%;
-  padding: 0 3em;
   display: flex;
-  height: 4.5rem;
-  justify-content: center;
-  top: 90%;
+  flex-direction: column;
+  width: 100%;
+  max-width: 650px;
+
 }
 
 .inputSearcher {
   background-color: var(--c2);
   border: none;
   outline: none;
-  padding: 1.5em;
-  width: 550px;
-  max-width: 70%;
+  padding: 1.2em 2em;
+  width: 100%;
   font-size: var(--fs-2);
-  border-radius: var(--br-1) 0 0 var(--br-1);
+  font-weight: var(--fs-w-1);
+  border-radius: var(--br-3);
 }
 
-.filterBtn {
-  cursor: pointer;
-  text-align: center;
-  height: 100%;
-  background-color: var(--c2);
-  font-size: var(--fs-2);
-  padding: 0 3em;
-  outline: none;
-  border: var(--c2) .3em solid;
-  border-left: var(--c3) .07rem solid;
-  border-radius: 0 var(--br-1) var(--br-1) 0;
+.languagesLink {
+  margin-top: 3em;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2em;
 }
 
-/* Filters */
-.filters {
-  background-color: var(--c2);
-}
-
-.filterItem {
-  cursor: pointer;
+.filter {
   list-style: none;
-  padding: 1em .5em;
-  text-align: left;
-  transition: .3s opacity;
+}
+
+.languageLink {
+  text-decoration: none;
+  cursor: pointer;
+  padding: .5em 1em;
+  border: var(--c3) .1rem solid;
+  background-color: var(--c1-transparent);
+  border-radius: var(--br-3);
   font-size: var(--fs-1);
 }
 
-.filterItem:hover {
-  opacity: .7;
+.challengesContainer {
+  min-height: 30vh;
+}
+
+.loader {
+  color: red;
+  font-size: var(--fs-4);
+  animation: identifier 3s infinite linears;
+}
+
+
+
+@keyframes identifier {
+  from {
+    transform: translateX(20%);
+  }
+
+  to {
+    transform: translateX(40%);
+  }
 }

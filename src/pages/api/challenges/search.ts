@@ -1,10 +1,12 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { PaginateResult } from 'mongoose';
 import { getChallenges } from '@/database/challenges';
 import { IChallengeSearch } from '@/interfaces';
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { regExValidators } from '@/utils';
 
 type Data = {
   error: string
-} | IChallengeSearch[];
+} | PaginateResult<IChallengeSearch> | [];
 
 export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   switch (req.method) {
@@ -16,9 +18,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
 }
 
 const getAllChallenges = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
-  const { language = '', slug = '' } = req.query as { language: string, slug: string };
-  const challenges = await getChallenges(language, slug);
+  try {
+    const { language = '', slug = '', page = '' } = req.query as { language: string, slug: string, page: string };
+    const pageValidated = page.match(regExValidators.numbersOnly) ? Number(page) : 1;
 
-  !challenges![0] && res.status(404).json({ error: 'No challenges available for now :(' });
-  res.status(200).json(challenges!);
+    const challenges = await getChallenges(language, slug, pageValidated);
+    challenges.length === 0 && res.status(404).json({ error: 'No challenges available for now :(' });
+    res.status(200).json(challenges!);
+  } catch (error) {
+    res.status(500).json({ error: 'Unexpected error' });
+  }
 }

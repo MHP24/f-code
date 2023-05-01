@@ -2,6 +2,7 @@ export const regExValidators = {
   email: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
   charactersOnly: /^[a-zA-Z]+$/g,
   charactersAndNumbersOnly: /^[a-zA-Z0-9]{5,}$/g,
+  numbersOnly: /^\d+$/,
   /* 
     Password must contains:
     - at least 8 characters

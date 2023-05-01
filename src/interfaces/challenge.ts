@@ -1,4 +1,3 @@
-
 export interface ICaseSchema {
   call: string;
   expectedOutput: any;
