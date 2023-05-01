@@ -55,21 +55,3 @@
 .challengesContainer {
   min-height: 30vh;
 }
-
-.loader {
-  color: red;
-  font-size: var(--fs-4);
-  animation: identifier 3s infinite linears;
-}
-
-
-
-@keyframes identifier {
-  from {
-    transform: translateX(20%);
-  }
-
-  to {
-    transform: translateX(40%);
-  }
-}
