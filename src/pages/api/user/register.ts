@@ -35,9 +35,7 @@ const register = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
     await db.connect();
 
-    console.log({ username, email, password });
     const user: IUser | null = await User.findOne({ $and: [{ email: `${email}@fcode` }, { username }, { provider: 'f-code' }] });
-    console.log({ user });
     if (!user) {
       const newUser = new User({ username, email: `${email}@fcode`, password: bcrypt.hashSync(password) });
       newUser.save({ validateBeforeSave: true });

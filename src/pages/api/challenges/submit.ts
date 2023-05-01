@@ -36,7 +36,7 @@ const submitChallenge = async (req: NextApiRequest, res: NextApiResponse<Data>) 
 
     res.status(200).json({ message: 'Success' });
   } catch (error) {
-    console.log({ error });
+    console.error({ error });
     res.status(400).json({ error: 'Unexpected error' });
   } finally {
     await db.disconnect();

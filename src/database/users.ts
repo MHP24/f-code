@@ -30,8 +30,6 @@ export const oAuthenticate = async (email: string, username: string, picture: st
   try {
     await db.connect();
     const user = await User.findOne({ email, provider });
-    console.log({ user });
-    console.log({ provider });
     if (user) {
       //TODO: Validate change...
       await User.updateOne({ _id: user._id }, { picture, username }); //Update in case new picture or username from provider
