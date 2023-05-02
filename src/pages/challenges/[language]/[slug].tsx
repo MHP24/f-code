@@ -60,9 +60,13 @@ const Challenge: NextPage<Props> = (
             {
               isLoggedIn ?
                 <Button
+                  disabled={execution.isExecuting}
                   text={'Run tests'}
                   size={1.1}
-                  fn={() => submitCode(_id, editorRef.current!.getValue(), creatorId, user?._id!, Number(difficulty))}
+                  fn={() =>
+                    execution.isExecuting ? {}
+                      : submitCode(_id, editorRef.current!.getValue(), creatorId, user?._id!, Number(difficulty))
+                  }
                 />
                 :
                 <Button
@@ -79,6 +83,8 @@ const Challenge: NextPage<Props> = (
           instructions={instructions}
           solveData={execution}
         />
+
+
       </div>
     </ChallengeLayout>
   );

@@ -9,18 +9,6 @@
 
 .loader {
   font-size: var(--fs-6);
-  animation: loading 1.5s infinite linear alternate;
-}
-
-@keyframes loading {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: .9;
-    color: var(--c1);
-  }
 }
 
 .barContainer {
@@ -45,7 +33,7 @@
 
 .bar {
   background-color: var(--c6);
-  animation: loadingBar 8s;
+  animation: loadingBar 5s;
 }
 
 @keyframes loadingBar {

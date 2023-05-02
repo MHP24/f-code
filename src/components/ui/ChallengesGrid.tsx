@@ -20,7 +20,7 @@ export const ChallengesGrid: FC<Props> = memo(({ challenges, setSize, size, hasM
       <InfiniteScroll
         next={() => setSize(size + 1)}
         hasMore={!hasMore}
-        loader={<p>loading....</p>}
+        loader={<p></p>}
         dataLength={challenges?.length ?? 0}
         className={styles.challengesGrid}
       >

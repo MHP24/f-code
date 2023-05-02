@@ -1,5 +1,5 @@
 import { FC, useEffect, useState, memo } from 'react';
-import { Button, ErrorChallenge, Loader, TestPanel } from '.';
+import { Button, ErrorChallenge, TestLoader, TestPanel } from '.';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import styles from '../styles/challengeData.module.css';
@@ -40,8 +40,8 @@ export const ChallengeData: FC<Props> = memo(({ instructions, solveData }) => {
 
       <div>
         {
-          !true ?
-            <Loader />
+          solveData.isExecuting ?
+            <TestLoader />
             :
             tab ?
               <ReactMarkdown
