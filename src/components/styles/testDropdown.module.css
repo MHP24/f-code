@@ -6,9 +6,10 @@
   display: grid;
   grid-template-columns: 50px 1fr 50px;
   text-align: left;
-  background-color: var(--c1);
+  background-color: var(--c4);
   padding: .7em;
   user-select: none;
+  border-radius: var(--br-1);
 }
 
 .successCircle,
@@ -20,11 +21,13 @@
 }
 
 .successCircle {
-  background-color: var(--c6);
+  background-color: var(--c3);
+  box-shadow: var(--b-sh-2);
 }
 
 .failedCircle {
-  background-color: var(--c7);
+  background-color: var(--c3);
+  box-shadow: var(--b-sh-3);
 }
 
 .successTitle,
@@ -34,23 +37,32 @@
 }
 
 .successTitle {
-  color: var(--c6);
+  color: var(--c3);
+  text-shadow: var(--t-sh-2);
 }
 
 .failedTitle {
-  color: var(--c7);
+  color: var(--c3);
+  text-shadow: var(--t-sh-3);
 }
 
+.arrow {
+  font-weight: var(--fs-w-3);
+  font-size: var(--fs-2);
+}
 
 .arrowSuccess {
-  margin: auto;
-  height: 20px;
-  width: 20px;
+  text-shadow: var(--t-sh-2);
 }
+
+.arrowFailed {
+  text-shadow: var(--t-sh-3);
+}
+
 
 .body {
   padding: 1em;
-  background-color: var(--c1);
+  background-color: var(--c4);
 }
 
 .headerSuccess:hover {

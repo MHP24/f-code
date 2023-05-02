@@ -3,12 +3,32 @@
 }
 
 .heading {
-  height: 60vh;
-  background-color: #171717;
+  height: 70vh;
+  background-color: rgba(0, 0, 0, .40);
+  background-image: url('/bg-w.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  gap: 4em;
   justify-content: center;
+  flex-direction: column;
   padding: 4em 1em;
+}
+
+
+.headingTitle {
+  max-width: 800px;
+  text-align: center;
+  line-height: 2;
+  font-size: var(--fs-4);
+  font-weight: var(--fs-w-2);
+}
+
+.headingTitleHighlight {
+  font-weight: var(--fs-w-3);
 }
 
 .searcher {
@@ -23,7 +43,7 @@
   background-color: var(--c2);
   border: none;
   outline: none;
-  padding: 1.2em 2em;
+  padding: 1em 2em;
   width: 100%;
   font-size: var(--fs-2);
   font-weight: var(--fs-w-1);
@@ -46,10 +66,14 @@
   text-decoration: none;
   cursor: pointer;
   padding: .5em 1em;
-  border: var(--c3) .1rem solid;
-  background-color: var(--c1-transparent);
+  background-color: var(--c4);
   border-radius: var(--br-3);
   font-size: var(--fs-1);
+  transition: .3s background-color;
+}
+
+.languageLink:hover {
+  background-color: var(--c2);
 }
 
 .challengesContainer {

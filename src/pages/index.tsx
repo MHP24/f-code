@@ -14,7 +14,7 @@ export default function Home() {
 
           <div className={styles.heroRight}>
             <h2 className={styles.heroTitle}>
-              Learn and improve your skills <strong>easily</strong>
+              Learn and improve your skills <strong className={styles.heroTitleHightlight}>easily</strong>
             </h2>
             <p className={styles.heroParagraph}>
               Using the most
@@ -38,7 +38,6 @@ export default function Home() {
         <DualCard
           title={'Focus on what really matters, the code'}
           description={'Practice and evaluate your knowledge automatically, receiving feedback from your solutions.'}
-
         />
         <DualCard
           title={'Discover and acquire new skills'}

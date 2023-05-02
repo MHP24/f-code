@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import styles from '../styles/dualCard.module.css';
+import Image from 'next/image';
 
 interface Props {
   reverse?: boolean;
@@ -36,7 +37,8 @@ export const DualCard: FC<Props> = ({ title, description, reverse = false }) => 
               </div>
 
               <div className={styles.sideB}>
-                <div className={styles.video}></div>
+                <div className={styles.video}>
+                </div>
               </div>
             </div>
           )

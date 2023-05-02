@@ -1,32 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
 
 :root {
   /* Colors */
-  /* --c1: #030C15;
-  --c1-transparent: #020910E2;
-  --c2: #101821;
+  --c1: #07f7d36a;
+  --c1-hover: #07f7d39c;
+  --c2: #13141aa7;
+  --c2-hover: #13141a;
   --c3: #FFFFFF;
-  --c4: #00B7FF;
-  --c4-transparent: #00B7FF26;
+  --c4: #020910E2;
   --c5: #474747;
-  --c6: #4DFF8E;
-  --c7: #FF5F5F;
-  --c8: #14151F;
-  --c9: #043B2A7E; */
+  --c6: #ffffffe7;
+  --c6-hover: #ffffffbc;
 
-  --c1: #070707;
-  --c1-transparent: #070707e2;
-  --c2: #101010;
-  --c3: #FFFFFF;
-  --c4: #00B7FF;
-  --c4-transparent: #00B7FF26;
-  --c5: #474747;
-  --c6: #4DFF8E;
+  /* --c4: #242429b4; */
+  /* --c4-transparent: #00B7FF26; */
+  /* --c6: #4DFF8E; */
   --c7: #FF5F5F;
-  --c8: #131313;
-  --c9: #043B2A7E;
-  --c10: #3b040467;
-  --c11: #f3d9d9;
+  /* --c8: #100f0f57; */
+  /* --c9: #043B2A7E; */
+  /* --c10: #2a02025c; */
 
   /* Font size */
   --fs-1: 1rem;
@@ -43,13 +35,29 @@
 
 
   /* Border radius */
-  --br-1: .6rem;
+  --br-1: .2rem;
   --br-2: 1.25rem;
   --br-3: 2.5rem;
   --br-4: 4%;
 
   /* Shadows */
-  --b-sh-1-: rgba(255, 255, 255, 0.759) 0px 1px 3px 0px, rgba(255, 255, 255, 0.622) 0px 1px 2px 0px;
+  --b-sh-1: 0px 0px 5px #54e6e4, 0px 0px 10px #54e6e4, 0px 0px 15px #54e6e4;
+  --t-sh-1: 0px 0px 5px #54e6e4, 0px 0px 10px #54e6e4, 0px 0px 15px #54e6e4;
+
+  --b-sh-2: 0px 0px 5px #19e29fd5, 0px 0px 10px #19e29fd5, 0px 0px 15px #19e29fd5;
+  --t-sh-2: 0px 0px 5px #19e29fd5, 0px 0px 10px #19e29fd5, 0px 0px 15px #19e29fd5;
+  
+  --b-sh-3: 0px 0px 5px #f04c4c, 0px 0px 10px #f04c4c, 0px 0px 15px #f04c4c;
+  --t-sh-3: 0px 0px 5px #f04c4c, 0px 0px 10px #f04c4c, 0px 0px 15px #f04c4c;
+
+
+
+  /* --b-sh-2: 0px 0px 5px #f546d2, 0px 0px 10px #f546d2, 0px 0px 15px #f546d2; */
+  /* --b-sh-3: 0px 0px 5px #00b7ff, 0px 0px 10px #00b7ff, 0px 0px 15px #00b7ff; */
+  /* --b-sh-4: 0px 0px 5px #9546f5, 0px 0px 10px #9546f5, 0px 0px 15px #9546f5; */
+  /* --b-sh-5: 0px 0px 5px #f04c4c, 0px 0px 10px #f04c4c, 0px 0px 15px #f04c4c; */
+  /* --b-sh-6: 0px 0px 5px #00ff118e, 0px 0px 10px #00ff118e, 0px 0px 15px #00ff118e; */
+  /* --b-sh-7: 0px 0px 5px #ffc600, 0px 0px 10px #ffc600, 0px 0px 15px #ffc600; */
 }
 
 * {
@@ -58,13 +66,22 @@
   box-sizing: border-box;
   color: var(--c3);
   font-weight: var(--fs-w-2);
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Poppins', sans-serif;
+}
+
+html {
+  background: linear-gradient(90deg, #090409 0%, #021010 25%, #120612 75%, rgba(7, 1, 8, 1) 100%);
 }
 
 body {
   max-width: 120rem;
+  /* background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(57,1,17,1) 45%, rgba(55,0,46,1) 75%, rgba(7,1,8,1) 100%); */
+  /* background: linear-gradient(90deg, #090409 0%, #021010 45%, #120612 75%, rgba(7,1,8,1) 100%); */
+  /* background-color: #33333333; */
+  background: linear-gradient(90deg, #120612 0%, #021010 25%, #090409 75%, rgba(7, 1, 8, 1) 100%);
+  /* background-image: linear-gradient(to top, #090409 0%, #021516  51%, #120612  100%); */
   margin: auto;
-  background-color: var(--c1);
+  /* background-color: var(--c1); */
   background-image: url('/bg.svg');
   background-position: center;
   background-attachment: fixed;
@@ -107,4 +124,3 @@ code {
     --fs-6: 2.2rem;
   }
 }
-

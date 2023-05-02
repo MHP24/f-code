@@ -11,10 +11,12 @@
   padding: 2em .8em;
   border-radius: var(--br-1);
   text-align: center;
+  border: .12rem var(--c3) solid;
+  box-shadow: var(--b-sh-1);
 }
 
 .iconContainer {
-  background-color: var(--c1);
+  /* background-color: var(--c1); */
   border-radius: var(--br-2);
   padding: .7em;
 }

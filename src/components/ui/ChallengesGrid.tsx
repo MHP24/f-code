@@ -21,7 +21,6 @@ export const ChallengesGrid: FC<Props> = memo(({ challenges, setSize, size, hasM
         next={() => setSize(size + 1)}
         hasMore={!hasMore}
         loader={<p>loading....</p>}
-        endMessage={<p>Reached the end</p>}
         dataLength={challenges?.length ?? 0}
         className={styles.challengesGrid}
       >

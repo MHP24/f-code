@@ -10,7 +10,6 @@
 .authContainer {
   width: 100%;
   min-height: 100%;
-  box-shadow: var(--b-sh-1);
   border-radius: var(--br-1);
 }
 
@@ -22,6 +21,7 @@
 }
 
 .contentImage {
+  border: 2px red solid;
   object-fit: cover;
 }
 

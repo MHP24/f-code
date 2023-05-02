@@ -1,7 +1,4 @@
 import { FC, useContext, useState } from 'react';
-import Image from 'next/image';
-import arrowUp from '/public/illustrations/arrow-up.svg';
-import arrowDown from '/public/illustrations/arrow-down.svg';
 import styles from '../styles/testDropdown.module.css';
 import { ChallengeContext } from '@/context';
 
@@ -32,9 +29,9 @@ export const TestDropdown: FC<Props> = ({
         <p className={passed ? styles.successTitle : styles.failedTitle}>{`Test #${caseNumber}`}</p>
         {
           showContent ?
-            <Image className={styles.arrowSuccess} src={arrowUp} alt={'arrow-up'} />
+            <p className={`${styles.arrow} ${passed ? styles.arrowSuccess : styles.arrowFailed}`}>{'︿'}</p>
             :
-            <Image className={styles.arrowSuccess} src={arrowDown} alt={'arrow-down'} />
+            <p className={`${styles.arrow} ${passed ? styles.arrowSuccess : styles.arrowFailed}`}>{'﹀'}</p>
         }
       </div>
       {

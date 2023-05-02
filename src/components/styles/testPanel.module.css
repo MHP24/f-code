@@ -1,3 +1,8 @@
+
+.title {
+  color: var(--c3);
+}
+
 .failedTitle,
 .successTitle {
   font-size: var(--fs-4);
@@ -5,9 +10,11 @@
 }
 
 .failedTitle {
-  color: var(--c7);
+  color: var(--c3);
+  text-shadow: var(--t-sh-3);
 }
 
 .successTitle {
-  color: var(--c6);
+  color: var(--c3);
+  text-shadow: var(--t-sh-2);
 }

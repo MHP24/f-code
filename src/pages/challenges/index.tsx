@@ -64,6 +64,9 @@ const Challenges: NextPage<Props> = ({ search, language }) => {
       pageDescription={'Search and start solving some challenge'}
     >
       <header className={styles.heading}>
+        <h3 className={styles.headingTitle}>Start looking for challenges to improve your knowledge and
+          <strong className={styles.headingTitleHighlight}> earn points!</strong></h3>
+
         <form className={styles.searcher}
           onSubmit={handleSubmit(onSubmit)}
         >
@@ -91,9 +94,7 @@ const Challenges: NextPage<Props> = ({ search, language }) => {
             }
           </ul>
         </form>
-
       </header>
-
 
       <section className={styles.challengesContainer}>
         {
