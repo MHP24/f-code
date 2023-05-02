@@ -40,7 +40,7 @@ export const AuthLayout: FC<PropsWithChildren<Props>> = ({ children, title, page
             <div className={styles.contentImageContainer}>
               <Image
                 className={styles.contentImage}
-                src={'/pictures/astronaut.jpg'}
+                src={'/pictures/fish.jpg'}
                 fill
                 alt={`${title} picture`}
               />
@@ -49,7 +49,7 @@ export const AuthLayout: FC<PropsWithChildren<Props>> = ({ children, title, page
 
           <div className={styles.formContainer}>
             <div className={styles.form}>
-              <h2 className={styles.authTitle}>{`${title} to F-Code`}</h2>
+              <h2 className={styles.authTitle}>{`${title} to FCode`}</h2>
 
               <div className={styles.providers}>
                 {

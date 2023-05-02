@@ -11,14 +11,17 @@
   --c5: #474747;
   --c6: #ffffffe7;
   --c6-hover: #ffffffbc;
-
-  /* --c4: #242429b4; */
-  /* --c4-transparent: #00B7FF26; */
-  /* --c6: #4DFF8E; */
   --c7: #FF5F5F;
-  /* --c8: #100f0f57; */
-  /* --c9: #043B2A7E; */
-  /* --c10: #2a02025c; */
+  --c7-hover: #570f0f34;
+  --c8: #5fff8f;
+  --c8-hover: #12672b3b;
+  --c9: #0d1319d5;
+
+  /* Difficulties colors */
+  --c-easy: #15bc7f;
+  --c-medium: #fdc538;
+  --c-hard: #FF5F5F;
+  --c-insane: #B074FC;
 
   /* Font size */
   --fs-1: 1rem;
@@ -27,6 +30,7 @@
   --fs-4: 2rem;
   --fs-5: 2.4rem;
   --fs-6: 3.9rem;
+--fs-7: 5rem;
 
   /* Font weight */
   --fs-w-1: 300;
@@ -42,22 +46,15 @@
 
   /* Shadows */
   --b-sh-1: 0px 0px 5px #54e6e4, 0px 0px 10px #54e6e4, 0px 0px 15px #54e6e4;
-  --t-sh-1: 0px 0px 5px #54e6e4, 0px 0px 10px #54e6e4, 0px 0px 15px #54e6e4;
+  --t-sh-1: 0px 0px 2px #54e6e4, 0px 0px 0px #54e6e4, 0px 0px 10px #54e6e4;
 
-  --b-sh-2: 0px 0px 5px #19e29fd5, 0px 0px 10px #19e29fd5, 0px 0px 15px #19e29fd5;
-  --t-sh-2: 0px 0px 5px #19e29fd5, 0px 0px 10px #19e29fd5, 0px 0px 15px #19e29fd5;
-  
-  --b-sh-3: 0px 0px 5px #f04c4c, 0px 0px 10px #f04c4c, 0px 0px 15px #f04c4c;
-  --t-sh-3: 0px 0px 5px #f04c4c, 0px 0px 10px #f04c4c, 0px 0px 15px #f04c4c;
+  --b-sh-2: 0px 0px 5px #19e29fd5, 0px 0px 6px #19e29fd5, 0px 0px 15px #19e29fd5;
+  --t-sh-2: 0px 0px 2px #19e29fd5, 0px 0px 6px #19e29fd5, 0px 0px 10px #19e29fd5;
 
+  --b-sh-3: 0px 0px 5px #f04c4c, 0px 0px 6px #f04c4c, 0px 0px 15px #f04c4c;
+  --t-sh-3: 0px 0px 2px #f04c4c, 0px 0px 6px #f04c4c, 0px 0px 10px #f04c4c;
 
-
-  /* --b-sh-2: 0px 0px 5px #f546d2, 0px 0px 10px #f546d2, 0px 0px 15px #f546d2; */
-  /* --b-sh-3: 0px 0px 5px #00b7ff, 0px 0px 10px #00b7ff, 0px 0px 15px #00b7ff; */
-  /* --b-sh-4: 0px 0px 5px #9546f5, 0px 0px 10px #9546f5, 0px 0px 15px #9546f5; */
-  /* --b-sh-5: 0px 0px 5px #f04c4c, 0px 0px 10px #f04c4c, 0px 0px 15px #f04c4c; */
-  /* --b-sh-6: 0px 0px 5px #00ff118e, 0px 0px 10px #00ff118e, 0px 0px 15px #00ff118e; */
-  /* --b-sh-7: 0px 0px 5px #ffc600, 0px 0px 10px #ffc600, 0px 0px 15px #ffc600; */
+  --t-sh-black: 0px 0px 2px #12121271, 0px 0px 2px #12121271;
 }
 
 * {
@@ -75,14 +72,9 @@ html {
 
 body {
   max-width: 120rem;
-  /* background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(57,1,17,1) 45%, rgba(55,0,46,1) 75%, rgba(7,1,8,1) 100%); */
-  /* background: linear-gradient(90deg, #090409 0%, #021010 45%, #120612 75%, rgba(7,1,8,1) 100%); */
-  /* background-color: #33333333; */
   background: linear-gradient(90deg, #120612 0%, #021010 25%, #090409 75%, rgba(7, 1, 8, 1) 100%);
-  /* background-image: linear-gradient(to top, #090409 0%, #021516  51%, #120612  100%); */
   margin: auto;
-  /* background-color: var(--c1); */
-  background-image: url('/bg.svg');
+  background-image: url('/backgrounds/bubbles.svg');
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
@@ -107,7 +99,7 @@ strong {
 }
 
 code {
-  background-color: var(--c1);
+  background-color: var(--c2);
   font-size: var(--fs-1);
   padding: .3em;
   display: block;

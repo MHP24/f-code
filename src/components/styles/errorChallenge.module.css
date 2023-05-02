@@ -8,10 +8,15 @@
 }
 
 .error {
-  color: var(--c7);
   font-size: var(--fs-3);
   text-align: center;
   font-weight: var(--fs-w-3);
   padding: .5em 1em;
   border-radius: var(--br-1);
+  text-shadow: var(--t-sh-3);
+}
+
+.errorIllustration {
+  font-size: var(--fs-7);
+  text-shadow: var(--t-sh-3);
 }

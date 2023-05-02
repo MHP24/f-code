@@ -17,11 +17,11 @@ export const TestDropdown: FC<Props> = ({
 }) => {
   const [showContent, setshowContent] = useState<boolean>(false);
 
-  const { isNative } = useContext(ChallengeContext)
+  const { isNative } = useContext(ChallengeContext);
 
   return (
     <div className={styles.testDropdown}>
-      <div className={`${styles.header} ${passed ? styles.headerSuccess : styles.headerFailed}`}
+      <div className={`${styles.header} ${!showContent ? passed ? styles.headerSuccess : styles.headerFailed : ''}`}
         onClick={() => setshowContent(!showContent)}
         role='button'
       >

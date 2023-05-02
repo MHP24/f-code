@@ -16,12 +16,29 @@
 .contentContainer {
   position: fixed;
   width: 50%;
+  bottom: 0;
+  height: calc(100vh - 4.5rem);
+}
+
+.contentImageContainer {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-right: var(--c3) .05rem solid;
+  box-shadow: var(--b-sh-2);
+}
+
+.contentImageContainer::after {
+  position: absolute;
+  content: '';
+  background-color: rgba(0, 0, 0, .40);
   top: 0;
-  height: 100vh;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .contentImage {
-  border: 2px red solid;
   object-fit: cover;
 }
 
@@ -101,7 +118,7 @@
   .formContainer {
     margin-left: 0%;
     border: var(--c2) 2px solid;
-    background-color: var(--c1);
+    background-color: rgba(0, 0, 0, .40);
   }
 }
 

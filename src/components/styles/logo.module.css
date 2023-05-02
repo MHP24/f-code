@@ -1,0 +1,14 @@
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6em;
+}
+
+.title {
+  font-size: var(--fs-4);
+}
+
+.logoColumn {
+  flex-direction: column;
+}

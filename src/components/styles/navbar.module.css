@@ -29,7 +29,6 @@
 .navTitle {
   font-size: var(--fs-4);
   transition: .3s opacity;
-  /* font-style: italic; */
 }
 
 .navTitle:hover {
@@ -52,18 +51,25 @@
   text-decoration: none;
   font-size: var(--fs-1);
   font-weight: var(--fs-w-3);
-  transition: .3s opacity;
+  transition: .2s text-shadow;
 }
 
 .navLink:hover {
-  opacity: .7;
+  text-shadow: var(--t-sh-1);
 }
 
 .hideMenu {
   transform: translateY(0) translateX(0);
 }
 
+.buttonContainer {
+  margin: auto;
+  margin-right: 0;
+  max-height: 3.4rem;
+}
+
 @media (max-width: 56rem) {
+
   .nav,
   .navContainer,
   .navLinks {
@@ -76,7 +82,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color: var(--c1-transparent);
+    background-color: var(--c9);
   }
 
   .navContainer {
@@ -89,7 +95,9 @@
   }
 
   .navLinks {
+    margin-top: 3rem;
     align-items: flex-start;
+    border: none;
   }
 
   .hideMenu {
@@ -101,5 +109,9 @@
     margin: 2em 0;
     margin-left: 2rem;
     justify-self: center;
+  }
+
+  .buttonContainer {
+    margin-left: 0;
   }
 }

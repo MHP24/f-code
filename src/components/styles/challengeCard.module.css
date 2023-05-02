@@ -42,7 +42,6 @@
 
 .challengeTag {
   font-size: var(--fs-1);
-  /* border-radius: var(--br-3); */
   border-radius: 3px;
   list-style: none;
   text-align: center;
@@ -53,12 +52,31 @@
   font-weight: var(--fs-w-2);
 }
 
-.challengeDifficulty {
-  background-color: #bc2650;
+
+.difficultyTag {
+  text-shadow: var(--t-sh-black);
 }
 
-@media (max-width: 43rem) {
+.easy {
+  background-color: var(--c-easy);
+}
 
+.medium {
+  background-color: var(--c-medium);
+}
+
+
+.hard {
+  background-color:var(--c-hard);
+}
+
+
+.insane {
+  background-color: var(--c-insane);
+}
+
+
+@media (max-width: 43rem) {
   .challengeCard,
   .challengeTags {
     grid-template-columns: 1fr;

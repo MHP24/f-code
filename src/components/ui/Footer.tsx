@@ -2,13 +2,14 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../styles/footer.module.css';
+import { Logo } from '.';
 
 
 export const Footer = () => {
   return (
     <footer className={styles.footer}>
 
-      <h2 className={styles.footerTitle}>{'{ f/code }'}</h2>
+      <Logo isPrimary={false} size={50} column/>
 
       <div className={styles.medias}>
         <Link

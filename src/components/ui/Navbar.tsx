@@ -1,9 +1,10 @@
 import { FC, useContext, useState } from 'react';
 import Link from 'next/link';
 import styles from '../styles/navbar.module.css';
-import { Button } from './';
+import { Button, Logo } from './';
 import { useRouter } from 'next/router';
 import { AuthContext } from '@/context';
+import Image from 'next/image';
 
 export const Navbar: FC = () => {
 
@@ -28,12 +29,13 @@ export const Navbar: FC = () => {
       <nav className={`${styles.nav} ${!isOpen && styles.hideMenu}`}>
         <div className={styles.navContainer}>
           <Link className={styles.navLink} href={'/'}>
-            <h1 className={styles.navTitle}>{'{ f/code }'}</h1>
+            <Logo isPrimary size={50} />
           </Link>
+
           <ul className={styles.navLinks}>
-            <li className={styles.navItem}>
+            {/* <li className={styles.navItem}>
               <Link className={styles.navLink} href={'/'}>Home</Link>
-            </li>
+            </li> */}
 
             <li className={styles.navItem}>
               <Link className={styles.navLink} href={'/challenges'}>Challenges</Link>
@@ -49,23 +51,25 @@ export const Navbar: FC = () => {
           </ul>
         </div>
 
-        {
-          isLoggedIn ?
-            <Button
-              text={'Logout'}
-              size={.9}
-              w={250}
-              fn={logoutUser}
-            />
-            :
-            <Button
-              text={'Join'}
-              size={.9}
-              w={250}
-              fn={navigateRoute}
-            />
+        <div className={styles.buttonContainer}>
+          {
+            isLoggedIn ?
+              <Button
+                text={'Logout'}
+                size={.9}
+                w={250}
+                fn={logoutUser}
+              />
+              :
+              <Button
+                text={'Join'}
+                size={.9}
+                w={250}
+                fn={navigateRoute}
+              />
 
-        }
+          }
+        </div>
 
       </nav>
     </>

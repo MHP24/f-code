@@ -4,6 +4,17 @@ import Link from 'next/link';
 import { IChallengeSearch } from '@/interfaces';
 import styles from '../styles/challengeCard.module.css';
 
+interface IDifficulties {
+  [key: number]: { tag: string; class: string };
+}
+
+const difficulties: IDifficulties = {
+  1: { tag: 'Easy', class: styles.easy },
+  2: { tag: 'Medium', class: styles.medium },
+  3: { tag: 'Hard', class: styles.hard },
+  4: { tag: 'Insane', class: styles.insane },
+};
+
 export const ChallengeCard: FC<IChallengeSearch> = ({ slug, language, tags, difficulty }) => {
   return (
     <Link
@@ -25,7 +36,7 @@ export const ChallengeCard: FC<IChallengeSearch> = ({ slug, language, tags, diff
         <ul className={styles.challengeTags}>
           <li className={styles.challengeTag}>{tags[0]}</li>
           <li className={styles.challengeTag}>{tags[1]}</li>
-          <li className={`${styles.challengeTag} ${styles.challengeDifficulty}`}>{difficulty}</li>
+          <li className={`${styles.challengeTag} ${difficulties[difficulty].class} ${styles.difficultyTag}`}>{`${difficulties[difficulty].tag}`}</li>
         </ul>
       </div>
     </Link>

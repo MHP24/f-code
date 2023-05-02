@@ -53,7 +53,7 @@ export const seedData: SeedData = {
     {
       slug: 'the_best_sum',
       language: 'javascript',
-      difficulty: 3,
+      difficulty: 1,
       instructions: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent blandit volutpat mi in condimentum. Pellentesque ultricies est leo, quis dignissim nisl luctus vel. Fusce quam leo, venenatis ut nulla at, feugiat fringilla orci. Mauris ut risus odio. Nullam tempor cursus accumsan. Morbi consectetur sollicitudin elit, vitae dapibus sem suscipit sed. Maecenas massa eros, lobortis vel neque non, rhoncus pulvinar ante. Suspendisse vel efficitur metus.',
       functionName: 'sumNumbers',
       parameters: ['n1', 'n2'],
@@ -78,7 +78,7 @@ export const seedData: SeedData = {
     {
       slug: 'check',
       language: 'javascript',
-      difficulty: 3,
+      difficulty: 2,
       instructions: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent blandit volutpat mi in condimentum. Pellentesque ultricies est leo, quis dignissim nisl luctus vel. Fusce quam leo, venenatis ut nulla at, feugiat fringilla orci. Mauris ut risus odio. Nullam tempor cursus accumsan. Morbi consectetur sollicitudin elit, vitae dapibus sem suscipit sed. Maecenas massa eros, lobortis vel neque non, rhoncus pulvinar ante. Suspendisse vel efficitur metus.',
       functionName: 'checkFn',
       parameters: ['n1', 'n2'],

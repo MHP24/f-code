@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  style="margin:auto;background:rgba(42, 42, 42, 0.06387096774193546);display:block;z-index:1;position:relative"
+  width="1474" height="779" preserveAspectRatio="xMidYMid" viewBox="0 0 1474 779">
+  <g transform="translate(737,389.5) scale(1,1) translate(-737,-389.5)">
+    <linearGradient id="ldb-rcpwvsjsik-lg" x1="0" x2="0" y1="1" y2="0">
+      <stop stop-color="#1a4655" offset="0"></stop>
+      <stop stop-color="rgba(44, 160, 160, 0.22322580645161294)" offset="1"></stop>
+    </linearGradient>
+    <g transform="translate(1107.0324458538064 632.4937905225519)">
+      <circle cx="0" cy="0" r="619.0799999999999" fill="url(#ldb-rcpwvsjsik-lg)" fill-opacity="0.14">
+        <animateTransform attributeName="transform" repeatCount="indefinite" dur="2s" begin="0s"
+          calcMode="spline" keySplines="0.3 0 0.7 1;0.3 0 0.7 1" keyTimes="0;0.5;1"
+          values="0.988;1.012;0.988" type="scale"></animateTransform>
+      </circle>
+    </g>
+    <g transform="translate(1021.3458370402632 500.5479837424909)">
+      <circle cx="0" cy="0" r="619.0799999999999" fill="url(#ldb-rcpwvsjsik-lg)" fill-opacity="0.14">
+        <animateTransform attributeName="transform" repeatCount="indefinite" dur="2s"
+          begin="-0.3333333333333333s" calcMode="spline" keySplines="0.3 0 0.7 1;0.3 0 0.7 1"
+          keyTimes="0;0.5;1" values="0.988;1.012;0.988" type="scale"></animateTransform>
+      </circle>
+    </g>
+    <g transform="translate(891.223453096208 412.1169029308085)">
+      <circle cx="0" cy="0" r="619.0799999999999" fill="url(#ldb-rcpwvsjsik-lg)" fill-opacity="0.14">
+        <animateTransform attributeName="transform" repeatCount="indefinite" dur="2s"
+          begin="-0.6666666666666666s" calcMode="spline" keySplines="0.3 0 0.7 1;0.3 0 0.7 1"
+          keyTimes="0;0.5;1" values="0.988;1.012;0.988" type="scale"></animateTransform>
+      </circle>
+    </g>
+    <g transform="translate(737 381.02)">
+      <circle cx="0" cy="0" r="619.0799999999999" fill="url(#ldb-rcpwvsjsik-lg)" fill-opacity="0.14">
+        <animateTransform attributeName="transform" repeatCount="indefinite" dur="2s" begin="-1s"
+          calcMode="spline" keySplines="0.3 0 0.7 1;0.3 0 0.7 1" keyTimes="0;0.5;1"
+          values="0.988;1.012;0.988" type="scale"></animateTransform>
+      </circle>
+    </g>
+    <g transform="translate(582.7765469037922 412.11690293080846)">
+      <circle cx="0" cy="0" r="619.0799999999999" fill="url(#ldb-rcpwvsjsik-lg)" fill-opacity="0.14">
+        <animateTransform attributeName="transform" repeatCount="indefinite" dur="2s"
+          begin="-1.3333333333333333s" calcMode="spline" keySplines="0.3 0 0.7 1;0.3 0 0.7 1"
+          keyTimes="0;0.5;1" values="0.988;1.012;0.988" type="scale"></animateTransform>
+      </circle>
+    </g>
+    <g transform="translate(452.654162959737 500.5479837424907)">
+      <circle cx="0" cy="0" r="619.0799999999999" fill="url(#ldb-rcpwvsjsik-lg)" fill-opacity="0.14">
+        <animateTransform attributeName="transform" repeatCount="indefinite" dur="2s"
+          begin="-1.6666666666666667s" calcMode="spline" keySplines="0.3 0 0.7 1;0.3 0 0.7 1"
+          keyTimes="0;0.5;1" values="0.988;1.012;0.988" type="scale"></animateTransform>
+      </circle>
+    </g>
+    <g transform="translate(366.9675541461937 632.4937905225518)">
+      <circle cx="0" cy="0" r="619.0799999999999" fill="url(#ldb-rcpwvsjsik-lg)" fill-opacity="0.14">
+        <animateTransform attributeName="transform" repeatCount="indefinite" dur="2s" begin="-2s"
+          calcMode="spline" keySplines="0.3 0 0.7 1;0.3 0 0.7 1" keyTimes="0;0.5;1"
+          values="0.988;1.012;0.988" type="scale"></animateTransform>
+      </circle>
+    </g>
+  </g>
+</svg>
