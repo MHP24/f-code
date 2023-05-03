@@ -3,6 +3,7 @@
   display: grid;
   grid-template-columns: .8fr 1fr;
   gap: 2em;
+  margin-bottom: 6rem;
 }
 
 .cardReverse {

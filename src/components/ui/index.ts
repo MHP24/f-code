@@ -16,3 +16,4 @@ export * from './LeaderboardCard';
 export * from './ErrorLabel';
 export * from './ErrorChallenge';
 export * from './Logo';
+export * from './NoResults';

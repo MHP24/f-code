@@ -37,7 +37,9 @@ const languages = [
 const Challenges: NextPage<Props> = ({ search, language }) => {
   const [inputSearch, setInputSearch] = useState<string>(search);
   const { register, handleSubmit } = useForm<Inputs>();
-  const { data, hasMore, size, setSize } =
+  const [description, setDescription] = useState<string>(`Search and start solving some challenge`);
+
+  const { data, hasMore, size, setSize, isLoading } =
     usePagination<IChallengeSearch>(`/challenges/search?slug=${inputSearch}&language=${language}`);
   const router = useRouter();
 
@@ -55,13 +57,17 @@ const Challenges: NextPage<Props> = ({ search, language }) => {
         : `?language=${router.query.language}` +
         (searchQuery ? `&search=${searchQuery}` : '')}`);
 
+    setDescription(!router.query.language ?
+      `FCode, Results for "${search}" Challenges`
+      : `FCode, ${router.query.language} Challenges`
+    );
     setInputSearch(searchQuery);
   };
 
   return (
     <MainLayout
       title={'F-Code Challenges'}
-      pageDescription={'Search and start solving some challenge'}
+      pageDescription={description}
     >
       <header className={styles.heading}>
         <h3 className={styles.headingTitle}>Start looking for challenges to improve your knowledge and
@@ -103,6 +109,7 @@ const Challenges: NextPage<Props> = ({ search, language }) => {
             setSize={setSize}
             size={size}
             hasMore={hasMore ?? false}
+            isLoading={isLoading ?? true}
           />
         }
       </section>

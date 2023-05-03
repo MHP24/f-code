@@ -11,10 +11,10 @@ export const usePagination = <T>(url: string) => {
 
   const fetcher = async (url: string) => (await fCodeApi.get(url)).data.docs;
 
-  const { data, size, setSize, error, mutate } = useSWRInfinite(getKey, fetcher);
+  const { data, size, setSize, error, mutate, isLoading } = useSWRInfinite(getKey, fetcher);
+  console.log({ isLoading });
   const paginatedData: T[] | undefined = data?.flat();
   const hasMore = data && !data.at(-1).length;
-  const isLoading = data && typeof data[size - 1] === 'undefined';
 
   return {
     data: paginatedData,

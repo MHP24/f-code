@@ -1,0 +1,13 @@
+.noResults {
+  margin-top: 4rem;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.description {
+  font-size: var(--fs-3);
+  font-weight: var(--fs-w-2);
+}
