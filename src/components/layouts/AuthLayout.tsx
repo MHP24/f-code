@@ -19,8 +19,7 @@ export const AuthLayout: FC<PropsWithChildren<Props>> = ({ children, title, page
 
   useEffect(() => {
     (async () => {
-      const _providers = await getProviders();
-      setProviders(_providers);
+      setProviders(await getProviders());
     })()
   }, []);
 
@@ -39,7 +38,7 @@ export const AuthLayout: FC<PropsWithChildren<Props>> = ({ children, title, page
           <div className={styles.contentContainer}>
             <div className={styles.contentImageContainer}>
               <Image
-                className={styles.contentImage}
+                className={`${styles.contentImage}`}
                 src={'/pictures/fish.jpg'}
                 fill
                 alt={`${title} picture`}
@@ -48,40 +47,43 @@ export const AuthLayout: FC<PropsWithChildren<Props>> = ({ children, title, page
           </div>
 
           <div className={styles.formContainer}>
-            <div className={styles.form}>
-              <h2 className={styles.authTitle}>{`${title} to FCode`}</h2>
+            {
+              providers &&
+              <div className={styles.form}>
+                <h2 className={styles.authTitle}>{`${title} to FCode`}</h2>
 
-              <div className={styles.providers}>
+                <div className={styles.providers}>
+                  {
+                    Object.values(providers).map(({ id, name }: ClientSafeProvider) => {
+                      if (id !== 'credentials') {
+                        return (
+                          <button className={styles.provider} key={id} onClick={() => signIn(id)}>
+                            <Image
+                              className={styles.providerImage}
+                              src={require(`/public/media/${id}.svg`)}
+                              alt={name}
+                              width={52}
+                              height={49}
+                            />
+                          </button>
+                        );
+                      }
+                    })
+
+                  }
+                </div>
+
+                {children}
+
                 {
-                  providers &&
-                  Object.values(providers).map(({ id, name }: ClientSafeProvider) => {
-                    if (id !== 'credentials') {
-                      return (
-                        <button className={styles.provider} key={id} onClick={() => signIn(id)}>
-                          <Image
-                            className={styles.providerImage}
-                            src={require(`/public/media/${id}.svg`)}
-                            alt={name}
-                            width={52}
-                            height={49}
-                          />
-                        </button>
-                      );
-                    }
-                  })
-
+                  title === 'Sign in' ?
+                    <Link className={styles.link} href='/auth/sign_up'>Not registered?&nbsp;&nbsp;Create an account</Link>
+                    :
+                    <Link className={styles.link} href='/auth/sign_in'>Already registered?&nbsp;&nbsp;Sign in here</Link>
                 }
               </div>
+            }
 
-              {children}
-
-              {
-                title === 'Sign in' ?
-                  <Link className={styles.link} href='/auth/sign_up'>Not registered?&nbsp;&nbsp;Create an account</Link>
-                  :
-                  <Link className={styles.link} href='/auth/sign_in'>Already registered?&nbsp;&nbsp;Sign in here</Link>
-              }
-            </div>
           </div>
         </div>
       </main>

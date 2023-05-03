@@ -45,7 +45,7 @@ export const ChallengeData: FC<Props> = memo(({ instructions, solveData }) => {
             :
             tab ?
               <ReactMarkdown
-                className={styles.markdownArea}
+                className={`${styles.markdownArea} animate__animated animate__fadeIn`}
                 remarkPlugins={[remarkGfm]}>
                 {instructions}
               </ReactMarkdown>

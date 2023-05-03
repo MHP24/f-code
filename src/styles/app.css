@@ -107,6 +107,10 @@ code {
   width: 100%;
 }
 
+.animate__animated.animate__fadeIn {
+  --animate-duration: .5s;
+}
+
 @media (max-width: 43rem) {
   :root {
     --fs-2: 1rem;

@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { TestDropdown } from '.';
 import styles from '../styles/testPanel.module.css';
 import { ISummaryCase } from '@/interfaces';
+
 interface Props {
   errors: number;
   cases: ISummaryCase[];
@@ -9,7 +10,7 @@ interface Props {
 
 export const TestPanel: FC<Props> = ({ errors, cases }) => {
   return (
-    <div className={styles.testPanel}>
+    <div className={`${styles.testPanel} animate__animated animate__fadeIn`}>
 
       {
         errors > 0 ?

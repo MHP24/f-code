@@ -1,11 +1,13 @@
 import { MainLayout } from '@/components/layouts';
 import { Button, DualCard, FeatureCard } from '@/components/ui';
 import styles from '@/styles/index.module.css';
+import Image from 'next/image';
 
 export default function Home() {
+
   return (
     <MainLayout title={'F-Code Home'} pageDescription={'F-Code Home Page'}>
-      <section className={styles.hero}>
+      <section className={`${styles.hero} animate__animated animate__fadeIn`}>
         <div className={styles.heroContainer}>
           <div className={styles.heroLeft}>
             <div className={styles.heroPicture}></div>
@@ -31,8 +33,54 @@ export default function Home() {
         </div>
       </section>
 
-      {/* <section className={styles.technologies}>
-      </section> */}
+      <section className={styles.technologies}>
+        <div className={styles.cubeContainer}>
+          <div className={styles.cube}>
+            <div className={styles.top}>
+              <p className={styles.cubeTitle}>Logic</p>
+            </div>
+            <div className={styles.bottom}>
+              <p className={styles.cubeTitle}>Efficiency</p>
+            </div>
+            <div className={styles.left}>
+              <p className={styles.cubeTitle}>Algorithms</p>
+            </div>
+            <div className={styles.right}>
+              <Image
+                className={styles.cubeImage}
+                src={'/techs/typescript.svg'}
+                width={150}
+                height={150}
+                alt='typescript'
+              />
+            </div>
+            <div className={styles.front}>
+              <Image
+                className={styles.cubeImage}
+
+                src={'/techs/python.svg'}
+                width={150}
+                height={150}
+                alt='python'
+              />
+            </div>
+            <div className={styles.back}>
+              <Image
+                className={styles.cubeImage}
+                src={'/techs/javascript.svg'}
+                width={150}
+                height={150}
+                alt='javascript'
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.technologiesDescription}>
+          <h3 className={styles.technologiesTitle}>Everything in one place</h3>
+          <p className={styles.technologiesParagraph}>Exercise the most desired skills by the competition, that always are needed.</p>
+        </div>
+      </section>
 
       <section className={styles.illustrations}>
         <DualCard
@@ -74,6 +122,6 @@ export default function Home() {
         </div>
       </section>
 
-    </MainLayout>
+    </MainLayout >
   )
 }

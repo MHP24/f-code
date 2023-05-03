@@ -69,7 +69,7 @@ const Challenges: NextPage<Props> = ({ search, language }) => {
       title={'F-Code Challenges'}
       pageDescription={description}
     >
-      <header className={styles.heading}>
+      <header className={`${styles.heading} animate__animated animate__fadeIn`}>
         <h3 className={styles.headingTitle}>Start looking for challenges to improve your knowledge and
           <strong className={styles.headingTitleHighlight}> earn points!</strong></h3>
 

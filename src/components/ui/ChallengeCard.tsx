@@ -19,7 +19,7 @@ export const ChallengeCard: FC<IChallengeSearch> = ({ slug, language, tags, diff
   return (
     <Link
       href={`/challenges/${language}/${slug}`}
-      className={styles.challengeCard}
+      className={`${styles.challengeCard} animate__animated animate__fadeIn`}
     >
       <div className={styles.imageContainer}>
         <Image

@@ -26,13 +26,6 @@ const SignIn: NextPage = () => {
       image={'sign_in.jpg'}
     >
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
-        {/* {
-          error.hasError &&
-          <div className={styles.errorContainer}>
-            <p className={styles.errorMessage}>{error.message}</p>
-          </div>
-        } */}
-
         <div>
           <FormInput
             label={'E-mail'}
