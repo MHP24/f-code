@@ -4,17 +4,17 @@ import { ISolve } from '@/interfaces';
 const solveSchema = new Schema({
   code: { type: String, required: true },
   challengeId: {
-    type: String,
+    type: Schema.Types.ObjectId,
     ref: 'Challenge',
-    required: true,
+    required: false,
   },
-  creatorId: {
-    type: String,
-    ref: 'User',
-    required: true,
-  },
+  // creatorId: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'User',
+  //   required: false,
+  // },
   userId: {
-    type: String,
+    type: Schema.Types.ObjectId,
     ref: 'User',
     required: true,
   },

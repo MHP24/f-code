@@ -31,11 +31,12 @@ const submitChallenge = async (req: NextApiRequest, res: NextApiResponse<Data>) 
       return res.status(200).json({ message: 'Success' });
     }
 
-    await new Solve({ code, challengeId, creatorId, userId }).save();
+    await new Solve({ code, challengeId, /*creatorId,*/ userId }).save();
     await User.updateOne({ _id: userId }, { $inc: { score: Number(difficulty) * 100 } });
 
     res.status(200).json({ message: 'Success' });
   } catch (error) {
+    console.log('fasho')
     console.error({ error });
     res.status(400).json({ error: 'Unexpected error' });
   } finally {

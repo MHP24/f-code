@@ -8,6 +8,7 @@
   text-align: center;
   padding: 1em;
   transition: .3s;
+  box-shadow: var(--b-sh-1);
 }
 
 .leaderboardCard:hover {

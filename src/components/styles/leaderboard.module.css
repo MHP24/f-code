@@ -3,6 +3,12 @@
   max-width: 700px;
 }
 
+.leaderboardNoHeader {
+  font-size: var(--fs-3);
+  text-align: center;
+  font-weight: var(--fs-w-3);
+}
+
 .leaderboardHeader {
   display: grid;
   grid-template-columns: 50px 1fr 100px 100px 75px;
@@ -14,6 +20,25 @@
 .leaderboardCol {
   font-size: var(--fs-1);
   font-weight: var(--fs-w-3);
+}
+
+.noAccountContainer {
+  text-align: center;
+  margin: 3em 0;
+}
+
+.noAccountTitle {
+  font-size: var(--fs-4);
+  margin-bottom: 2rem;
+}
+
+.noAccountLink {
+  color: var(--c1-hover);
+  font-size: var(--fs-3);
+}
+
+.noAccountLink:hover {
+  color: var(--c1);
 }
 
 @media (max-width: 43rem) {

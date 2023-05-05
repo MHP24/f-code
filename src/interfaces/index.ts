@@ -6,3 +6,4 @@ export * from './challenge';
 export * from './compiler';
 export * from './executionState'
 export * from './solve';
+export * from './leaderboard';
