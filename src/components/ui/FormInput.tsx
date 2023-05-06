@@ -1,4 +1,4 @@
-import { FC, LegacyRef, forwardRef } from 'react';
+import { FC, Ref, forwardRef, memo } from 'react';
 import styles from '../styles/formInput.module.css';
 
 interface Props {
@@ -9,8 +9,7 @@ interface Props {
   className?: string;
 }
 
-export const FormInput: FC<Props> = forwardRef(({ name, label = '', placeHolder, type = 'text', ...rest }, ref: LegacyRef<HTMLInputElement>) => {
-
+export const FormInput: FC<Props> = memo(forwardRef(({ name, label = '', placeHolder, type = 'text', ...rest }, ref: Ref<HTMLInputElement>) => {
   return (
     <div className={styles.inputContainer}>
       {
@@ -29,6 +28,6 @@ export const FormInput: FC<Props> = forwardRef(({ name, label = '', placeHolder,
       />
     </div>
   );
-});
+}));
 
 FormInput.displayName = 'FormInput';

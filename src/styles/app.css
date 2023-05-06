@@ -30,7 +30,7 @@
   --fs-4: 2rem;
   --fs-5: 2.4rem;
   --fs-6: 3.9rem;
---fs-7: 5rem;
+  --fs-7: 5rem;
 
   /* Font weight */
   --fs-w-1: 300;
@@ -42,7 +42,7 @@
   --br-1: .2rem;
   --br-2: 1.25rem;
   --br-3: 2.5rem;
-  --br-4: 4%;
+  --br-4: .2rem;
 
   /* Shadows */
   --b-sh-1: 0px 0px 5px #54e6e4, 0px 0px 10px #54e6e4, 0px 0px 15px #54e6e4;
@@ -99,12 +99,14 @@ strong {
 }
 
 code {
-  background-color: var(--c2);
+  background-color: #14141493;
+  border: .2rem rgba(255, 255, 255, 0.347) solid;
   font-size: var(--fs-1);
-  padding: .3em;
+  padding: .5em;
   display: block;
   margin-top: .5em;
   width: 100%;
+  border-radius: var(--br-4);
 }
 
 .animate__animated.animate__fadeIn {

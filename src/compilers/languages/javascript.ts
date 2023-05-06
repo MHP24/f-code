@@ -48,7 +48,7 @@ interface IExecutionParams {
   functionName: string;
   cases: any[];
 }
-
+//TODO: REMOVE FUNCTIONNAME
 export const executeJavaScriptCode = (
   { functionExec, functionName, cases }: IExecutionParams
 ): IDataOutput<ICodeExecution> => {
