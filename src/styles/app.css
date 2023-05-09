@@ -23,6 +23,9 @@
   --c-hard: #FF5F5F;
   --c-insane: #B074FC;
 
+  /* Editor colors */
+  --c-editor-bg-1: #1E1E1E;
+
   /* Font size */
   --fs-1: 1rem;
   --fs-2: 1.2rem;
@@ -68,6 +71,7 @@
 
 html {
   background: linear-gradient(90deg, #090409 0%, #021010 25%, #120612 75%, rgba(7, 1, 8, 1) 100%);
+  background-color: var(--c2-hover);
 }
 
 body {
@@ -99,14 +103,15 @@ strong {
 }
 
 code {
-  background-color: #14141493;
-  border: .2rem rgba(255, 255, 255, 0.347) solid;
+  background-color: #1d1d1d93;
+  border: .01rem rgba(255, 255, 255, 0.347) solid;
   font-size: var(--fs-1);
   padding: .5em;
   display: block;
   margin-top: .5em;
   width: 100%;
   border-radius: var(--br-4);
+  font-weight: var(--fs-w-2);
 }
 
 .animate__animated.animate__fadeIn {

@@ -1,71 +1,55 @@
 .form {
-  max-width: 1080px;
-  /* border: 2px red solid; */
   display: flex;
   flex-direction: column;
   gap: 1.5em;
-  margin: 4rem auto;
+  margin: 4em auto 0 auto;
 }
 
-.formGroup1 {
+.separator {
+  color: var(--c5);
+}
+
+.formStep1 {
+  max-width: 800px;
+  margin: auto;
+}
+
+.formStep2 {
+  margin: 5rem auto;
+  width: 100%;
+  max-width: 1000px;
+}
+
+
+.formBasic {
+  margin: auto;
   display: grid;
-  grid-template-columns: 1fr .4fr;
-  gap: 1.5em;
-  /* border: 2px blue solid; */
-}
-
-.formGroup2 {
-  display: grid;
-  grid-template-columns: .2fr 1fr;
-  align-items: flex-end;
-  gap: 1.5em;
-}
-
-
-/* Tags */
-
-.tags {
-  /* border: 2px red solid; */
-  height: 30vh;
-  overflow-y: scroll;
-  background-color: var(--c2);
-  display: flex;
-  padding: 1em;
-  flex-wrap: wrap;
-  gap: 1em;
-}
-
-.tag {
-  user-select: none;
-  cursor: pointer;
-  background-color: var(--c4);
-  width: min-content;
-  height: min-content;
-  padding: .5em;
-  text-align: center;
-  border-radius: var(--br-1);
-  transition: .3s background-color;
-}
-
-.tag:hover {
-  background-color: var(--c2-hover);
-}
-
-.selectedTags {
-  padding: .5em;
-  background-color: var(--c2);
-  height: calc(70% - .4em);
-  overflow-y: scroll;
-  border-radius: var(--br-1);
-  display: flex;
+  justify-content: center;
   align-items: center;
+  place-content: center;
   gap: 1em;
-  flex-wrap: wrap;
+  grid-template-columns: 1fr 1fr .5fr;
 }
 
-.recommendationsContainer {
-  margin: 2em 0;
+.challengeName {
+  grid-row: 1/3;
+  grid-column: 1/3;
 }
+
+.challengeTech {
+  grid-column: 3/4;
+  margin-top: 2em;
+  grid-row: 1/4;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+/* Recommendations */
+.recommendationsContainer {
+  margin: 5rem 0;
+}
+
 .recommendationsTitle {
   font-size: var(--fs-3);
   font-weight: var(--fs-w-3);
@@ -73,53 +57,5 @@
 
 .recommendations {
   margin: 2em 0 2em 1em;
-}
-
-.formGroup3 {
-  /* border: 2px red solid; */
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3em;
-}
-
-.instructionsContainer {
-  display: flex;
-  /* background-color: var(--c2); */
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5em;
-
-}
-
-.instructionsInput {
-  display: block;
-  resize: none;
-  background-color: #1E1E1E;
-  padding: 1em;
-  height: 80vh;
-  width: 100%;
-  border: none;
-  outline: none;
   font-size: var(--fs-1);
-  border-radius: var(--br-1);
 }
-
-.instructionsTitle {
-  text-align: center;
-  font-size: var(--fs-3);
-  font-weight: var(--fs-w-3);
-}
-
-.markdownArea {
-  background-color: var(--c2);
-  overflow-y: scroll;
-  border: var(--c3) .05rem solid;
-  scrollbar-width: thin;
-  padding: 1em;
-  width: 100%;
-  line-height: 2;
-  height: 80vh;
-  padding: 1em 2em;
-  text-align: left;
-}
-

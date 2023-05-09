@@ -18,3 +18,5 @@ export * from './ErrorChallenge';
 export * from './Logo';
 export * from './NoResults';
 export * from './FormSelect';
+export * from './MarkdownWriter';
+export * from './TagSelector';

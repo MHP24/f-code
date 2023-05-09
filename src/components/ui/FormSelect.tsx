@@ -1,5 +1,6 @@
 import { useState, MouseEvent, FC, Dispatch, SetStateAction } from 'react';
 import styles from '../styles/formSelect.module.css';
+import { ISelect } from '@/interfaces';
 
 interface Props {
   label?: string;
@@ -7,11 +8,13 @@ interface Props {
     label: string;
     value: string;
   }[];
-  setter: Dispatch<SetStateAction<string>>;
-  currentOption: string;
+  setter: Dispatch<SetStateAction<ISelect>>;
+  currentOption: ISelect;
 }
 
 export const FormSelect: FC<Props> = ({ label, options, currentOption, setter }) => {
+
+  console.log({ options });
 
   const [showOptions, setshowOptions] = useState<boolean>(false);
 
@@ -20,7 +23,7 @@ export const FormSelect: FC<Props> = ({ label, options, currentOption, setter })
     setshowOptions(!showOptions);
   }
 
-  const handleOption = (e: MouseEvent, option: string) => {
+  const handleOption = (e: MouseEvent, option: ISelect) => {
     e.preventDefault();
     setter(option);
     setshowOptions(false);
@@ -34,7 +37,7 @@ export const FormSelect: FC<Props> = ({ label, options, currentOption, setter })
       }
 
       <div className={styles.select}>
-        <button className={styles.currentOption} onClick={handleMenu}>{`${currentOption}`.replace(/^\w/, w => w.toUpperCase())}</button>
+        <button className={styles.currentOption} onClick={handleMenu}>{`${currentOption.label}`.replace(/^\w/, w => w.toUpperCase())}</button>
         {
           showOptions && (
             <div className={styles.options}>
@@ -44,7 +47,7 @@ export const FormSelect: FC<Props> = ({ label, options, currentOption, setter })
                     <button
                       key={value}
                       className={styles.option}
-                      onClick={(e) => handleOption(e, value)}>
+                      onClick={(e) => handleOption(e, { label, value })}>
                       {label}
                     </button>
                   )

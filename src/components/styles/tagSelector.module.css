@@ -1,0 +1,51 @@
+.currentTags,
+.tagPool {
+  margin-bottom: 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .5em;
+}
+
+.tags,
+.selectedTags {
+  width: 100%;
+}
+
+.tags {
+  height: 30vh;
+  overflow-y: scroll;
+  background-color: var(--c2);
+  display: flex;
+  padding: 1em;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+.tag {
+  user-select: none;
+  cursor: pointer;
+  background-color: var(--c4);
+  width: min-content;
+  height: min-content;
+  padding: .5em;
+  text-align: center;
+  border-radius: var(--br-1);
+  transition: .3s background-color;
+}
+
+.tag:hover {
+  background-color: var(--c2-hover);
+}
+
+.selectedTags {
+  padding: .5em;
+  background-color: var(--c2);
+  height: 3.5rem;
+  overflow-y: scroll;
+  border-radius: var(--br-1);
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  flex-wrap: wrap;
+}

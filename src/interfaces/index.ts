@@ -7,3 +7,4 @@ export * from './compiler';
 export * from './executionState'
 export * from './solve';
 export * from './leaderboard';
+export * from './forms';

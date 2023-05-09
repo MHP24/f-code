@@ -59,3 +59,5 @@ const register = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     await db.disconnect();
   }
 }
+
+
