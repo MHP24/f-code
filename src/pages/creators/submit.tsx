@@ -10,7 +10,6 @@ import { ISelect } from '@/interfaces';
 
 const SubmitPage = () => {
 
-
   const [technology, setTechnology] = useState<ISelect>(technologies[0]);
   const [difficulty, setDifficulty] = useState<ISelect>(difficulties[0]);
   const [tags, setTags] = useState<string[]>([]);
