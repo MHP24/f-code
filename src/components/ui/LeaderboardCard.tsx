@@ -5,7 +5,6 @@ import { FC } from 'react';
 
 
 export const LeaderboardCard: FC<IRanking> = ({ userScore, rank }) => {
-  console.log({ userScore });
   return (
     <div className={styles.leaderboardCard}>
       <h3 className={styles.title}>Your Stats</h3>

@@ -1,5 +1,5 @@
 import React, { Dispatch, FC, SetStateAction, useState } from 'react';
-import { tags } from '../../mocks/tags.json';
+import { tags } from '../../mocks/tags';
 import styles from '../styles/tagSelector.module.css'
 
 interface Props {

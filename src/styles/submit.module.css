@@ -9,20 +9,27 @@
   color: var(--c5);
 }
 
-.formStep1 {
-  max-width: 800px;
+.formStep1,
+.formStep2,
+.formStep3 {
+  width: 100%;
+  max-width: 950px;
   margin: auto;
 }
 
 .formStep2 {
-  margin: 5rem auto;
-  width: 100%;
-  max-width: 1000px;
+  margin: 5rem auto 0 auto;
+
+}
+
+.formStep3 {
+  margin: auto;
 }
 
 
 .formBasic {
   margin: auto;
+  margin-bottom: 1em;
   display: grid;
   justify-content: center;
   align-items: center;
@@ -58,4 +65,54 @@
 .recommendations {
   margin: 2em 0 2em 1em;
   font-size: var(--fs-1);
+}
+
+/* Step 3 */
+
+.functionDetails {
+  display: grid;
+  grid-template-columns: .6fr 1fr 1fr;
+  gap: 1.5em;
+}
+
+.codeTester {
+  margin: 3em auto 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2em;
+  
+}
+
+.codeContainer,
+.outputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: center;
+}
+
+.editor {
+  padding: 1em;
+  background-color: var(--c-editor-bg-1);
+  height: 80vh;
+}
+
+.casesContainer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: .5fr .5fr;
+  height: 80vh;
+  gap: 2em;
+}
+
+.cases {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.results {
+  background-color: var(--c2);
+  height: 100%;
 }

@@ -4,6 +4,8 @@
   height: min-content;
   grid-template-columns: 1fr 1fr;
   gap: 2em;
+  height: 85vh;
+  margin-bottom: 4em;
 }
 
 .container {
@@ -12,8 +14,8 @@
   align-items: center;
   gap: 1em;
   width: 100%;
-  margin-bottom: 3rem;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .title {

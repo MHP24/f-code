@@ -27,7 +27,6 @@ const submitChallenge = async (req: NextApiRequest, res: NextApiResponse<Data>) 
     const submission = await Solve.find({ challengeId, userId });
 
     if (submission[0]) {
-      console.log('Updated...');
       await Solve.updateOne({ challengeId, userId }, { code });
       return res.status(200).json({ message: 'Success' });
     }

@@ -1,12 +1,25 @@
-import { MainLayout } from '@/components/layouts';
-import { FormInput, FormSelect, MarkdownWriter, TagSelector } from '@/components/ui';
 import { useState } from 'react';
-import { technologies } from '../../mocks/technologies.json';
-import { difficulties } from '../../mocks/difficulties.json';
-import styles from '../../styles/submit.module.css';
 import Image from 'next/image';
+import Editor from '@monaco-editor/react';
+import { MainLayout } from '@/components/layouts';
+import { ErrorLabel, FormInput, FormSelect, MarkdownWriter, TagSelector } from '@/components/ui';
+import { difficulties, technologies } from '@/mocks';
 import { ISelect } from '@/interfaces';
+import styles from '../../styles/submit.module.css';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { regExValidators } from '@/utils';
 
+
+interface Inputs {
+  challengeName: string;
+  parameterCount: number;
+  parameters: string;
+  functionName: string;
+  case1: string;
+  case2: string;
+  case3: string;
+  case4: string;
+};
 
 const SubmitPage = () => {
 
@@ -14,21 +27,31 @@ const SubmitPage = () => {
   const [difficulty, setDifficulty] = useState<ISelect>(difficulties[0]);
   const [tags, setTags] = useState<string[]>([]);
   const [instructions, setInstructions] = useState<string>('_Write your description here..._');
+  const [code, setCode] = useState<string>('');
+  const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
+
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    console.log({ data });
+  }
 
   return (
     <MainLayout
       pageDescription={'Create a new challenge for fcode users'}
       title={'FCode - Create a challenge'}
     >
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className={styles.formStep1}>
           <div className={styles.formBasic}>
             <div className={styles.challengeName}>
               <FormInput
-                name='challengeName'
                 placeHolder='example name'
                 label='Challenge name'
+                {...register('challengeName', { pattern: regExValidators.charactersNumbersSpaces, required: true })}
               />
+
+              {errors.challengeName?.type === 'required' && <ErrorLabel text={'This field is required'} />}
+              {errors.challengeName?.type === 'pattern' && <ErrorLabel text={'Invalid challenge name'} />}
             </div>
 
             <div className={styles.challengeTech}>
@@ -84,6 +107,123 @@ const SubmitPage = () => {
             setContent={setInstructions}
           />
         </div>
+
+        <div className={styles.formStep3}>
+          <hr className={styles.separator} />
+
+          <div className={styles.recommendationsContainer}>
+            <h3 className={styles.recommendationsTitle}>{'Code time!'}</h3>
+            <ul className={styles.recommendations}>
+              <li>At the left you must to paste/write the solution</li>
+              <li>At the right you must to call the function 4 times</li>
+              <li>The function name, parameters and quantity must match</li>
+              <li>Include comments for an easily comprehension and code reading</li>
+            </ul>
+          </div>
+
+
+          <div className={styles.functionDetails}>
+
+            <div>
+              <FormInput
+                placeHolder='Parameter count'
+                label='Parameter count'
+                type='number'
+                {...register('parameterCount', { min: 1, pattern: regExValidators.numbersOnly, required: true })}
+              />
+              {errors.parameterCount?.type === 'required' && <ErrorLabel text={'This field is required'} />}
+              {errors.parameterCount?.type === 'min' && <ErrorLabel text={'Invalid quantity'} />}
+              {errors.parameterCount?.type === 'pattern' && <ErrorLabel text={'Provide a number'} />}
+            </div>
+
+            <div>
+              <FormInput
+                placeHolder='n1, n2, n3...'
+                label='Parameters (separated by comma)'
+                {...register('parameters', { pattern: regExValidators.parametersStructure, required: true })}
+              />
+
+              {errors.parameters?.type === 'pattern' && <ErrorLabel text={'Invalid structure (n1, n2, n3)'} />}
+              {errors.parameters?.type === 'required' && <ErrorLabel text={'This field is required'} />}
+
+            </div>
+
+
+            <div>
+              <FormInput
+                placeHolder='generateExample'
+                label='Function name'
+                {...register('functionName', {
+                  pattern: (
+                    technology.value !== 'python' ? regExValidators.charactersOnly
+                      : regExValidators.snakeCase
+                  ),
+                  required: true
+                })}
+              />
+
+              {errors.functionName?.type === 'pattern' && <ErrorLabel text={'Invalid structure (snake_case/cammelCase)'} />}
+              {errors.functionName?.type === 'required' && <ErrorLabel text={'This field is required'} />}
+            </div>
+
+          </div>
+
+          <div className={styles.codeTester}>
+            <div className={styles.codeContainer}>
+              <h3 className={styles.recommendationsTitle}>Paste/write your code here</h3>
+              <Editor
+                className={styles.editor}
+                defaultLanguage={'txt'}
+                theme={'vs-dark'}
+                onChange={(value) => setCode(`${value}`)}
+                // onMount={handleEditor}
+                options={{
+                  fontSize: 16,
+                  lineHeight: 1.4,
+                  fontLigatures: true,
+                  lineNumbers: 'off',
+                }}
+              // value={content}
+              />
+            </div>
+
+
+            <div className={styles.outputs}>
+              <h3 className={styles.recommendationsTitle}>Test your solution</h3>
+              <div className={styles.casesContainer}>
+                <div className={styles.cases}>
+                  <FormInput
+                    name='case1'
+                    placeHolder='exampleFunction()'
+                  />
+
+                  <FormInput
+                    name='case2'
+                    placeHolder='exampleFunction()'
+                  />
+
+                  <FormInput
+                    name='case3'
+                    placeHolder='exampleFunction()'
+                  />
+
+                  <FormInput
+                    name='case4'
+                    placeHolder='exampleFunction()'
+                  />
+                </div>
+
+                <div className={styles.results}>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+        <button>asd</button>
 
       </form>
     </MainLayout>

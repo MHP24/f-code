@@ -3,7 +3,7 @@
 }
 
 .heading {
-  height: 70vh;
+  min-height: 70vh;
   background-color: rgba(0, 0, 0, .40);
   background-image: url('/backgrounds/shades.svg');
   background-size: cover;

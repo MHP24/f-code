@@ -13,9 +13,6 @@ interface Props {
 }
 
 export const FormSelect: FC<Props> = ({ label, options, currentOption, setter }) => {
-
-  console.log({ options });
-
   const [showOptions, setshowOptions] = useState<boolean>(false);
 
   const handleMenu = (e: MouseEvent) => {

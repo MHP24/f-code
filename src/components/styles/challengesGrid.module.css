@@ -3,6 +3,7 @@
   margin-top: 4rem;
   display: grid;
   overflow: hidden;
+  scrollbar-width: none;
   grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
   justify-content: center;
   gap: 2em;
