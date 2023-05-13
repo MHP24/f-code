@@ -1,11 +1,12 @@
-import { handleValidation } from '@/compilers';
+import type { NextApiRequest, NextApiResponse } from 'next';
 import { db } from '@/database';
 import { Challenge } from '@/models';
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { handleValidation } from '@/compilers';
+import { IFunctionValidation, ICodeExecution } from '@/interfaces';
 
-type Data = {
-  error: string
-};
+type Data = IFunctionValidation |
+  ICodeExecution |
+{ error: string };
 
 export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   switch (req.method) {
@@ -48,10 +49,7 @@ const handleSubmit = async (req: NextApiRequest, res: NextApiResponse<Data>) => 
       language: technology
     });
 
-    
-
-
-    res.status(200).json({ error: 'Ok' });
+    res.status(hasError ? 400 : 200).json(data);
   } catch (error) {
     console.error({ error });
     res.status(400).json({ error: 'Unexpected error ' });
