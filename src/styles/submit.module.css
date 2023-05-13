@@ -104,15 +104,19 @@
   grid-template-rows: .5fr .5fr;
   height: 80vh;
   gap: 2em;
+  border: 2px red solid;
 }
 
 .cases {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border: 2px blue solid;
 }
 
 .results {
   background-color: var(--c2);
   height: 100%;
+  border: 2px red solid;
+  
 }

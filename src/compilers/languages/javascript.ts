@@ -45,12 +45,10 @@ export const validateFunction = (
 
 interface IExecutionParams {
   functionExec: string;
-  functionName: string;
   cases: any[];
 }
-//TODO: REMOVE FUNCTIONNAME
 export const executeJavaScriptCode = (
-  { functionExec, functionName, cases }: IExecutionParams
+  { functionExec, cases }: IExecutionParams
 ): IDataOutput<ICodeExecution> => {
   try {
     const vm = new VM({ timeout: 1000 });
@@ -76,7 +74,7 @@ export const handleJavaScriptExecution = (
   if (fnValidation.hasError) return fnValidation;
 
   const { data: { functionExec } } = fnValidation as { data: IFunctionValidation };
-  const executionData = executeJavaScriptCode({ functionExec, functionName, cases });
+  const executionData = executeJavaScriptCode({ functionExec, cases });
   if (executionData.hasError) return executionData;
 
   const { data } = executionData as { data: ICodeExecution };

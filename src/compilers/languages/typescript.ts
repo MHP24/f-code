@@ -5,7 +5,7 @@ import {
   IExecutionCase, IFunctionValidation
 } from '@/interfaces';
 
-const transpileCode = (code: string) => {
+export const transpileCode = (code: string) => {
   return transpileModule(code, {
     compilerOptions: {
       target: ScriptTarget.ES2016,
@@ -21,7 +21,7 @@ export const handleTypeScriptExecution = (
   if (fnValidation.hasError) return fnValidation;
 
   const { data: { functionExec } } = fnValidation as { data: IFunctionValidation };
-  const executionData = executeJavaScriptCode({ functionExec, functionName, cases });
+  const executionData = executeJavaScriptCode({ functionExec, cases });
   if (executionData.hasError) return executionData;
 
   const { data } = executionData as { data: ICodeExecution };

@@ -32,7 +32,7 @@ const SubmitPage = () => {
 
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log({ data });
+    console.log({ data, code, instructions });
   }
 
   return (
@@ -176,14 +176,12 @@ const SubmitPage = () => {
                 defaultLanguage={'txt'}
                 theme={'vs-dark'}
                 onChange={(value) => setCode(`${value}`)}
-                // onMount={handleEditor}
                 options={{
                   fontSize: 16,
                   lineHeight: 1.4,
                   fontLigatures: true,
                   lineNumbers: 'off',
                 }}
-              // value={content}
               />
             </div>
 
@@ -192,25 +190,37 @@ const SubmitPage = () => {
               <h3 className={styles.recommendationsTitle}>Test your solution</h3>
               <div className={styles.casesContainer}>
                 <div className={styles.cases}>
-                  <FormInput
-                    name='case1'
-                    placeHolder='exampleFunction()'
-                  />
+                  <div>
+                    <FormInput
+                      placeHolder='exampleFunction()'
+                      {...register('case1', { required: true })}
+                    />
+                    {errors.functionName?.type === 'required' && <ErrorLabel text={'This field is required'} />}
+                  </div>
 
-                  <FormInput
-                    name='case2'
-                    placeHolder='exampleFunction()'
-                  />
+                  <div>
+                    <FormInput
+                      placeHolder='exampleFunction()'
+                      {...register('case2', { required: true })}
+                    />
+                    {errors.functionName?.type === 'required' && <ErrorLabel text={'This field is required'} />}
+                  </div>
 
-                  <FormInput
-                    name='case3'
-                    placeHolder='exampleFunction()'
-                  />
+                  <div>
+                    <FormInput
+                      placeHolder='exampleFunction()'
+                      {...register('case3', { required: true })}
+                    />
+                    {errors.functionName?.type === 'required' && <ErrorLabel text={'This field is required'} />}
+                  </div>
 
-                  <FormInput
-                    name='case4'
-                    placeHolder='exampleFunction()'
-                  />
+                  <div>
+                    <FormInput
+                      placeHolder='exampleFunction()'
+                      {...register('case4', { required: true })}
+                    />
+                    {errors.functionName?.type === 'required' && <ErrorLabel text={'This field is required'} />}
+                  </div>
                 </div>
 
                 <div className={styles.results}>

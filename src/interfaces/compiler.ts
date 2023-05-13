@@ -40,6 +40,10 @@ export type HandlerOutput =
   | IDataOutput<ICodeExecution>
   | IDataOutput<IExecutionSummary>;
 
+export type HandlerValidation =
+  | IDataOutput<IFunctionValidation>
+  | IDataOutput<ICodeExecution>;
+
 export type CompilerResponse =
   { error: string } |
   IFunctionValidation
