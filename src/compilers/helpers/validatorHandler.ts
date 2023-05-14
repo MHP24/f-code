@@ -1,5 +1,5 @@
 import { HandlerValidation, IExecutionCase } from '@/interfaces';
-import { handleJavaScriptValidation, handleTypeScriptValidation } from '../validators';
+import { handleJavaScriptValidation, handleTypeScriptValidation, handlePythonValidation } from '../validators';
 
 interface Props {
   functionName: string;
@@ -17,7 +17,7 @@ export const handleValidation = (data: Props) => {
   const languages: TLanguages = {
     'javascript': handleJavaScriptValidation,
     'typescript': handleTypeScriptValidation,
-    // 'python': handlePythonExecution
+    'python': handlePythonValidation
   }
   const handlerFn = languages[data.language];
   return (

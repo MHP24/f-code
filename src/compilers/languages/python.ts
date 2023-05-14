@@ -11,7 +11,7 @@ interface IValidateFnProps {
   code: string;
 }
 
-const validateFunction = async (
+export const validateFunction = async (
   { functionName, parameters, code }: IValidateFnProps
 ): Promise<IDataOutput<IFunctionValidation>> => {
   try {

@@ -42,7 +42,6 @@ const handleSubmit = async (req: NextApiRequest, res: NextApiResponse<Data>) => 
       || parametersFormatted.some((p: string) => p.length === 0)
       && res.status(400).json({ error: 'Invalid parameters' });
 
-
     const { hasError, data } = await handleValidation({
       ...rest,
       parameters: parametersFormatted,
