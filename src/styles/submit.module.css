@@ -101,22 +101,28 @@
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: .5fr .5fr;
+  grid-template-rows: 1fr 30vh;
   height: 80vh;
   gap: 2em;
-  border: 2px red solid;
 }
 
 .cases {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 2px blue solid;
+  height: 100%;
 }
 
 .results {
   background-color: var(--c2);
-  height: 100%;
-  border: 2px red solid;
-  
+  overflow: scroll;
+  scrollbar-width: thin;
+  position: relative;
+  padding: 1em;
+}
+
+.resultsButton {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
 }

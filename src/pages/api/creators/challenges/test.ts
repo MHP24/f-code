@@ -38,8 +38,9 @@ const handleSubmit = async (req: NextApiRequest, res: NextApiResponse<Data>) => 
       && res.status(400).json({ error: 'Missing fields' });
 
     const parametersFormatted = parameters.replace(/\s+/, '').split(',');
-    parametersFormatted.length !== parameterCount
-      || parametersFormatted.some((p: string) => p.length === 0)
+
+    (parametersFormatted.length !== Number(parameterCount)
+      || parametersFormatted.some((p: string) => p.length === 0))
       && res.status(400).json({ error: 'Invalid parameters' });
 
     const { hasError, data } = await handleValidation({
@@ -47,6 +48,8 @@ const handleSubmit = async (req: NextApiRequest, res: NextApiResponse<Data>) => 
       parameters: parametersFormatted,
       language: technology
     });
+
+    console.log({ data });
 
     res.status(hasError ? 400 : 200).json(data);
   } catch (error) {

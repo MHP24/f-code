@@ -18,6 +18,27 @@
 .currentOption {
   width: 100%;
   background-color: var(--c2);
+  position: relative;
+}
+
+.indicator {
+  user-select: none;
+  position: absolute;
+  top: 25%;
+  right: 5%;
+}
+
+.currentButton {
+  width: 100%;
+  height: 100%;
+  padding: 1em;
+  text-align: left;
+  color: var(--c3);
+  background-color: var(--c2);
+  font-size: var(--fs-1);
+  border: none;
+  outline: none;
+
 }
 
 .currentOption,
@@ -27,6 +48,9 @@
   border: none;
   outline: none;
   background-color: var(--c2);
+}
+
+.option {
   padding: 1em;
 }
 

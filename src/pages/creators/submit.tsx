@@ -2,13 +2,15 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Editor from '@monaco-editor/react';
 import { MainLayout } from '@/components/layouts';
-import { ErrorLabel, FormInput, FormSelect, MarkdownWriter, TagSelector } from '@/components/ui';
+import { Button, ErrorLabel, FormInput, FormSelect, MarkdownWriter, TagSelector } from '@/components/ui';
 import { difficulties, technologies } from '@/mocks';
 import { ISelect } from '@/interfaces';
 import styles from '../../styles/submit.module.css';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { regExValidators } from '@/utils';
-
+import { fCodeApi } from '@/api';
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
 interface Inputs {
   challengeName: string;
@@ -28,11 +30,59 @@ const SubmitPage = () => {
   const [tags, setTags] = useState<string[]>([]);
   const [instructions, setInstructions] = useState<string>('_Write your description here..._');
   const [code, setCode] = useState<string>('');
+  const [output, setOutput] = useState('');
   const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
+  const router = useRouter();
 
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log({ data, code, instructions });
+  const onSubmit: SubmitHandler<Inputs> = async (formData) => {
+    if (!code || !instructions || tags.length < 2) return;
+
+    console.log({ formData });
+
+    const initialData = {
+      ...formData,
+      cases: [
+        { call: formData.case1 },
+        { call: formData.case2 },
+        { call: formData.case3 },
+        { call: formData.case4 }
+      ],
+      code,
+      technology: technology.value
+    }
+
+    try {
+      const { data: { outputs } } = await fCodeApi.post('/creators/challenges/test', initialData)
+      setOutput(outputs.map(({ execution }: any) => `${execution}`).join(', \n'));
+
+      const submitData = {
+        ...initialData,
+        cases: initialData.cases.map(({ call }, i) => {
+          return { call, expectedOutput: outputs[i].execution }
+        }),
+        instructions,
+        tags,
+        difficulty: difficulty.value,
+        reason: 'Create'
+      };
+
+
+      await fCodeApi.post('/creators/challenges/submit', submitData);
+
+      //TODO Redirect to creator pannel || show modal
+
+      // setTimeout(() => {
+      //   router.push('/challenges');
+      // }, 2000);
+
+    } catch (error) {
+      setOutput(
+        axios.isAxiosError(error) ?
+          `${error.response?.data.error}`
+          : 'Unexpected error'
+      )
+    }
   }
 
   return (
@@ -224,17 +274,20 @@ const SubmitPage = () => {
                 </div>
 
                 <div className={styles.results}>
-
+                  <p>{output}</p>
+                  <div className={styles.resultsButton}
+                  >
+                    <Button
+                      size={1}
+                      text='Test and submit'
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
         </div>
-
-
-        <button>asd</button>
-
       </form>
     </MainLayout>
   );

@@ -34,7 +34,16 @@ export const FormSelect: FC<Props> = ({ label, options, currentOption, setter })
       }
 
       <div className={styles.select}>
-        <button className={styles.currentOption} onClick={handleMenu}>{`${currentOption.label}`.replace(/^\w/, w => w.toUpperCase())}</button>
+        <div className={styles.currentOption}>
+          <button
+            className={styles.currentButton}
+            onClick={handleMenu}
+          >
+            {`${currentOption.label}`.replace(/^\w/, w => w.toUpperCase())}
+          </button>
+
+          <p className={styles.indicator}>{showOptions ? '︿' : '﹀'}</p>
+        </div>
         {
           showOptions && (
             <div className={styles.options}>

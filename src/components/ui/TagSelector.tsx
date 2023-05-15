@@ -42,7 +42,9 @@ export const TagSelector: FC<Props> = ({ tagsSelected, setTagsSelected }) => {
       </div>
 
       <div className={styles.tagPool}>
-        <label > {!(2 - tagsSelected.length) ? `Done!` : `Select ${(2 - tagsSelected.length)} tag(s)`} </label>
+        <label
+          className={`${tagsSelected.length === 2 ? styles.tagsOk : styles.tagsRequired}`}
+        > {!(2 - tagsSelected.length) ? `Done!` : `Select ${(2 - tagsSelected.length)} tag(s)`} </label>
         <div className={styles.tags}>
           {
             tagsNotSelected.map(tag => (
