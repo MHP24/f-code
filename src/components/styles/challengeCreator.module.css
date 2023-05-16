@@ -1,0 +1,92 @@
+.challenge {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr .2fr;
+  padding: .4em 1em;
+  gap: 1em;
+  background-color: var(--c2);
+  border-radius: var(--br-1);
+}
+
+.challengeData {
+  display: grid;
+  grid-template-columns: 50px .7fr .5fr 2em;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  place-items: center;
+}
+
+.dataContent {
+  width: 100%;
+  font-size: var(--fs-1);
+} 
+
+.difficulty {
+  width: 1.2em;
+  height: 1.2em;
+  background-color: var(--c8);
+  border-radius: 50%;
+}
+
+.easy {
+  background-color: var(--c-easy);
+}
+
+.medium {
+  background-color: var(--c-medium);
+}
+
+
+.hard {
+  background-color:var(--c-hard);
+}
+
+
+.insane {
+  background-color: var(--c-insane);
+}
+
+
+.challengeOptions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  place-items: center;
+}
+
+.option {
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  transition: .2s opacity;
+}
+
+.option:hover {
+  opacity: .7;
+}
+
+
+@media (max-width: 62rem) {
+  .challenge {
+    grid-template-columns: 1fr;
+    padding: 2em 0;
+    overflow: hidden;
+  }
+
+  .challengeOptions {
+    width: min-content;
+    gap: 1em;
+    margin: auto;
+  }
+
+  .challengeData {
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+}

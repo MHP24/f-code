@@ -10,6 +10,7 @@ import { FormInput } from '@/components/ui';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styles from '@/styles/challenges.module.css';
 import { usePagination } from '@/hooks';
+
 interface Inputs {
   search: string;
 };

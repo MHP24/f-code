@@ -42,7 +42,7 @@ export const Navbar: FC = () => {
             </li>
 
             <li className={styles.navItem}>
-              <Link className={styles.navLink} href={'/'}>Creator</Link>
+              <Link className={styles.navLink} href={'/creator'}>Creator</Link>
             </li>
           </ul>
         </div>

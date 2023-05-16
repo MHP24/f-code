@@ -20,3 +20,5 @@ export * from './NoResults';
 export * from './FormSelect';
 export * from './MarkdownWriter';
 export * from './TagSelector';
+export * from './ChallengeCreator';
+export * from './ChallengeCreatorGrid';

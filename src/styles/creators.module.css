@@ -1,0 +1,46 @@
+.creatorContainer {
+  width: 90%;
+}
+
+.title {
+  font-size: var(--fs-4);
+  margin-bottom: 1em;
+}
+
+.header {
+  text-align: center;
+  max-width: 35rem;
+  margin: 4rem auto 1rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.searcher {
+  padding: 1.4em 2em;
+  background-color: var(--c2);
+  font-size: var(--fs-1);
+  border: none;
+  outline: none;
+  border-radius: var(--br-3);
+}
+
+.menu {
+  margin: 1em auto;
+  display: flex;
+  gap: 2em;
+  justify-content: center;
+}
+
+.menuOption {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: var(--fs-2);
+  font-weight: var(--fs-w-3);
+}
+
+.currentOption {
+  text-shadow: var(--t-sh-1);
+}

@@ -38,8 +38,6 @@ const SubmitPage = () => {
   const onSubmit: SubmitHandler<Inputs> = async (formData) => {
     if (!code || !instructions || tags.length < 2) return;
 
-    console.log({ formData });
-
     const initialData = {
       ...formData,
       cases: [

@@ -1,0 +1,16 @@
+.challengeCreatorGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: .8em;
+  max-width: 950px;
+  margin: auto;
+}
+
+@media (max-width: 62rem) {
+  .challengeCreatorGrid {
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1em;
+  }
+}

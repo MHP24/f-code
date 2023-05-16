@@ -49,8 +49,6 @@ const handleSubmit = async (req: NextApiRequest, res: NextApiResponse<Data>) => 
       language: technology
     });
 
-    console.log({ data });
-
     res.status(hasError ? 400 : 200).json(data);
   } catch (error) {
     console.error({ error });
