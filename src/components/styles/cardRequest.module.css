@@ -1,0 +1,62 @@
+.card {
+  display: grid;
+  grid-template-columns: 50px 1fr .5fr 1fr;
+  ;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+  padding: .4em 1em;
+  background-color: var(--c2);
+  border-radius: var(--br-1);
+  gap: 1.3em;
+}
+
+.cardReason {
+  background-color: var(--c1);
+  text-align: center;
+  width: 5em;
+  border-radius: var(--br-3);
+  font-size: var(--fs-1);
+  font-weight: var(--fs-w-2);
+  padding: .1em;
+}
+
+.cardData {
+  font-size: var(--fs-1);
+}
+
+.challengeName {
+  overflow: hidden;
+}
+
+.status {
+  text-align: center;
+  width: 6em;
+  border-radius: var(--br-3);
+  font-size: var(--fs-1);
+  font-weight: var(--fs-w-2);
+  padding: .1em;
+}
+
+.date {
+  text-align: end;
+}
+
+.approved {
+  background-color: var(--c-approved);
+}
+
+.denied {
+  background-color: var(--c-denied);
+}
+
+.pending {
+  background-color: var(--c-pending);
+}
+
+@media (max-width: 62rem) {
+  .card {
+    grid-template-columns: 1fr;
+    padding: 2em;
+  }
+}

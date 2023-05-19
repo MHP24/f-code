@@ -1,5 +1,6 @@
-import mongoose, { Schema, model } from 'mongoose';
+import mongoose, { PaginateModel, Schema, model } from 'mongoose';
 import { IChallengeRequest } from '@/interfaces';
+import mongoosePaginate from 'mongoose-paginate-v2';
 
 const challengeRequest = new Schema({
   slug: { type: String, required: true },
@@ -28,4 +29,6 @@ const challengeRequest = new Schema({
   timestamps: true,
 });
 
-export const ChallengeRequest = (mongoose.models.ChallengeRequest || model<IChallengeRequest>('ChallengeRequest', challengeRequest));
+challengeRequest.plugin(mongoosePaginate);
+
+export const ChallengeRequest = (mongoose.models.ChallengeRequest || model<IChallengeRequest>('ChallengeRequest', challengeRequest)) as PaginateModel<IChallengeRequest>;

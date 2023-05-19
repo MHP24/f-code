@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { GetServerSideProps, NextPage } from 'next';
 import { getSession } from 'next-auth/react';
 import { MainLayout } from '@/components/layouts';
-import { IChallenge, ISession } from '@/interfaces';
-import { ChallengeCreatorGrid, FormInput } from '@/components/ui';
+import { IChallenge, IChallengeRequest, ISession } from '@/interfaces';
+import { ChallengeCreatorGrid, CreatorRequestGrid, FormInput } from '@/components/ui';
 import styles from '@/styles/creators.module.css';
 import { usePagination } from '@/hooks';
 import { useForm } from 'react-hook-form';
@@ -22,6 +22,10 @@ const CreatorPage: NextPage<ISession> = ({ user }) => {
 
   const { data, hasMore, size, setSize, isLoading } =
     usePagination<IChallenge>(`/creators/challenges?creatorId=${user._id}&search=${search}`);
+
+  const requestData =
+    usePagination<IChallengeRequest>(`/creators/requests?creatorId=${user._id}`);
+
 
   const onSubmit = (data: Inputs) => {
     const { search } = data;
@@ -55,19 +59,25 @@ const CreatorPage: NextPage<ISession> = ({ user }) => {
               className={`${styles.menuOption} ${!showChallenges && styles.currentOption}`}
               onClick={() => setShowChallenges(false)}
             >
-              History
+              Requests
             </button>
           </div>
         </header>
 
         <section>
-          <ChallengeCreatorGrid
-            challenges={data || []}
-            hasMore={hasMore ?? false}
-            size={size}
-            setSize={setSize}
-            isLoading={isLoading}
-          />
+          {
+            showChallenges ?
+              <ChallengeCreatorGrid
+                challenges={data || []}
+                hasMore={hasMore ?? false}
+                size={size}
+                setSize={setSize}
+                isLoading={isLoading}
+              />
+
+              :
+              <CreatorRequestGrid requestData={requestData} />
+          }
         </section>
       </section>
     </MainLayout>

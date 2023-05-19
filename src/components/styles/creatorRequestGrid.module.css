@@ -1,0 +1,17 @@
+.requestGrid {
+  scrollbar-width: thin;
+  display: grid;
+  gap: .8em;
+  max-width: 53rem;
+  margin: auto;
+  scrollbar-width: none;
+}
+
+
+@media (max-width: 62rem) {
+  .requestGrid {
+    grid-template-columns: repeat(auto-fill, minmax(23rem, 1fr));
+    justify-items: center;
+    justify-content: center;
+  }
+}

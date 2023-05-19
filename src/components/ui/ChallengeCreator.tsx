@@ -23,7 +23,7 @@ interface Props {
 
 export const ChallengeCreator: FC<Props> = ({ _id, slug, language, difficulty }) => {
   return (
-    <div className={styles.challenge}>
+    <div className={`${styles.challenge} animate__animated animate__fadeIn`}>
       <div className={styles.challengeData}>
         <Image
           width={45}

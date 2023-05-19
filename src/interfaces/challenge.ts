@@ -20,6 +20,9 @@ export interface IChallenge {
 export interface IChallengeRequest extends IChallenge {
   parametersCount: number;
   solution: string;
+  reason: 'Create' | 'Update';
+  status: number;
+  updatedAt: string;
 }
 
 export interface IChallengeSearch {

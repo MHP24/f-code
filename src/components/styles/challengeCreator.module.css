@@ -74,6 +74,7 @@
   .challenge {
     grid-template-columns: 1fr;
     padding: 2em 0;
+    max-width: 20rem;
     overflow: hidden;
   }
 

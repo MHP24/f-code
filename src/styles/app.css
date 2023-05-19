@@ -26,6 +26,12 @@
   /* Editor colors */
   --c-editor-bg-1: #1E1E1E;
 
+
+  /* Status colors */
+  --c-pending: #ffba0b83;
+  --c-denied: #ff5f5fa8;
+  --c-approved: #5fff8fc1;
+
   /* Font size */
   --fs-1: 1rem;
   --fs-2: 1.2rem;
