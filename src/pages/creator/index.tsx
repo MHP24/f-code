@@ -7,12 +7,13 @@ import { ChallengeCreatorGrid, CreatorRequestGrid, FormInput } from '@/component
 import styles from '@/styles/creators.module.css';
 import { usePagination } from '@/hooks';
 import { useForm } from 'react-hook-form';
+import Link from 'next/link';
+import Image from 'next/image';
 
 
 interface Inputs {
   search: string;
 };
-
 
 const CreatorPage: NextPage<ISession> = ({ user }) => {
 
@@ -40,12 +41,14 @@ const CreatorPage: NextPage<ISession> = ({ user }) => {
       <section className={styles.creatorContainer}>
         <header className={styles.header}>
           <h2 className={styles.title}>{`Here's your challenges ${user.username}!`}</h2>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
             <FormInput
-              className={styles.searcher}
+              className={`${styles.searcher} ${!showChallenges && styles.searcherDisabled}`}
               placeHolder='Search...'
               {...register('search', { required: false })}
+              disabled={!showChallenges}
             />
+
           </form>
 
           <div className={styles.menu}>
@@ -79,6 +82,19 @@ const CreatorPage: NextPage<ISession> = ({ user }) => {
               <CreatorRequestGrid requestData={requestData} />
           }
         </section>
+
+        <Link
+          href={'/creator/submit'}
+          target='_blank'
+          className={styles.addChallenge}
+        >
+          <Image
+            src={'/illustrations/add.svg'}
+            width={50}
+            height={50}
+            alt='add'
+          />
+        </Link>
       </section>
     </MainLayout>
   );

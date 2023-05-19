@@ -1,5 +1,5 @@
 import { transpileModule, ScriptTarget, ModuleKind } from 'typescript';
-import { generateSummary, validateFunction, executeJavaScriptCode } from '..';
+import { generateSummary, validateJavaScriptFunction, executeJavaScriptCode } from '..';
 import {
   HandlerOutput, ICodeExecution,
   IExecutionCase, IFunctionValidation
@@ -17,7 +17,7 @@ export const transpileCode = (code: string) => {
 export const handleTypeScriptExecution = (
   { functionName, parameters, cases, code }: IExecutionCase
 ): HandlerOutput => {
-  const fnValidation = validateFunction({ functionName, parameters, code: transpileCode(code) });
+  const fnValidation = validateJavaScriptFunction({ functionName, parameters, code: transpileCode(code) });
   if (fnValidation.hasError) return fnValidation;
 
   const { data: { functionExec } } = fnValidation as { data: IFunctionValidation };

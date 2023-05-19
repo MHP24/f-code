@@ -7,6 +7,7 @@ interface Props {
   placeHolder: string;
   type?: string;
   className?: string;
+  disabled?: boolean;
 }
 
 export const FormInput: FC<Props> = memo(forwardRef(({ name, label = '', placeHolder, type = 'text', ...rest }, ref: Ref<HTMLInputElement>) => {

@@ -1,5 +1,5 @@
 import { PythonShell } from 'python-shell';
-import { validateFunction } from '../languages/python';
+import { validatePythonFunction } from '../languages/python';
 import {
   IDataOutput, ICodeExecution,
   IFunctionValidation, HandlerValidation
@@ -72,7 +72,7 @@ interface IValidation {
 export const handlePythonValidation = async (
   { functionName, parameters, cases, code }: IValidation
 ): Promise<HandlerValidation> => {
-  const fnValidation = await validateFunction({ functionName, parameters, code });
+  const fnValidation = await validatePythonFunction({ functionName, parameters, code });
   if (fnValidation.hasError) return fnValidation;
 
   const { data: { functionExec } } = fnValidation as { data: IFunctionValidation };

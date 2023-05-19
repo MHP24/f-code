@@ -11,7 +11,7 @@ interface IValidateFnProps {
   code: string;
 }
 
-export const validateFunction = async (
+export const validatePythonFunction = async (
   { functionName, parameters, code }: IValidateFnProps
 ): Promise<IDataOutput<IFunctionValidation>> => {
   try {
@@ -114,7 +114,7 @@ export const handlePythonExecution = async (
   { functionName, parameters, cases, code }: IExecutionCase
 ): Promise<HandlerOutput> => {
   try {
-    const fnValidation = await validateFunction({ functionName, parameters, code });
+    const fnValidation = await validatePythonFunction({ functionName, parameters, code });
     if (fnValidation.hasError) return fnValidation;
     const { data: { functionExec } } = fnValidation as { data: IFunctionValidation };
 

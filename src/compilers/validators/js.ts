@@ -1,13 +1,13 @@
 import { VM } from 'vm2';
 import { HandlerValidation, ICodeExecution, IDataOutput, IFunctionValidation } from '@/interfaces';
-import { validateFunction } from '..';
+import { validateJavaScriptFunction } from '../languages/javascript';
 
 interface IValidationParams {
   functionExec: string;
   cases: any[];
 }
 
-export const executeJavaScriptCode = (
+export const validateJavaScriptCode = (
   { functionExec, cases }: IValidationParams
 ): IDataOutput<ICodeExecution> => {
   try {
@@ -36,10 +36,10 @@ interface IValidation {
 export const handleJavaScriptValidation = (
   { functionName, parameters, cases, code }: IValidation
 ): HandlerValidation => {
-  const fnValidation = validateFunction({ functionName, parameters, code });
+  const fnValidation = validateJavaScriptFunction({ functionName, parameters, code });
   if (fnValidation.hasError) return fnValidation;
 
   const { data: { functionExec } } = fnValidation as { data: IFunctionValidation };
-  const executionData = executeJavaScriptCode({ functionExec, cases });
+  const executionData = validateJavaScriptCode({ functionExec, cases });
   return executionData;
 }

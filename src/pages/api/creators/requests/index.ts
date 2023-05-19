@@ -23,8 +23,6 @@ const getRequests = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     !creatorId && res.status(400).json({ error: 'Creator ID is required' });
     await db.connect();
 
-    console.log({ creatorId });
-
     const options = {
       page: Number(page),
       limit: 2,
@@ -32,14 +30,13 @@ const getRequests = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     };
 
     const history = await ChallengeRequest.paginate({
-      creatorId
+      creatorId,
     }, options);
 
-    res.status(!history.docs.length ? 404 : 200).json(history);
+    res.status(200).json(history);
   } catch (error) {
     res.status(400).json({ error: 'Unexpected error' });
   } finally {
     await db.disconnect();
   }
-
 }

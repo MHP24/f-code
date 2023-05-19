@@ -1,3 +1,3 @@
-export * from './javascript';
-export * from './typescript';
-export * from './python';
+export * from './js';
+export * from './ts';
+export * from './py';

@@ -1,5 +1,6 @@
 .creatorContainer {
   width: 90%;
+  position: relative;
 }
 
 .title {
@@ -23,6 +24,12 @@
   border: none;
   outline: none;
   border-radius: var(--br-3);
+  transition: .3s;
+}
+
+.searcherDisabled {
+  opacity: .2;
+  transition: .3s;
 }
 
 .menu {
@@ -43,4 +50,23 @@
 
 .currentOption {
   text-shadow: var(--t-sh-1);
+}
+
+.addChallenge {
+  display: grid;
+  place-items: center;
+  position: fixed;
+  bottom: 5%;
+  right: 5%;
+  text-decoration: none;
+  font-size: var(--fs-6);
+  background-color: var(--c1);
+  border-radius: 50%;
+  padding: .2em;
+  transition: .3s background-color;
+  text-align: center;
+}
+
+.addChallenge:hover {
+  background-color: var(--c1-hover);
 }
