@@ -8,11 +8,6 @@ const solveSchema = new Schema({
     ref: 'Challenge',
     required: false,
   },
-  // creatorId: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'User',
-  //   required: false,
-  // },
   userId: {
     type: Schema.Types.ObjectId,
     ref: 'User',

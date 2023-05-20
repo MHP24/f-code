@@ -10,3 +10,4 @@ export * from './leaderboard';
 export * from './forms';
 export * from './session';
 export * from './creator';
+export * from './report';
