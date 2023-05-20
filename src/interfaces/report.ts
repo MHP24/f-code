@@ -8,6 +8,7 @@ interface IUserReport {
 export interface IChallengeReport {
   _id: string;
   challengeId: string;
+  code: string;
   userId: IUserReport;
   createdAt: string;
   updatedAt: string;

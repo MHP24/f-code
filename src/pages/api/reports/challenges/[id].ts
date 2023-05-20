@@ -25,7 +25,7 @@ const generateChallengeData = async (req: NextApiRequest, res: NextApiResponse<D
 
     const challengeData: IChallengeReport[] = await Solve
       .find({ challengeId: id })
-      .select('-__v -code')
+      .select('-__v')
       .populate({
         path: 'userId',
         select: '_id email username provider',

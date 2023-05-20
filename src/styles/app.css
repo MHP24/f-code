@@ -58,9 +58,11 @@
   --t-sh-1: 0px 0px 2px #54e6e4, 0px 0px 0px #54e6e4, 0px 0px 10px #54e6e4;
 
   --b-sh-2: 0px 0px 5px #19e29fd5, 0px 0px 6px #19e29fd5, 0px 0px 15px #19e29fd5;
+  --b-sh-2-low: 0px 0px 3px #19e29fd5, 0px 0px 4px #19e29fd5, 0px 0px 11px #19e29fd5;
   --t-sh-2: 0px 0px 2px #19e29fd5, 0px 0px 6px #19e29fd5, 0px 0px 10px #19e29fd5;
 
   --b-sh-3: 0px 0px 5px #f04c4c, 0px 0px 6px #f04c4c, 0px 0px 15px #f04c4c;
+  --b-sh-3-low: 0px 0px 3px #f04c4c, 0px 0px 4px #f04c4c, 0px 0px 11px #f04c4c;
   --t-sh-3: 0px 0px 2px #f04c4c, 0px 0px 6px #f04c4c, 0px 0px 10px #f04c4c;
 
   --t-sh-black: 0px 0px 2px #12121271, 0px 0px 2px #12121271;
