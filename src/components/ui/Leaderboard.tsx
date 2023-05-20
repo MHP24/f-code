@@ -27,8 +27,8 @@ export const Leaderboard: FC<ILeaderboardData> = ({ userRanking, leaderboard }) 
           <p className={styles.leaderboardNoHeader}>No one has points yet!</p>
           :
           <div className={styles.leaderboardHeader}>
-            <p className={styles.leaderboardCol}>Position</p>
-            <p className={styles.leaderboardCol}>Name</p>
+            <p className={styles.leaderboardCol}>Rank</p>
+            <p className={styles.leaderboardCol}>User</p>
             <p className={styles.leaderboardCol}>Challenges</p>
             <p className={styles.leaderboardCol}>Points</p>
             <p className={styles.leaderboardCol}>Created</p>

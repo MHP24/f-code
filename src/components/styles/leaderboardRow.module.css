@@ -1,6 +1,8 @@
 .leaderboardRow {
   display: grid;
   grid-template-columns: 50px 1fr 100px 100px 75px;
+  align-items: center;
+  justify-content: center;
   background-color: var(--c2);
   padding: 1em;
   margin-bottom: .7em;
@@ -13,12 +15,44 @@
   text-align: center;
 }
 
+.leaderboardProfile {
+  display: grid;
+  grid-template-columns: 30px 8rem;
+  align-items: end;
+  justify-content: center;
+  justify-items: center;
+  gap: 2em;
+}
+
+.leaderboardImage {
+  border-radius: 50%;
+}
+
+.leaderboardUsername {
+  overflow: hidden;
+  text-align: left;
+  white-space: nowrap;
+  width: 100%;
+}
+
 @media (max-width: 43rem) {
   .leaderboardRow {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .leaderboardCol:last-of-type {
+  .leaderboardProfile {
+    grid-template-columns: 1fr;
+    gap: .5em;
+    justify-content: center;
+    place-items: center;
+    text-align: center;
+  }
+
+  .leaderboardUsername {
+    text-align: center;
+  }
+
+  .leaderboardChallenges {
     grid-column: 3/-1;
   }
 }

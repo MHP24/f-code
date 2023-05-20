@@ -5,6 +5,7 @@ export interface IUser {
   password: string;
   picture: string;
   score: number;
+  challengesCreated: number;
   role: string;
   active: boolean;
   provider: string;

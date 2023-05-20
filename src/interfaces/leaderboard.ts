@@ -6,6 +6,7 @@ export interface ILeaderboard {
     username: string;
     picture: string;
     score: number;
+    challengesCreated: number;
   }[];
 }
 

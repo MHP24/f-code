@@ -90,8 +90,8 @@ const CreatorPage: NextPage<ISession> = ({ user }) => {
         >
           <Image
             src={'/illustrations/add.svg'}
-            width={50}
-            height={50}
+            width={40}
+            height={40}
             alt='add'
           />
         </Link>

@@ -2,6 +2,7 @@ import { db } from '.';
 import { Solve, User } from '@/models';
 import { ILeaderboard, IRanking } from '@/interfaces';
 
+
 export const getLeaderboard = async (limit: number): Promise<ILeaderboard[]> => {
   try {
     await db.connect();
@@ -23,8 +24,14 @@ export const getLeaderboard = async (limit: number): Promise<ILeaderboard[]> => 
               username: 1,
               picture: 1,
               score: 1,
+              challengesCreated: 1
             },
           }]
+        }
+      },
+      {
+        $match: {
+          user: { $ne: [] }
         }
       },
       { $sort: { 'user.score': -1 } },

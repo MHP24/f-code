@@ -1,6 +1,6 @@
 .leaderboard {
   margin-top: 2em;
-  max-width: 700px;
+  max-width: 45rem;
 }
 
 .leaderboardNoHeader {
@@ -12,6 +12,7 @@
 .leaderboardHeader {
   display: grid;
   grid-template-columns: 50px 1fr 100px 100px 75px;
+  justify-content: center;
   text-align: center;
   padding: .5em;
   gap: 1em;
