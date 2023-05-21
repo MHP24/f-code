@@ -1,0 +1,45 @@
+.infoContainer {
+  margin: 4em auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 3em;
+}
+
+.infoText {
+  font-size: var(--fs-3);
+  margin: .5em 0;
+}
+
+.formContainer {
+  max-width: 50rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.descriptionContainer {
+  height: 20rem;
+}
+
+.description {
+  height: 100%;
+  width: 100%;
+  resize: none;
+  scrollbar-width: thin;
+  font-size: var(--fs-1);
+  background-color: var(--c2);
+  border: none;
+  outline: none;
+  padding: 1em;
+  border-radius: var(--br-1);
+}
+
+.message {
+  font-size: var(--fs-1);
+  text-align: center;
+}

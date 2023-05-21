@@ -24,3 +24,4 @@ export * from './ChallengeCreator';
 export * from './ChallengeCreatorGrid';
 export * from './CardRequest';
 export * from './CreatorRequestGrid';
+export * from './Modal';
