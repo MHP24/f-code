@@ -5,6 +5,7 @@ import mongoose, { Schema, model, Model } from 'mongoose';
 const creatorRequest = new Schema({
   subject: { type: String, required: true },
   description: { type: String, required: true },
+  summary: { type: String, required: false },
   approved: { type: Boolean, default: false, required: true },
   closed: { type: Boolean, default: false, required: true },
   userId: {
