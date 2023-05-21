@@ -118,7 +118,7 @@ export const getServerSideProps: GetServerSideProps = async (req) => {
   if (user.role !== 'creator') {
     return {
       redirect: {
-        destination: '/creator/request',
+        destination: '/creator/apply',
         permanent: false
       }
     }
