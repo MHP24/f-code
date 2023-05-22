@@ -4,7 +4,6 @@ import { Challenge } from '@/models';
 import { GetServerSideProps, NextPage } from 'next';
 import { getSession } from 'next-auth/react';
 
-
 interface Props {
   _id: string;
   slug: string;
@@ -13,14 +12,10 @@ interface Props {
   code?: string;
   cases: {
     call: string;
-    expectedOutput: any;
   };
 }
 
-const Slug: NextPage<Props> = (challengeProps) => {
-
-  console.log({ challengeProps });
-
+const Slug: NextPage<Props> = ({ _id, slug, tags, instructions, code, cases }) => {
   return (
     <div>Slug edit page</div>
   );
@@ -44,13 +39,12 @@ export const getServerSideProps: GetServerSideProps = async ({ req, params }) =>
     }
 
     const { user } = session as ISession;
-
     await db.connect();
-    const challenge = await Challenge
-    .findOne({ creatorId: user._id, language, slug })
-    .select('_id slug tags instructions code cases')
-    .lean();
 
+    const challenge = await Challenge
+      .findOne({ creatorId: user._id, language, slug })
+      .select('_id slug tags instructions code cases')
+      .lean();
 
     if (!challenge) {
       return {
@@ -61,9 +55,17 @@ export const getServerSideProps: GetServerSideProps = async ({ req, params }) =>
       }
     }
 
+    const { _id, cases, ...rest } = challenge;
+
     return {
       props: {
-        
+        ...rest,
+        _id: _id.toString(),
+        cases: cases.map(({ call }) => {
+          return {
+            call
+          }
+        })
       }
     }
   } catch (error) {
