@@ -7,6 +7,7 @@
 
 .separator {
   color: var(--c5);
+  opacity: .3;
 }
 
 .formStep1,
@@ -80,7 +81,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2em;
-  
+
 }
 
 .codeContainer,
@@ -125,4 +126,28 @@
   position: absolute;
   bottom: 5%;
   right: 5%;
+}
+
+/* Update page styles */
+.challengeHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+  margin: 4em auto 0 auto;
+  max-width: 30rem;
+}
+
+.formStep1Update {
+  width: 100%;
+  max-width: 52rem;
+  margin: auto;
+}
+
+.challengeName {
+  font-size: var(--fs-4);
+}
+
+.formBasicUpdate {
+  margin-bottom: 1em;
 }

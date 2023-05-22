@@ -5,7 +5,7 @@ import { MainLayout } from '@/components/layouts';
 import { Button, ErrorLabel, FormInput, FormSelect, MarkdownWriter, TagSelector } from '@/components/ui';
 import { difficulties, technologies } from '@/mocks';
 import { ISelect } from '@/interfaces';
-import styles from '../../styles/submit.module.css';
+import styles from '@/styles/submit.module.css';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { regExValidators } from '@/utils';
 import { fCodeApi } from '@/api';
@@ -243,7 +243,7 @@ const SubmitPage = () => {
                       placeHolder='exampleFunction()'
                       {...register('case1', { required: true })}
                     />
-                    {errors.functionName?.type === 'required' && <ErrorLabel text={'This field is required'} />}
+                    {errors.case1?.type === 'required' && <ErrorLabel text={'This field is required'} />}
                   </div>
 
                   <div>
@@ -251,7 +251,7 @@ const SubmitPage = () => {
                       placeHolder='exampleFunction()'
                       {...register('case2', { required: true })}
                     />
-                    {errors.functionName?.type === 'required' && <ErrorLabel text={'This field is required'} />}
+                    {errors.case2?.type === 'required' && <ErrorLabel text={'This field is required'} />}
                   </div>
 
                   <div>
@@ -259,7 +259,7 @@ const SubmitPage = () => {
                       placeHolder='exampleFunction()'
                       {...register('case3', { required: true })}
                     />
-                    {errors.functionName?.type === 'required' && <ErrorLabel text={'This field is required'} />}
+                    {errors.case3?.type === 'required' && <ErrorLabel text={'This field is required'} />}
                   </div>
 
                   <div>
@@ -267,7 +267,7 @@ const SubmitPage = () => {
                       placeHolder='exampleFunction()'
                       {...register('case4', { required: true })}
                     />
-                    {errors.functionName?.type === 'required' && <ErrorLabel text={'This field is required'} />}
+                    {errors.case4?.type === 'required' && <ErrorLabel text={'This field is required'} />}
                   </div>
                 </div>
 

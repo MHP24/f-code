@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren } from 'react';
 import Head from 'next/head';
-import { Navbar, Footer } from '../ui';
+import { Navbar } from '../ui';
 import styles from './styles/challengeLayout.module.css';
 
 interface Props {

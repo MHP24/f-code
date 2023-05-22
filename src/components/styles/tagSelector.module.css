@@ -13,7 +13,7 @@
 }
 
 .tags {
-  height: 30vh;
+  height: 9rem;
   overflow-y: scroll;
   background-color: var(--c2);
   display: flex;

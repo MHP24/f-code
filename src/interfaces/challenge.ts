@@ -12,6 +12,7 @@ export interface IChallenge {
   functionName: string;
   parameters: string[];
   cases: ICaseSchema[];
+  solution: string;
   tags: string[];
   active: boolean;
   creatorId: string;

@@ -21,6 +21,7 @@ interface SeedChallenge {
     call: string;
     expectedOutput: any;
   }[];
+  solution: string;
   tags: string[];
   active: boolean;
   creatorId: string;
@@ -36,14 +37,14 @@ export const seedData: SeedData = {
   users: [
     {
       username: 'MiguelHP24',
-      email: 'miguelo@mail.com',
+      email: 'miguelo@mail.com@fcode',
       password: bcrypt.hashSync('123456$ASD123asd'),
       picture: 'no-picture',
       role: 'admin'
     },
     {
       username: 'JuanAlca',
-      email: 'juan@mail.com',
+      email: 'juan@mail.com@fcode',
       password: bcrypt.hashSync('123456$ASD123asd'),
       picture: 'no-picture',
       role: 'user'
@@ -71,6 +72,7 @@ export const seedData: SeedData = {
           expectedOutput: -7
         }
       ],
+      solution: 'the best sum solution code',
       tags: ['tag1', 'tag2'],
       active: true,
       creatorId: '1232103132130198390'
@@ -100,6 +102,7 @@ export const seedData: SeedData = {
           expectedOutput: `Ab`
         }
       ],
+      solution: 'check solution code',
       tags: ['tag1', 'tag2'],
       active: true,
       creatorId: '1232103132130198390'
@@ -158,6 +161,7 @@ export const seedData: SeedData = {
           expectedOutput: false
         },
       ],
+      solution: 'can i exit solution code',
       tags: ['tag1', 'tag2'],
       active: true,
       creatorId: '1232103132130198390'
@@ -195,6 +199,7 @@ export const seedData: SeedData = {
           expectedOutput: 100
         },
       ],
+      solution: 'optimize gifts solution code',
       tags: ['tag1', 'tag2'],
       active: true,
       creatorId: '1232103132130198390'
@@ -220,6 +225,7 @@ export const seedData: SeedData = {
           expectedOutput: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24]
         }
       ],
+      solution: 'the hardest array solution code',
       tags: ['tag1', 'tag2'],
       active: true,
       creatorId: '1232103132130198390'
@@ -245,6 +251,7 @@ export const seedData: SeedData = {
           expectedOutput: `{'output': "this operation does not exists"}`
         },
       ],
+      solution: 'fixing the calculator solution code',
       tags: ['tag1', 'tag2'],
       active: true,
       creatorId: '1232103132130198390'

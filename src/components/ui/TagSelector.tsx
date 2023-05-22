@@ -9,7 +9,7 @@ interface Props {
 
 
 export const TagSelector: FC<Props> = ({ tagsSelected, setTagsSelected }) => {
-  const [tagsNotSelected, setTagsNotSelected] = useState<string[]>(tags);
+  const [tagsNotSelected, setTagsNotSelected] = useState<string[]>(tags.filter(tag => !tagsSelected.includes(tag)));
 
   const handleTagSelection = (tag: string, add: boolean) => {
     if (add) {
