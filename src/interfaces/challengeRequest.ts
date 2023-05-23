@@ -13,6 +13,6 @@ export interface IChallengeRequest {
   code: string;
   tags: string[];
   status: number;
-  reason: 'Create' | 'Update';
+  reason: 'create' | 'update';
   creatorId: string;
 }

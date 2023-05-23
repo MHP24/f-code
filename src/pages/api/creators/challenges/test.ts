@@ -19,6 +19,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
 
 const handleSubmit = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   try {
+    const { type = '' } = req.query;
+    !type && res.status(400).json({ error: 'Test type is required' });
+
     const { challengeName = '', technology = '', ...rest } = req.body;
 
     !challengeName || !technology
@@ -31,11 +34,19 @@ const handleSubmit = async (req: NextApiRequest, res: NextApiResponse<Data>) => 
       language: technology.toLowerCase()
     });
 
-    challenge && res.status(400).json({ error: 'This challenge already exists' });
+    if (req.query.type === 'create' && challenge) {
+      return res.status(400).json({ error: 'This challenge already exists' });
+    }
+
+    if (req.query.type === 'update' && !challenge) {
+      return res.status(400).json({ error: 'This challenge does not exist' });
+    }
+
     const { functionName, parameterCount, parameters, cases, code } = rest;
 
-    !functionName || !parameterCount || !parameters || !cases || !code
-      && res.status(400).json({ error: 'Missing fields' });
+    if (!functionName || !parameterCount || !parameters || !cases || !code) {
+      return res.status(400).json({ error: 'Missing fields' });
+    }
 
     const parametersFormatted = parameters.replace(/\s+/, '').split(',');
 

@@ -1,28 +1,33 @@
 import { MainLayout } from '@/components/layouts';
 import Image from 'next/image';
 import { db } from '@/database';
-import { ISession } from '@/interfaces';
+import { IChallenge, ISession } from '@/interfaces';
 import { Challenge } from '@/models';
 import { GetServerSideProps, NextPage } from 'next';
 import { getSession } from 'next-auth/react';
 import styles from '@/styles/submit.module.css';
 import { ErrorLabel, FormInput, TagSelector, MarkdownWriter, Button } from '@/components/ui';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { regExValidators } from '@/utils';
 import { useState } from 'react';
 import Editor from '@monaco-editor/react';
+import { fCodeApi } from '@/api';
+import axios from 'axios';
 
-interface Props {
-  _id: string;
-  slug: string;
-  tags: string[];
-  instructions: string;
-  solution: string;
-  cases: {
-    call: string;
-  };
-  language: string;
-}
+// interface Props {
+//   _id: string;
+//   slug: string;
+//   tags: string[];
+//   instructions: string;
+//   functionName: string;
+//   parameters: string[]
+//   solution: string;
+//   cases: {
+//     call: string;
+//   }[];
+//   language: string;
+//   difficulty: number;
+// }
 
 interface Inputs {
   challengeName: string;
@@ -32,26 +37,80 @@ interface Inputs {
   case4: string;
 };
 
-const Slug: NextPage<Props> = (
+const Slug: NextPage<IChallenge> = (
   { _id, slug, tags: challengeTags,
     instructions: challengeInstructions,
-    solution, cases, language
+    functionName, parameters,
+    solution, cases, language, difficulty
   }) => {
+
   const [instructions, setInstructions] = useState<string>(challengeInstructions);
   const [code, setCode] = useState<string>(solution);
-
-  console.log({ _id, slug, challengeTags, instructions, solution, cases });
-
-  const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
   const [tags, setTags] = useState<string[]>(challengeTags);
+  const [output, setOutput] = useState('')
+
+  const slugFormatted = slug.replace(/\_/g, ' ').replace(/^\w/, w => w.toUpperCase());
+
+  const { register, handleSubmit, formState: { errors } } = useForm<Inputs>({
+    defaultValues: {
+      challengeName: slugFormatted,
+      case1: cases[0].call,
+      case2: cases[1].call,
+      case3: cases[2].call,
+      case4: cases[3]?.call ?? ''
+    }
+  });
+
+  const onSubmit: SubmitHandler<Inputs> = async (formData) => {
+    if (!code || !instructions || tags.length < 2) return;
+
+    const initialData = {
+      ...formData,
+      cases: [
+        { call: formData.case1 },
+        { call: formData.case2 },
+        { call: formData.case3 },
+        { call: formData.case4 }
+      ],
+      code,
+      functionName,
+      parameterCount: parameters.length,
+      parameters: `${parameters.join(', ')}`,
+      technology: language,
+      difficulty
+    }
+
+    try {
+      const { data: { outputs } } = await fCodeApi.post('/creators/challenges/test?type=update', initialData)
+      setOutput(outputs.map(({ execution }: any) => `${execution}`).join(', \n'));
+
+      const submitData = {
+        ...initialData,
+        cases: initialData.cases.map(({ call }, i) => {
+          return { call, expectedOutput: outputs[i].execution }
+        }),
+        instructions,
+        tags,
+        reason: 'update'
+      };
+
+      await fCodeApi.post('/creators/challenges/submit?type=update', submitData);
+
+    } catch (error) {
+      setOutput(
+        axios.isAxiosError(error) ?
+          `${error.response?.data.error}`
+          : 'Unexpected error'
+      )
+    }
+  }
+
 
   return (
     <MainLayout
-      pageDescription={`FCode - Edit challenge ${slug.replace(/\_/g, ' ').replace(/^\w/, w => w.toUpperCase())}`}
-      title={`FCode - Edit ${slug.replace(/\_/g, ' ').replace(/^\w/, w => w.toUpperCase())}`}
+      pageDescription={`FCode - Edit challenge ${slugFormatted}`}
+      title={`FCode - Edit ${slugFormatted}`}
     >
-
-
       <div className={styles.challengeHeader}>
         <Image
           src={`/techs/${language.toLowerCase()}.svg`}
@@ -60,11 +119,11 @@ const Slug: NextPage<Props> = (
           height={130}
         />
 
-        <h2 className={styles.challengeName}>{slug.replace(/\_/g, ' ').replace(/^\w/, w => w.toUpperCase())}</h2>
+        <h2 className={styles.challengeName}>{slugFormatted}</h2>
       </div>
 
 
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.formStep1Update}>
           <div className={styles.formBasicUpdate}>
             <div className={styles.challengeName}>
@@ -174,7 +233,7 @@ const Slug: NextPage<Props> = (
                 </div>
 
                 <div className={styles.results}>
-                  {/* <p>{output}</p> */}
+                  <p>{output}</p>
                   <div className={styles.resultsButton}
                   >
                     <Button
@@ -215,7 +274,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, params }) =>
 
     const challenge = await Challenge
       .findOne({ creatorId: user._id, language, slug })
-      .select('_id slug tags instructions solution cases')
+      .select('_id slug tags instructions functionName parameters solution cases difficulty')
       .lean();
 
     if (!challenge) {

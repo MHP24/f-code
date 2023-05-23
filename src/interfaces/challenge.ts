@@ -21,7 +21,7 @@ export interface IChallenge {
 export interface IChallengeRequest extends IChallenge {
   parametersCount: number;
   solution: string;
-  reason: 'Create' | 'Update';
+  reason: 'create' | 'update';
   status: number;
   updatedAt: string;
 }

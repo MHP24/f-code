@@ -3,5 +3,5 @@ export interface ICreatorHistory {
   slug: string;
   language: string;
   status: number;
-  reason: 'Create' | 'Update';
+  reason: 'create' | 'update';
 }

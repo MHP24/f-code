@@ -51,7 +51,7 @@ const SubmitPage = () => {
     }
 
     try {
-      const { data: { outputs } } = await fCodeApi.post('/creators/challenges/test', initialData)
+      const { data: { outputs } } = await fCodeApi.post('/creators/challenges/test?type=create', initialData)
       setOutput(outputs.map(({ execution }: any) => `${execution}`).join(', \n'));
 
       const submitData = {
@@ -62,7 +62,7 @@ const SubmitPage = () => {
         instructions,
         tags,
         difficulty: difficulty.value,
-        reason: 'Create'
+        reason: 'create'
       };
 
 
