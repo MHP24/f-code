@@ -31,6 +31,8 @@ const generateChallengeData = async (req: NextApiRequest, res: NextApiResponse<D
         select: '_id email username provider',
       });
 
+    if (!challengeData.length) return res.status(400).json({ error: 'No solves available yet' })
+
     res.status(200).json(challengeData);
   } catch (error) {
     console.error({ error });

@@ -6,6 +6,7 @@ import { fCodeApi } from '@/api';
 import { IChallengeReport } from '../../interfaces/report';
 import styles from '../styles/challengeCreator.module.css';
 import { downloadCSV, toaster } from '@/utils';
+import axios from 'axios';
 interface IDifficulties {
   [key: number]: { class: string };
 }
@@ -31,7 +32,9 @@ export const ChallengeCreator: FC<Props> = ({ _id, slug, language, difficulty })
       downloadCSV<IChallengeReport>(data, _id);
       toaster('Download generated successfully!', true);
     } catch (error) {
-      toaster('Failed generating download', false);
+      toaster(axios.isAxiosError(error) ?
+        `${error.response?.data.error}`
+        : 'Failed generating download', false);
     }
   }
 
