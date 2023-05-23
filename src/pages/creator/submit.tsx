@@ -30,7 +30,7 @@ const SubmitPage = () => {
   const [tags, setTags] = useState<string[]>([]);
   const [instructions, setInstructions] = useState<string>('_Write your description here..._');
   const [code, setCode] = useState<string>('');
-  const [output, setOutput] = useState('');
+  const [outputs, setOutputs] = useState<{ execution: any }[] | null>(null);
   const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
   const router = useRouter();
 
@@ -52,7 +52,8 @@ const SubmitPage = () => {
 
     try {
       const { data: { outputs } } = await fCodeApi.post('/creators/challenges/test?type=create', initialData)
-      setOutput(outputs.map(({ execution }: any) => `${execution}`).join(', \n'));
+      setOutputs(outputs);
+      // setOutput(outputs.map(({ execution }: any) => `${execution}`).join(', \n'));
 
       const submitData = {
         ...initialData,
@@ -65,8 +66,8 @@ const SubmitPage = () => {
         reason: 'create'
       };
 
-
       await fCodeApi.post('/creators/challenges/submit?type=create', submitData);
+
 
       //TODO Redirect to creator pannel || show modal
 
@@ -75,10 +76,18 @@ const SubmitPage = () => {
       // }, 2000);
 
     } catch (error) {
-      setOutput(
-        axios.isAxiosError(error) ?
-          `${error.response?.data.error}`
-          : 'Unexpected error'
+      // setOutput(
+      //   axios.isAxiosError(error) ?
+      //     `${error.response?.data.error}`
+      //     : 'Unexpected error'
+      // )
+
+      setOutputs(
+        [{
+          execution: axios.isAxiosError(error) ?
+            `${error.response?.data.error}`
+            : 'Unexpected error'
+        }]
       )
     }
   }
@@ -272,19 +281,31 @@ const SubmitPage = () => {
                 </div>
 
                 <div className={styles.results}>
-                  <p>{output}</p>
-                  <div className={styles.resultsButton}
-                  >
-                    <Button
-                      size={1}
-                      text='Test and submit'
-                    />
-                  </div>
+                  {
+                    outputs?.map((xce, i) => {
+                      return (
+                        <code
+                          key={`execution-${i}`}
+                          className={styles.result}
+                        >
+                          {JSON.stringify(xce.execution) || 'undefined'}
+                        </code>
+                      )
+                    })
+                  }
+
                 </div>
               </div>
             </div>
           </div>
 
+        </div>
+        <div className={styles.sendBtn}
+        >
+          <Button
+            size={1}
+            text='Test and submit'
+          />
         </div>
       </form>
     </MainLayout>

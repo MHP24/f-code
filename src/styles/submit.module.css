@@ -122,8 +122,12 @@
   padding: 1em;
 }
 
-.resultsButton {
-  position: absolute;
+.result {
+  margin: .7em 0;
+}
+
+.sendBtn {
+  position: fixed;
   bottom: 5%;
   right: 5%;
 }

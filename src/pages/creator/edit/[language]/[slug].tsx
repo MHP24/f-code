@@ -14,21 +14,6 @@ import Editor from '@monaco-editor/react';
 import { fCodeApi } from '@/api';
 import axios from 'axios';
 
-// interface Props {
-//   _id: string;
-//   slug: string;
-//   tags: string[];
-//   instructions: string;
-//   functionName: string;
-//   parameters: string[]
-//   solution: string;
-//   cases: {
-//     call: string;
-//   }[];
-//   language: string;
-//   difficulty: number;
-// }
-
 interface Inputs {
   challengeName: string;
   case1: string;
@@ -47,7 +32,7 @@ const Slug: NextPage<IChallenge> = (
   const [instructions, setInstructions] = useState<string>(challengeInstructions);
   const [code, setCode] = useState<string>(solution);
   const [tags, setTags] = useState<string[]>(challengeTags);
-  const [output, setOutput] = useState('')
+  const [outputs, setOutputs] = useState<{ execution: any }[] | null>(null);
 
   const slugFormatted = slug.replace(/\_/g, ' ').replace(/^\w/, w => w.toUpperCase());
 
@@ -82,7 +67,7 @@ const Slug: NextPage<IChallenge> = (
 
     try {
       const { data: { outputs } } = await fCodeApi.post('/creators/challenges/test?type=update', initialData)
-      setOutput(outputs.map(({ execution }: any) => `${execution}`).join(', \n'));
+      setOutputs(outputs);
 
       const submitData = {
         ...initialData,
@@ -97,10 +82,12 @@ const Slug: NextPage<IChallenge> = (
       await fCodeApi.post('/creators/challenges/submit?type=update', submitData);
 
     } catch (error) {
-      setOutput(
-        axios.isAxiosError(error) ?
-          `${error.response?.data.error}`
-          : 'Unexpected error'
+      setOutputs(
+        [{
+          execution: axios.isAxiosError(error) ?
+            `${error.response?.data.error}`
+            : 'Unexpected error'
+        }]
       )
     }
   }
@@ -233,19 +220,31 @@ const Slug: NextPage<IChallenge> = (
                 </div>
 
                 <div className={styles.results}>
-                  <p>{output}</p>
-                  <div className={styles.resultsButton}
-                  >
-                    <Button
-                      size={1}
-                      text='Test and submit'
-                    />
-                  </div>
+                  {
+                    outputs?.map((xce, i) => {
+                      return (
+                        <code
+                          key={`execution-${i}`}
+                          className={styles.result}
+                        >
+                          {JSON.stringify(xce.execution) || 'undefined'}
+                        </code>
+                      )
+                    })
+                  }
                 </div>
               </div>
             </div>
           </div>
 
+        </div>
+
+        <div className={styles.sendBtn}
+        >
+          <Button
+            size={1}
+            text='Test and submit'
+          />
         </div>
       </form>
     </MainLayout >

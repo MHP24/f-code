@@ -7,7 +7,7 @@
   display: flex;
   justify-content: space-between;
   background-color: var(--c2);
-  padding: .7em 2em;
+  padding: .7em 1em;
   transition: .3s transform;
   box-shadow: 0px 0px 2px var(--c3);
   user-select: none;
@@ -58,6 +58,38 @@
   text-shadow: var(--t-sh-1);
 }
 
+.profileLink {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  gap: .8em;
+  text-decoration: none;
+  border: var(--c3) 2px solid;
+  padding: .5em 1.5em;
+  overflow: hidden;
+  background-color: var(--c1);
+  border-radius: var(--br-1);
+  box-shadow: var(--b-sh-2-low);
+  transition: .2s opacity;
+}
+
+.profileLink:hover { 
+  opacity: .9;
+}
+
+.profilePicture {
+  border-radius: 50%;
+  outline: var(--c3) 3px solid;
+}
+
+.profileUsername {
+  font-size: var(--fs-1);
+  font-weight: var(--fs-w-3);
+  max-width: 10rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .hideMenu {
   transform: translateY(0) translateX(0);
 }
@@ -69,12 +101,17 @@
 }
 
 @media (max-width: 56rem) {
-
   .nav,
   .navContainer,
   .navLinks {
     flex-direction: column;
   }
+
+  .profileLink {
+    width: min-content;
+    margin: auto;
+  }
+
 
   .nav {
     height: 100vh;
@@ -87,6 +124,7 @@
 
   .navContainer {
     margin: auto 0;
+    margin-bottom: 0;
     align-items: flex-start;
   }
 

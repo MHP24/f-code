@@ -38,7 +38,8 @@ const submit = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       creatorId: user._id,
       reason: type,
       language: technology,
-      slug
+      slug,
+      status: 1
     });
 
     if (hasRequest) {

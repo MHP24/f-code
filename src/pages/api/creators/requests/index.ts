@@ -27,6 +27,7 @@ const getRequests = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       page: Number(page),
       limit: 2,
       select: `_id slug language status reason updatedAt`,
+      sort: { updatedAt: -1 }
     };
 
     const history = await ChallengeRequest.paginate({

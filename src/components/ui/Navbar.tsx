@@ -5,16 +5,20 @@ import { Button, Logo } from './';
 import { useRouter } from 'next/router';
 import { AuthContext } from '@/context';
 import Image from 'next/image';
+import { getSession, useSession } from 'next-auth/react';
+import { ISession } from '@/interfaces';
 
 export const Navbar: FC = () => {
 
-  const { isLoggedIn, logoutUser } = useContext(AuthContext);
+  // const { isLoggedIn, logoutUser } = useContext(AuthContext);
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
   const navigateRoute = () => router.push('/auth/sign_in');
   const toggleMenu = () => setIsOpen(!isOpen);
 
+  const session = useSession();
+  const data = session.data as ISession | undefined;
 
   return (
     <>
@@ -49,13 +53,24 @@ export const Navbar: FC = () => {
 
         <div className={styles.buttonContainer}>
           {
-            isLoggedIn ?
-              <Button
-                text={'Logout'}
-                size={.9}
-                w={250}
-                fn={logoutUser}
-              />
+            session.data ?
+              // <Button
+              //   text={'Logout'}
+              //   size={.9}
+              //   w={250}
+              //   fn={logoutUser}
+              // />
+              <Link href={'/profile'} className={styles.profileLink}>
+                <Image
+                  src={`${data?.user.picture}`}
+                  width={30}
+                  height={30}
+                  alt={`${data?.user.username}`}
+                  className={styles.profilePicture}
+                />
+
+                <p className={styles.profileUsername}>{data?.user.username}</p>
+              </Link>
               :
               <Button
                 text={'Join'}
