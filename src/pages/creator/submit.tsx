@@ -66,7 +66,7 @@ const SubmitPage = () => {
       };
 
 
-      await fCodeApi.post('/creators/challenges/submit', submitData);
+      await fCodeApi.post('/creators/challenges/submit?type=create', submitData);
 
       //TODO Redirect to creator pannel || show modal
 

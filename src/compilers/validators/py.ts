@@ -76,7 +76,10 @@ export const handlePythonValidation = async (
   if (fnValidation.hasError) return fnValidation;
 
   const { data: { functionExec } } = fnValidation as { data: IFunctionValidation };
+
   const executionData = await processExecutions({ functionExec, cases });
+
+  if (executionData.hasError) return executionData;
 
   const { data: { outputs } } = executionData as { data: ICodeExecution };
 
@@ -84,7 +87,7 @@ export const handlePythonValidation = async (
     hasError: false,
     data: {
       outputs: outputs!.map(({ data }) => {
-        return { execution: data.output[0] };
+        return { execution: `{'output': ${data.output[0]}}` };
       })
     }
   };
