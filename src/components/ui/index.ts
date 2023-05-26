@@ -26,3 +26,5 @@ export * from './CardRequest';
 export * from './CreatorRequestGrid';
 export * from './Modal';
 export * from './NavbarChallenge';
+export * from './ChallengeProfile';
+export * from './LanguageProgress';

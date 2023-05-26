@@ -1,6 +1,6 @@
 import { db, dbLeaderboard } from '@/database';
 import { IProfileData } from '@/interfaces';
-import { Solve } from '@/models';
+import { Solve, User } from '@/models';
 import mongoose from 'mongoose';
 
 interface IActivityDB {
@@ -17,6 +17,7 @@ export const getUserProfile = async (_id: string): Promise<IProfileData | null> 
   try {
     await db.connect();
     const userId = new mongoose.Types.ObjectId(`${_id}`);
+    const userData = await User.findById(_id).select('picture username -_id').lean();
     const userRanking = await dbLeaderboard.getRanking(`${_id}`);
 
     const techCount = await Solve.aggregate([
@@ -84,7 +85,8 @@ export const getUserProfile = async (_id: string): Promise<IProfileData | null> 
 
     return {
       profile: {
-        _id,
+        id: _id,
+        ...userData,
         technologies: techStats,
         ranking: userRanking!,
         recentActivity: activity

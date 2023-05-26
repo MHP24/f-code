@@ -2,12 +2,14 @@ import { IRanking } from '@/interfaces';
 import styles from '../styles/leaderboardCard.module.css';
 import { FC } from 'react';
 
+interface Props extends IRanking {
+  title?: string;
+}
 
-
-export const LeaderboardCard: FC<IRanking> = ({ userScore, rank }) => {
+export const LeaderboardCard: FC<Props> = ({ userScore, rank, title = 'Your stats' }) => {
   return (
     <div className={styles.leaderboardCard}>
-      <h3 className={styles.title}>Your Stats</h3>
+      <h3 className={styles.title}>{title}</h3>
       <div className={styles.container}>
         {
           !!userScore && (

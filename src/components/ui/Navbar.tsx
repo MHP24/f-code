@@ -62,7 +62,7 @@ export const Navbar: FC = () => {
               // />
               <Link href={'/profile'} className={styles.profileLink}>
                 <Image
-                  src={`${data?.user.picture}`}
+                  src={`${data?.user.picture === 'no-picture' ? '/pictures/no-picture.png' : data?.user.picture}`}
                   width={27}
                   height={27}
                   alt={`${data?.user.username}`}

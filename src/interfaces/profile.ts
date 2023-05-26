@@ -12,7 +12,9 @@ export interface IActivity {
 
 export interface IProfileData {
   profile: {
-    _id: string;
+    id: string;
+    picture: string;
+    username: string;
     technologies: {
       challengesCompleted: number;
       challengeDistribution: {

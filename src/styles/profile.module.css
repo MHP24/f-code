@@ -1,0 +1,93 @@
+.title {
+  font-size: var(--fs-3);
+  text-align: center;
+  margin: 1em 0;
+  text-align: left;
+}
+
+.titleCenter {
+  text-align: center;
+}
+
+.profileTitle {
+  font-size: var(--fs-4);
+  margin: 1em auto 0 auto;
+}
+
+.profileContainer {
+  max-width: 60rem;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0 2em;
+}
+
+.profileHeaderContainer {
+  display: grid;
+  grid-template-columns: .4fr 1fr;
+  gap: 4em;
+}
+
+
+@media (max-width: 62rem) {
+  .profileHeaderContainer {
+    margin: auto;
+    grid-template-columns: 1fr;
+    max-width: 43rem;
+  }
+}
+
+.profilePicture {
+  border-radius: 50%;
+  outline: var(--c3) .25em solid;
+  box-shadow: var(--b-sh-1);
+}
+
+@media (max-width: 43rem) {
+  .profilePicture {
+    height: 11rem;
+    width: 11rem;
+  }
+}
+
+.profileUser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6em;
+  text-align: center;
+}
+
+.profileProgress {
+  width: 100%;
+}
+
+.separator {
+  opacity: .1;
+}
+
+.profileRanking {
+  max-width: 42rem;
+  margin: auto;
+}
+
+.recentChallengesGrid {
+  display: flex;
+  flex-direction: column;
+  gap: .7em;
+}
+
+.section {
+  width: 100%;
+  margin: 3em auto;
+}
+
+.activitySection {
+  margin-bottom: 10rem;
+}
+
+@media (max-width: 43rem) {
+  .title {
+    text-align: center;
+  }
+}
