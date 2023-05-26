@@ -1,14 +1,15 @@
 .testDropdown {
-  margin-bottom: .7em;
+  margin-bottom: .8em;
 }
 
 .header {
   display: grid;
-  grid-template-columns: 50px 1fr 50px;
+  grid-template-columns: 50px 1fr 30px;
   text-align: left;
   background-color: var(--c4);
   padding: .7em;
   user-select: none;
+  box-shadow: rgba(255, 255, 255, 0.05) 0px 0px 0px 1px;
 }
 
 .successCircle,

@@ -13,6 +13,7 @@ import { Solve } from '@/models';
 import styles from '../../../styles/challenge.module.css';
 import { useRouter } from 'next/router';
 import { useSubmit } from '@/hooks';
+import Image from 'next/image';
 
 interface Props {
   _id: string;
@@ -22,11 +23,12 @@ interface Props {
   slug: string;
   difficulty: number;
   initialValue: string;
+  isCompleted: boolean;
 }
 
 const Challenge: NextPage<Props> = (
   { _id, creatorId, language, slug,
-    instructions, difficulty, initialValue }) => {
+    instructions, difficulty, initialValue, isCompleted }) => {
 
   const { isLoggedIn, user } = useContext(AuthContext);
   const { submitCode, execution } = useSubmit(language);
@@ -40,9 +42,18 @@ const Challenge: NextPage<Props> = (
       title={`${(slug.replace(/\_+/gi, ' '))
         .replace(/^\w/gi, w => w.toUpperCase())}`}
       pageDescription={`${language} - Challenge ${slug}`}
+      difficulty={difficulty}
+      isCompleted={isCompleted}
     >
       <div className={styles.challengePanel}>
         <div className={styles.editorContainer}>
+          <Image
+            className={styles.editorLanguage}
+            src={`/techs/${language}.svg`}
+            width={50}
+            height={50}
+            alt={language}
+          />
           <Editor
             className={styles.editor}
             defaultLanguage={language}
@@ -53,6 +64,7 @@ const Challenge: NextPage<Props> = (
               lineHeight: 1.4,
               fontLigatures: true,
               lineNumbers: 'on',
+              minimap: { enabled: false }
             }}
             value={initialValue}
           />
@@ -118,7 +130,8 @@ export const getServerSideProps: GetServerSideProps = async (req) => {
     return {
       props: {
         ...response,
-        initialValue: solve?.code ?? functionToSolve
+        initialValue: solve?.code ?? functionToSolve,
+        isCompleted: Boolean(solve?.code)
       }
     }
   } catch (error) {

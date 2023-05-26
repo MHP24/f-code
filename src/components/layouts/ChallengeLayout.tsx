@@ -1,14 +1,16 @@
 import { FC, PropsWithChildren } from 'react';
 import Head from 'next/head';
-import { Navbar } from '../ui';
+import { NavbarChallenge } from '../ui';
 import styles from './styles/challengeLayout.module.css';
 
 interface Props {
   title: string;
   pageDescription: string;
+  difficulty: number;
+  isCompleted: boolean;
 }
 
-export const ChallengeLayout: FC<PropsWithChildren<Props>> = ({ children, title = 'F-Code', pageDescription }) => {
+export const ChallengeLayout: FC<PropsWithChildren<Props>> = ({ children, title = 'F-Code', pageDescription, ...rest }) => {
   return (
     <>
       <Head>
@@ -18,7 +20,7 @@ export const ChallengeLayout: FC<PropsWithChildren<Props>> = ({ children, title 
         <meta name='og:description' content={pageDescription} />
       </Head>
 
-      <Navbar />
+      <NavbarChallenge {...{ ...rest, title }} />
 
       <main className={styles.main}>
         {children}

@@ -36,17 +36,6 @@
   opacity: .7;
 }
 
-.navLinks {
-  margin-left: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  gap: 2em;
-}
-
-.navItem {
-  list-style: none;
-}
 
 .navLink {
   text-decoration: none;
@@ -57,6 +46,76 @@
 
 .navLink:hover {
   text-shadow: var(--t-sh-1);
+}
+
+.challengeDataContainer {
+  margin-left: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: .6em;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.challengeName {
+  background-color: var(--c1);
+  padding: .2em .8em;
+  border-radius: var(--br-3);
+  font-size: .9rem;
+  font-weight: var(--fs-w-3);
+  text-align: center;
+  white-space: nowrap;
+  width: min-content;
+}
+
+.challengeData {
+  display: flex;
+  align-items: center;
+  gap: .7em;
+  font-size: 1rem;
+  font-style: italic;
+  list-style: none;
+}
+
+.challengeDifficulty {
+  font-style: normal;
+  background-color: var(--c-hard);
+  padding: .1em 1.3em;
+  border-radius: var(--br-2);
+  text-shadow: var(--t-sh-black);
+}
+
+.easy {
+  background-color: var(--c-easy);
+}
+
+.medium {
+  background-color: var(--c-medium);
+}
+
+.hard {
+  background-color: var(--c-hard);
+}
+
+.insane {
+  background-color: var(--c-insane);
+}
+
+.challengeDataItem {
+  font-size: .7rem;
+}
+
+.challengePoints {
+  color: var(--c10);
+  font-weight: var(--fs-w-2);
+}
+
+.completed {
+  color: var(--c8);
+}
+
+.pending {
+  color: var(--c7);
 }
 
 .profileLink {
@@ -73,7 +132,7 @@
   transition: .25s background-color;
 }
 
-.profileLink:hover { 
+.profileLink:hover {
   background-color: var(--c1);
 }
 
@@ -101,9 +160,9 @@
 }
 
 @media (max-width: 56rem) {
+
   .nav,
-  .navContainer,
-  .navLinks {
+  .navContainer {
     flex-direction: column;
   }
 
@@ -111,7 +170,6 @@
     width: min-content;
     margin: auto;
   }
-
 
   .nav {
     height: 100vh;
@@ -130,12 +188,6 @@
 
   .menuBtn {
     display: block;
-  }
-
-  .navLinks {
-    margin-top: 3rem;
-    align-items: flex-start;
-    border: none;
   }
 
   .hideMenu {

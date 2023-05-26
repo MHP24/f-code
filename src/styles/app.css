@@ -16,6 +16,7 @@
   --c8: #5fff8f;
   --c8-hover: #12672b3b;
   --c9: #0d1319d5;
+  --c10: #e4a105;
 
   /* Difficulties colors */
   --c-easy: #15bc7f;
@@ -75,6 +76,7 @@
   color: var(--c3);
   font-weight: var(--fs-w-2);
   font-family: 'Poppins', sans-serif;
+  scrollbar-width: thin;
 }
 
 html {
@@ -120,6 +122,10 @@ code {
   width: 100%;
   border-radius: var(--br-4);
   font-weight: var(--fs-w-2);
+}
+
+.monaco-editor-background {
+  background-color:red;
 }
 
 .animate__animated.animate__fadeIn {

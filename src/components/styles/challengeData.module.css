@@ -3,6 +3,9 @@
   overflow-y: scroll;
   background-color: var(--c2);
   padding: 1.5em;
+
+  background-image: url('/backgrounds/wave.svg');
+  background-size:cover;
 }
 
 .actions {

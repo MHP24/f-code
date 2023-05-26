@@ -25,3 +25,4 @@ export * from './ChallengeCreatorGrid';
 export * from './CardRequest';
 export * from './CreatorRequestGrid';
 export * from './Modal';
+export * from './NavbarChallenge';
