@@ -64,17 +64,16 @@
   align-content: center;
   gap: .8em;
   text-decoration: none;
-  border: var(--c3) 2px solid;
   padding: .5em 1.5em;
   overflow: hidden;
-  background-color: var(--c1);
   border-radius: var(--br-1);
-  box-shadow: var(--b-sh-2-low);
-  transition: .2s opacity;
+  border: var(--c3) 2.5px solid;
+  border-radius: var(--br-3);
+  transition: .25s background-color;
 }
 
 .profileLink:hover { 
-  opacity: .9;
+  background-color: var(--c1);
 }
 
 .profilePicture {
@@ -85,7 +84,7 @@
 .profileUsername {
   font-size: var(--fs-1);
   font-weight: var(--fs-w-3);
-  max-width: 10rem;
+  color: var(--c3);
   text-overflow: ellipsis;
   white-space: nowrap;
 }

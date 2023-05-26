@@ -10,7 +10,7 @@ import { ISession } from '@/interfaces';
 
 export const Navbar: FC = () => {
 
-  // const { isLoggedIn, logoutUser } = useContext(AuthContext);
+  const { isLoggedIn, logoutUser } = useContext(AuthContext);
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -63,13 +63,13 @@ export const Navbar: FC = () => {
               <Link href={'/profile'} className={styles.profileLink}>
                 <Image
                   src={`${data?.user.picture}`}
-                  width={30}
-                  height={30}
+                  width={27}
+                  height={27}
                   alt={`${data?.user.username}`}
                   className={styles.profilePicture}
                 />
 
-                <p className={styles.profileUsername}>{data?.user.username}</p>
+                <p className={styles.profileUsername}>{`${data?.user.username}`.slice(0, 15)}</p>
               </Link>
               :
               <Button

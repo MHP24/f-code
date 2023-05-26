@@ -12,3 +12,4 @@ export * from './session';
 export * from './creator';
 export * from './report';
 export * from './creatorRequest';
+export * from './profile';

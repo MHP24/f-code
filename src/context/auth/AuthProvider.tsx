@@ -23,7 +23,7 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
 
   const registerUser = async (userData: IRegisterUser): Promise<IAuthOutput> => {
     try {
-      await fCodeApi.post('/user/register', userData);
+      await fCodeApi.post('/users/register', userData);
       return { hasError: false };
     } catch (error) {
       return {

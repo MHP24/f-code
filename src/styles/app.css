@@ -112,8 +112,7 @@ strong {
 }
 
 code {
-  background-color: #1d1d1d93;
-  border: .01rem rgba(255, 255, 255, 0.347) solid;
+  background-color: #1d1d1da4;
   font-size: var(--fs-1);
   padding: .5em;
   display: block;
