@@ -91,3 +91,27 @@
     text-align: center;
   }
 }
+
+.noUser {
+  height: 80vh;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+}
+
+.notFound {
+  font-size: var(--fs-6);
+  font-weight: var(--fs-w-3);
+  color: var(--c1);
+  text-shadow: var(--t-sh-2);
+}
+
+.noUserText {
+  font-size: var(--fs-3);
+  font-weight: var(--fs-w-3);
+  color: var(--c1);
+  text-shadow: var(--t-sh-2);
+}

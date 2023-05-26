@@ -23,7 +23,7 @@ export const LanguageProgress: FC<Props> = ({ language, percentage }) => {
       <style jsx>{`
           .progressBarFilled {
             background-color: var(--c1);
-            width: ${percentage}%;
+            width: ${percentage ?? 0}%;
           }
         
         
@@ -31,7 +31,7 @@ export const LanguageProgress: FC<Props> = ({ language, percentage }) => {
       </style>
 
 
-      <p className={styles.percentage}>{`${percentage}%`}</p>
+      <p className={styles.percentage}>{`${percentage ?? 0}%`}</p>
     </div>
 
   );
