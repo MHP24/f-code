@@ -1,6 +1,8 @@
-import { User } from '@/models';
 import { db } from '.';
+import { User } from '@/models';
 import bcrypt from 'bcryptjs';
+import { PaginateResult } from 'mongoose';
+import { IUser } from '@/interfaces';
 
 export const checkUser = async (email: string, password: string) => {
   try {
@@ -57,6 +59,28 @@ export const oAuthenticate = async (email: string, username: string, picture: st
   } catch (error) {
     console.error({ error });
     return null;
+  } finally {
+    await db.disconnect();
+  }
+}
+
+export const getUsers = async (search: string, page: number): Promise<PaginateResult<IUser> | []> => {
+  try {
+    await db.connect();
+    const options = {
+      page,
+      limit: 2,
+      select: `
+        _id email username picture provider role status`,
+    };
+
+    const users = await User.paginate({
+      username: (!search ? { $exists: true } : { $regex: search, $options: 'i' }),
+    }, options);
+
+    return users;
+  } catch (error) {
+    return [];
   } finally {
     await db.disconnect();
   }

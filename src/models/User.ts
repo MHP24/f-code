@@ -1,4 +1,5 @@
-import mongoose, { Schema, model, Model } from 'mongoose';
+import mongoose, { Schema, model, PaginateModel } from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
 import { IUser } from '@/interfaces';
 
 const userSchema = new Schema({
@@ -23,4 +24,6 @@ const userSchema = new Schema({
   timestamps: true,
 });
 
-export const User: Model<IUser> = mongoose.models.User || model('User', userSchema);
+userSchema.plugin(mongoosePaginate);
+
+export const User = (mongoose.models.User || model<IUser>('User', userSchema)) as PaginateModel<IUser>;
