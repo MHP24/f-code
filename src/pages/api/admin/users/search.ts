@@ -29,5 +29,4 @@ const searchUsers = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   } finally {
     await db.disconnect();
   }
-  res.status(200).json({ error: 'no' });
 }

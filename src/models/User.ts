@@ -6,7 +6,7 @@ const userSchema = new Schema({
   username: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
-  picture: { type: String, default: 'no-picture', required: true },
+  picture: { type: String, default: '/pictures/no-picture.png', required: true },
   score: { type: Number, default: 0, required: true },
   challengesCreated: { type: Number, default: 0, required: true },
   provider: { type: String, default: 'f-code' },

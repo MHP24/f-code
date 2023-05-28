@@ -1,0 +1,104 @@
+.userCard {
+  display: grid;
+  grid-template-columns: 1.3fr 1.3fr .8fr .3fr .7fr;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  background-color: var(--c2);
+  padding: 1em;
+  margin-bottom: .7em;
+  gap: 1em;
+  border-radius: var(--br-1);
+}
+
+.userData {
+  width: 100%;
+}
+
+.userText {
+  user-select: none;
+  font-size: var(--fs-1);
+}
+
+.userProfileData,
+.providerData {
+  display: grid;
+  grid-template-columns: 25px 1fr;
+  gap: 1em;
+}
+
+.userImage {
+  border-radius: 50%;
+}
+
+.userActions {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.status {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+}
+
+.active {
+  background-color: var(--c8);
+}
+
+.inactive {
+  background-color: var(--c7);
+}
+
+.btn {
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  transition: .3s opacity;
+}
+
+.btn:hover {
+  opacity: .7;
+}
+
+/* extras */
+
+.currentRole {
+  display: grid;
+  grid-template-columns: 5rem 15px;
+  align-items: center;
+  gap: .4em;
+}
+
+.roleSelector {
+  cursor: pointer;
+  position: relative;
+}
+
+.roles {
+  position: absolute;
+  margin-top: .2em;
+  background-color: rgba(0, 0, 0, .88);
+  width: 100%;
+  z-index: 3;
+  border-radius: 0 0 var(--br-1) var(--br-1);
+}
+
+.role {
+  padding: .5em .2em;
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: var(--fs-1);
+  text-align: start;
+  transition: .15s background-color;
+}
+
+.role:hover {
+  background-color: var(--c1);
+}

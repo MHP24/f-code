@@ -21,7 +21,7 @@ export const LeaderboardRow: FC<Props> = ({ position, challenges, user }) => {
       <div className={`${styles.leaderboardCol} ${styles.leaderboardProfile}`}>
         <Image
           className={styles.leaderboardImage}
-          src={`${user[0]?.picture !== 'no-picture' ? user[0]?.picture : '/pictures/no-picture.png'}`}
+          src={`${user[0]?.picture}`}
           width={30}
           height={30}
           alt={user[0]?.username}

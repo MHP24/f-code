@@ -71,7 +71,7 @@ export const getUsers = async (search: string, page: number): Promise<PaginateRe
       page,
       limit: 2,
       select: `
-        _id email username picture provider role status`,
+        _id email username picture provider role active`,
     };
 
     const users = await User.paginate({

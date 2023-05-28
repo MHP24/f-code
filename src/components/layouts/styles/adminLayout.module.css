@@ -1,0 +1,24 @@
+.layoutBody {
+  /* display: grid; */
+  /* grid-template-columns: 15rem 1fr; */
+  display: flex;
+  scrollbar-width: none;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main {
+  margin-left: 15rem;
+  /* overflow: scroll; */
+  overflow: hidden;
+  width: 100%;
+}
+
+.pageTitle {
+  font-size: var(--fs-3);
+}
+
+.childrenContainer {
+  margin: 1em 2em;
+}
+

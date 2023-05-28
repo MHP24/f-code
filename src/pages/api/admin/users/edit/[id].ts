@@ -1,6 +1,8 @@
 import { db } from '@/database';
+import { ISession } from '@/interfaces';
 import { User } from '@/models';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { getSession } from 'next-auth/react';
 
 type Data = {
   error: string
@@ -18,8 +20,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
 
 const editUser = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   try {
-
-    //TODO: validate request role if admin;
     const { id = '' } = req.query;
     const { role, status } = req.body;
 
@@ -31,8 +31,6 @@ const editUser = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
     await db.connect();
     const updateResult = await User.findByIdAndUpdate(id, { role, active: status });
-
-    console.log({ updateResult });
     if (!updateResult) return res.status(404).json({ error: 'This user does not exist' });
 
     res.status(200).json({ _id: updateResult._id });

@@ -39,14 +39,14 @@ export const seedData: SeedData = {
       username: 'MiguelHP24',
       email: 'miguelo@mail.com@fcode',
       password: bcrypt.hashSync('123456$ASD123asd'),
-      picture: 'no-picture',
+      picture: '/pictures/no-picture.png',
       role: 'admin'
     },
     {
       username: 'JuanAlca',
       email: 'juan@mail.com@fcode',
       password: bcrypt.hashSync('123456$ASD123asd'),
-      picture: 'no-picture',
+      picture: '/pictures/no-picture.png',
       role: 'user'
     },
   ],

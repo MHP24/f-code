@@ -34,8 +34,6 @@ const ProfilePage: NextPage = () => {
         if (session.data || userQuery) {
           const { user } = session.data as ISession;
           const { data } = await fCodeApi.get(`/users/profile/${userQuery ?? user._id}`);
-
-          console.log({ data });
           setProfileData({ ...profileData, data, isLoading: false });
         }
       } catch (error) {
@@ -61,11 +59,7 @@ const ProfilePage: NextPage = () => {
                   <div className={`${styles.profileItem} ${styles.profileUser}`}>
                     <Image
                       className={styles.profilePicture}
-                      src={
-                        profileData.data.profile.picture === 'no-picture' ?
-                          '/pictures/no-picture.png'
-                          : profileData.data.profile.picture
-                      }
+                      src={profileData.data.profile.picture}
                       alt={profileData.data.profile.username}
                       width={220}
                       height={220}
