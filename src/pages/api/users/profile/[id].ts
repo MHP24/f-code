@@ -20,6 +20,8 @@ const getProfile = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     const { id } = req.query;
     const profile = await getUserProfile(`${id}`);
 
+    console.log(profile);
+
     res.status(profile ? 200 : 404).json(!profile ? {
       error: 'This user does not exists'
     } : profile);
