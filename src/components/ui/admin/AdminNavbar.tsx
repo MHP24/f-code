@@ -3,13 +3,28 @@ import styles from '../../styles/admin/adminNavbar.module.css';
 import { Logo } from '../Logo';
 import { Button } from '../Button';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+
+
+const OPTIONS = [
+  { image: 'dashboard', route: 'dashboard' },
+  { image: 'users', route: 'users' },
+  { image: 'applications', route: 'applications' },
+  { image: 'code', route: 'requests' },
+]
+
 
 export const AdminNavbar = () => {
+
+  const router = useRouter();
+  const currentRouteName = router.pathname.split('/').at(2);
+
   return (
     <nav className={styles.nav}>
       <div className={styles.navHeader}>
         <Logo
           isPrimary
+          column
           size={40}
         />
       </div>
@@ -19,60 +34,31 @@ export const AdminNavbar = () => {
           <Link className={styles.menuLink} href={'/'}>Main menu</Link>
 
           <ul className={styles.options}>
-            <li className={styles.option}>
-              <Image
-                src={'/illustrations/dashboard.svg'}
-                width={23}
-                height={23}
-                alt='dashboard'
-              />
-              <Link className={styles.optionLink} href={'/admin/dashboard'}>
-                Dashboard
-              </Link>
-            </li>
-
-            <li className={styles.option}>
-              <Image
-                src={'/illustrations/applications.svg'}
-                width={23}
-                height={23}
-                alt='applications'
-              />
-              <Link className={styles.optionLink} href={'/admin/applications'}>
-                Applications
-              </Link>
-            </li>
-
-            <li className={styles.option}>
-              <Image
-                src={'/illustrations/code.svg'}
-                width={23}
-                height={23}
-                alt='requests'
-              />
-              <Link className={styles.optionLink} href={'/admin/requests'}>
-                Requests
-              </Link>
-            </li>
-
-            <li className={styles.option}>
-              <Image
-                src={'/illustrations/users.svg'}
-                width={23}
-                height={23}
-                alt='users'
-              />
-              <Link className={styles.optionLink} href={'/admin/users'}>
-                Users
-              </Link>
-            </li>
+            {
+              OPTIONS.map(({ image, route }, i) => {
+                return (
+                  <li className={`${styles.option} ${route === currentRouteName && styles.currentOption}`} key={`dashboard-route-${i}-${route}`}>
+                    <Image
+                      src={`/illustrations/${image}.svg`}
+                      width={23}
+                      height={23}
+                      alt={route}
+                    />
+                    <Link className={styles.optionLink} href={`/admin/${route}`}>
+                      {route.replace(/^\w/, w => w.toLocaleUpperCase())}
+                    </Link>
+                  </li>
+                )
+              })
+            }
           </ul>
         </div>
 
         <div className={styles.actions}>
           <Button
-            size={.8}
-            text='Logout'
+            size={.85}
+            text='Sign out'
+            variant
           />
         </div>
       </div>

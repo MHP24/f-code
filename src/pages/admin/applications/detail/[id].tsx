@@ -45,7 +45,7 @@ const ApplicationDetailPage: NextPage<Props> = ({ application, profile: { profil
 
   const confirmApplication = async (approved: boolean, summary: string = 'approved') => {
     try {
-      const { data } = await fCodeApi.post(`/admin/applications/close/${application._id}`, {
+      await fCodeApi.post(`/admin/applications/close/${application._id}`, {
         userId: profile.id,
         approved,
         summary

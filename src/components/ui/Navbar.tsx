@@ -1,16 +1,13 @@
-import { FC, useContext, useState } from 'react';
+import { FC, useState } from 'react';
 import Link from 'next/link';
 import styles from '../styles/navbar.module.css';
 import { Button, Logo } from './';
 import { useRouter } from 'next/router';
-import { AuthContext } from '@/context';
 import Image from 'next/image';
-import { getSession, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { ISession } from '@/interfaces';
 
 export const Navbar: FC = () => {
-
-  const { isLoggedIn, logoutUser } = useContext(AuthContext);
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -54,12 +51,6 @@ export const Navbar: FC = () => {
         <div className={styles.buttonContainer}>
           {
             session.data ?
-              // <Button
-              //   text={'Logout'}
-              //   size={.9}
-              //   w={250}
-              //   fn={logoutUser}
-              // />
               <Link href={'/profile'} className={styles.profileLink}>
                 <Image
                   src={`${data?.user.picture === 'no-picture' ? '/pictures/no-picture.png' : data?.user.picture}`}
