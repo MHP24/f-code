@@ -88,7 +88,7 @@ const RequestPage: NextPage<Props> = ({ hasNotification, msg, isCreator }) => {
                   <FormInput
                     placeHolder='Example: I am a code lover and teacher'
                     label='Subject'
-                    {...register('subject', { pattern: regExValidators.charactersOnly, required: true })}
+                    {...register('subject', { pattern: regExValidators.charactersNumbersSpaces, required: true })}
                   />
                   {errors.subject?.type === 'required' && <ErrorLabel text={'This field is required'} />}
                   {errors.subject?.type === 'pattern' && <ErrorLabel text={'Characters only'} />}

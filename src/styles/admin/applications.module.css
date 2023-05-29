@@ -7,10 +7,18 @@
   display: grid;
   grid-template-columns: .3fr 1fr;
   gap: 2em;
-  /* border: 2px red solid; */
   width: 100%;
   margin: 4em auto;
   align-items: center;
+  position: relative;
+}
+
+.actions {
+  position: fixed;
+  top: 5%;
+  right: 5%;
+  display: flex;
+  gap: 1em;
 }
 
 @media (max-width: 62rem) {
@@ -101,4 +109,40 @@
     width: 100px;
     height: 100px;
   }
+}
+
+/* Modal */
+.message {
+  text-align: center;
+}
+
+
+.modalActions {
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+  margin-top: 2em;
+}
+
+.formReason {
+  width: 100%;
+  margin: 1em;
+}
+
+.reasonContainer {
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.reason {
+  height: 100%;
+  width: 100%;
+  resize: none;
+  scrollbar-width: thin;
+  font-size: var(--fs-1);
+  background-color: var(--c2);
+  border: none;
+  outline: none;
+  padding: 1em;
+  border-radius: var(--br-1);
 }
