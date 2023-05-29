@@ -115,6 +115,7 @@ export const getServerSideProps: GetServerSideProps = async (req) => {
 
   const { user } = session as ISession;
 
+  console.log({ user });
   if (user.role !== 'creator') {
     return {
       redirect: {

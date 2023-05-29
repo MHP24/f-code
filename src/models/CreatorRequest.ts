@@ -1,5 +1,6 @@
 import { ICreatorRequest } from '@/interfaces';
-import mongoose, { Schema, model, Model } from 'mongoose';
+import mongoose, { Schema, model, Model, PaginateModel } from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
 
 
 const creatorRequest = new Schema({
@@ -9,12 +10,19 @@ const creatorRequest = new Schema({
   approved: { type: Boolean, default: false, required: true },
   closed: { type: Boolean, default: false, required: true },
   userId: {
-    type: String,
+    type: Schema.Types.ObjectId,
     ref: 'User',
     required: true
+  },
+  staffId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: false
   },
 }, {
   timestamps: true,
 });
 
-export const CreatorRequest: Model<ICreatorRequest> = mongoose.models.CreatorRequest || model('CreatorRequest', creatorRequest);
+creatorRequest.plugin(mongoosePaginate);
+
+export const CreatorRequest = (mongoose.models.CreatorRequest || model<ICreatorRequest>('CreatorRequest', creatorRequest)) as PaginateModel<ICreatorRequest>;

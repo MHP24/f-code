@@ -10,7 +10,7 @@ export const LanguageProgress: FC<Props> = ({ language, percentage }) => {
   return (
     <div className={styles.languageProgress}>
       <Image
-        src={`techs/${language}.svg`}
+        src={`/techs/${language}.svg`}
         alt={language}
         width={40}
         height={40}
@@ -31,7 +31,7 @@ export const LanguageProgress: FC<Props> = ({ language, percentage }) => {
       </style>
 
 
-      <p className={styles.percentage}>{`${percentage ?? 0}%`}</p>
+      <p className={styles.percentage}>{`${Math.round(percentage ?? 0)}%`}</p>
     </div>
 
   );

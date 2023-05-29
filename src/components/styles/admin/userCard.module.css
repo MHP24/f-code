@@ -7,17 +7,19 @@
   background-color: var(--c2);
   padding: 1em;
   margin-bottom: .7em;
-  gap: 1em;
+  gap: 2em;
   border-radius: var(--br-1);
 }
 
 .userData {
   width: 100%;
+  /* border: 2px red solid; */
 }
 
 .userText {
   user-select: none;
   font-size: var(--fs-1);
+  white-space: nowrap;
 }
 
 .userProfileData,
@@ -66,7 +68,6 @@
 }
 
 /* extras */
-
 .currentRole {
   display: grid;
   grid-template-columns: 5rem 15px;
@@ -77,6 +78,7 @@
 .roleSelector {
   cursor: pointer;
   position: relative;
+  /* width: 100%; */
 }
 
 .roles {
@@ -102,3 +104,9 @@
 .role:hover {
   background-color: var(--c1);
 }
+/* 
+@media (max-width: 62rem) {
+  .userCard {
+    grid-template-columns: 2fr;
+  }
+} */

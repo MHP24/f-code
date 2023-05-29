@@ -1,3 +1,5 @@
+import { IUser } from "./user";
+
 export interface ICreatorRequest {
   _id: string;
   subject: string;
@@ -7,5 +9,17 @@ export interface ICreatorRequest {
   closed: boolean;
   createdAt: string;
   updatedAt: string;
-  userId: string;
+  userId: IUser;
+  staffId?: IUser;
+}
+
+export interface ISearchCreatorRequest {
+  _id: string;
+  subject: string;
+  userId: {
+    _id: string;
+    username: string;
+    picture: string;
+  },
+  createdAt: string;
 }

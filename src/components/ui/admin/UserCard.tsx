@@ -2,8 +2,10 @@ import { FC, useState } from 'react';
 import Image from 'next/image';
 import styles from '../../styles/admin/userCard.module.css';
 import { fCodeApi } from '@/api';
-import { toaster } from '@/utils';
+import { downloadCSV, toaster } from '@/utils';
 import { Toaster } from 'react-hot-toast';
+import { IUserSolvesReport } from '@/interfaces';
+import axios from 'axios';
 
 interface Props {
   picture: string;
@@ -38,6 +40,18 @@ export const UserCard: FC<Props> = ({ picture, _id, username, email, provider, r
       setCurrentStatus(status);
     } catch (error) {
       toaster(`Failed updating #${_id}`, false);
+    }
+  }
+
+  const handleDownload = async () => {
+    try {
+      const { data } = await fCodeApi.get<IUserSolvesReport[]>(`/reports/users/${_id}`);
+      downloadCSV<IUserSolvesReport>(data, _id);
+      toaster('Download generated successfully!', true);
+    } catch (error) {
+      toaster(axios.isAxiosError(error) ?
+        `${error.response?.data.error}`
+        : 'Failed generating download', false);
     }
   }
 
@@ -118,7 +132,10 @@ export const UserCard: FC<Props> = ({ picture, _id, username, email, provider, r
             alt='lock'
           />
         </button>
-        <button className={styles.btn}>
+        <button
+          className={styles.btn}
+          onClick={() => handleDownload()}
+        >
           <Image
             src='/illustrations/download.svg'
             width={25}

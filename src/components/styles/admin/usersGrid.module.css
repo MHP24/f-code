@@ -1,8 +1,7 @@
 .usersGrid {
   margin: 2em auto;
   height: 70vh;
-  overflow: scroll;
-  overflow-x: scroll;
+  overflow-y: scroll;
 }
 
 .scroller {

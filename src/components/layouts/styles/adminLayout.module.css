@@ -22,3 +22,13 @@
   margin: 1em 2em;
 }
 
+/* @media (max-width: 62rem) {
+  .layoutBody {
+    border: 2px red solid;
+    display: block;
+  }
+  
+  .main {
+    margin: 0;
+  }
+} */

@@ -1,0 +1,104 @@
+.form {
+  margin-top: 2em;
+  max-width: 30rem;
+}
+
+.userDetails {
+  display: grid;
+  grid-template-columns: .3fr 1fr;
+  gap: 2em;
+  /* border: 2px red solid; */
+  width: 100%;
+  margin: 4em auto;
+  align-items: center;
+}
+
+@media (max-width: 62rem) {
+  .rootApplication {
+    height: 100vh;
+    overflow-y: auto;
+    scrollbar-width: none;
+    padding: 0 2em;
+    margin: auto;
+  }
+
+}
+
+
+.profileUser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.profilePicture {
+  border-radius: 50%;
+  outline: var(--c3) 4px solid;
+}
+
+.title {
+  font-size: var(--fs-3);
+  font-weight: var(--fs-w-3);
+}
+
+.username {
+  text-align: center;
+}
+
+.techs {
+  width: 100%;
+  display: grid;
+  grid-template-columns: .3fr 1fr;
+  gap: 2em;
+  align-items: center;
+}
+
+@media (max-width: 62rem) {
+  .techs {
+    grid-template-columns: 1fr;
+  }
+}
+
+.challenges {
+  text-align: center;
+}
+
+.challengesNumber {
+  font-size: var(--fs-7);
+}
+
+.challengeSubtitle {
+  font-size: var(--fs-3);
+  font-weight: var(--fs-w-3);
+}
+
+.applicationDetail {
+  background-color: var(--c2);
+  margin-top: 2em;
+  padding: .5em;
+}
+
+.detailText {
+  font-size: var(--fs-1);
+  line-height: 2;
+}
+
+.applicationDetail:last-child {
+  height: 20vh;
+  overflow: auto;
+}
+
+
+@media (max-width: 62rem) {
+  .userDetails {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 43rem) {
+  .profilePicture {
+    width: 100px;
+    height: 100px;
+  }
+}
