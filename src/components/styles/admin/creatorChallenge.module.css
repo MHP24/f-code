@@ -1,32 +1,76 @@
-.card {
-  background-color: var(--c2);
-  width: 100%;
-  border-radius: var(--br-1);
-}
-
-.techImg {
-  margin: auto;
+.challengeCard {
   display: grid;
-  place-items: center;
-  padding: 0 .5em;
+  grid-template-columns: 100px 1fr;
+  gap: 1em;
+  padding: 1.5em;
+  border-radius: var(--br-1);
+  background-color: var(--c2);
+  text-decoration: none;
+  transition: .3s all;
+  align-items: center;
+  position: relative;
 }
 
-.cardData {
-  padding: .9em;
-  margin: auto;
+.challengeCard:hover {
+  background-color: var(--c2-hover);
+}
+
+.imageContainer,
+.challengeData {
   width: 100%;
-  text-align: left;
-  white-space: nowrap;
-  font-size: var(--fs-1);
 }
 
-.difficulty {
-  font-style: normal;
-  background-color: var(--c-hard);
-  border-radius: var(--br-2);
-  text-shadow: var(--t-sh-black);
-  width: 6rem;
+.challengeTech {
+  margin: auto;
+}
+
+.challengeData {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+.challengeDate {
+  position: absolute;
+  top: 2%;
+  right: 1%;
+  font-size: var(--fs-1s);
+  transform: scale(.9);
+}
+
+.challengeName {
+  font-size: var(--fs-2);
+  font-weight: var(--fs-w-3);
+}
+
+.challengeDetails {
+  display: flex;
+  gap: 1em;
+}
+
+.challengeDetail {
+  font-size: var(--fs-1);
+  border-radius: 3px;
+  list-style: none;
   text-align: center;
+  padding: .1em;
+  width: 100%;
+  max-width: 100px;
+  background-color: var(--c5);
+  font-weight: var(--fs-w-2);
+}
+
+.create {
+  background-color: var(--c1);
+}
+
+.update {
+  background-color: var(--c-pending);
+}
+
+.difficultyTag {
+  text-shadow: var(--t-sh-black);
 }
 
 .easy {
@@ -39,72 +83,10 @@
 
 
 .hard {
-  background-color:var(--c-hard);
+  background-color: var(--c-hard);
 }
 
 
 .insane {
   background-color: var(--c-insane);
-}
-
-.reason {
-  text-align: center;
-  width: 6em;
-  border-radius: var(--br-3);
-  font-size: var(--fs-1);
-  font-weight: var(--fs-w-2);
-}
-
-.create {
-  background-color: var(--c1);
-}
-
-.update {
-  background-color: var(--c-pending);
-}
-
-.cardData:nth-child(6) {
-  font-weight: var(--fs-w-1);
-  width: 15rem;
-}
-
-.cardData:nth-child(7) {
-  width: 5rem;
-}
-
-.cardId {
-  width: 50%;
-}
-
-.cardName {
-  width: 80%;
-}
-
-.action {
-  transition: .25s opacity;
-}
-
-.action:hover {
-  opacity: .7;
-}
-
-@media (max-width: 62rem) {
-  .card {
-    display: grid;
-    justify-items: center;
-    padding: 2em 0;
-    max-width: 30rem;
-    margin: 0 auto 2em auto;
-  }
-
-  .cardData {
-    width: 100%;
-    width: min-content;
-    margin: .25em auto;
-  }
-
-  .action {
-    display: grid;
-    place-items: center;
-  }
 }

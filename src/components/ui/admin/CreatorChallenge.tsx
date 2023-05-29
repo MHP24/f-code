@@ -17,49 +17,30 @@ const difficulties: IDifficulties = {
 
 export const CreatorChallenge: FC<IChallengeRequestSearch> = ({ _id, slug, language, difficulty, reason, createdAt }) => {
   return (
-    <tr className={`${styles.card} animate__animated animate__fadeIn`}>
-      <td>
-        <div className={styles.techImg}>
+    <Link
+      href={`/admin/requests/detail/${_id}`}
+      className={`${styles.challengeCard} animate__animated animate__fadeIn`}
+    >
+      <div className={styles.imageContainer}>
+        <Image
+          className={styles.challengeTech}
+          width={60}
+          height={60}
+          src={require(`/public/techs/${language}.svg`)}
+          alt={`${language} image`}
+        />
+      </div>
 
-          <Image
-            src={`/techs/${language}.svg`}
-            width={25}
-            height={25}
-            alt={language}
-          />
-        </div>
-      </td>
-      <td className={`${styles.cardData} ${styles.cardId}`}>{`#${_id}`}</td>
-      <td className={`${styles.cardData} ${styles.cardName}`}>
-        {slug.replace(/\_/g, ' ').replace(/^\w/, w => w.toUpperCase())}
-      </td>
-      <td className={`${styles.cardData}`}>
-        <p className={`${difficulties[difficulty].class} ${styles.difficulty}`}>{
-          difficulties[difficulty].tag}
-        </p>
-      </td>
-      <td className={`${styles.cardData}`}>
-        <p className={` ${styles.reason} ${reason === 'update' ?
-          styles.update : styles.create}`}>
-          {reason.replace(/^\w/, w => w.toUpperCase())}
-        </p>
-      </td>
-      <td className={styles.cardData}>
-        {`${new Date(createdAt).toUTCString().split(' ').slice(0, -1).join(' ')}`}
-      </td>
-      <td className={styles.cardData}>
-        <Link
-          href={`/admin/requests/detail/${_id}`}
-          className={styles.action}
-        >
-          <Image
-            src={'/illustrations/plane.svg'}
-            width={25}
-            height={25}
-            alt='check'
-          />
-
-        </Link></td>
-    </tr>
+      <div className={styles.challengeData}>
+        <p className={styles.challengeName}>{slug.replace(/\_+/gi, ' ').replace(/^\w/gi, w => w.toLocaleUpperCase())}</p>
+        <p className={styles.challengeDate}>{`${new Date(createdAt).toUTCString().split(' ').slice(0, -1).join(' ')}`}</p>
+        <ul className={styles.challengeDetails}>
+          < li className={`${styles.challengeDetail} ${difficulties[difficulty].class} ${styles.difficultyTag}`}>{`${difficulties[difficulty].tag}`}</li>
+          <li className={`${styles.challengeDetail} ${styles.reason} ${reason === 'update' ? styles.update : styles.create}`}>
+            {reason.replace(/^\w/, w => w.toUpperCase())}
+          </li>
+        </ul>
+      </div>
+    </Link>
   );
 }
