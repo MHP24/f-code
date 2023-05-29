@@ -32,7 +32,7 @@ const submit = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
     const { user } = session as ISession;
     const { technology, parameters, challengeName, parameterCount, ...rest } = req.body;
-    const slug = challengeName.replace(/\s+/g, ' ').replace(/\s+/g, '_');
+    const slug = challengeName.replace(/\s+/g, ' ').replace(/\s+/g, '_').toLowerCase();
 
     const hasRequest = await ChallengeRequest.findOne({
       creatorId: user._id,

@@ -1,7 +1,7 @@
 import { db } from '@/database';
-import { IChallengeSearch } from '@/interfaces';
+import { IChallengeRequestSearch, IChallengeSearch } from '@/interfaces';
 import { PaginateResult } from 'mongoose';
-import { Challenge } from '@/models';
+import { Challenge, ChallengeRequest } from '@/models';
 
 export const getChallenges = async (language: string, slug: string, page: number): Promise<PaginateResult<IChallengeSearch> | []> => {
   try {
@@ -23,6 +23,29 @@ export const getChallenges = async (language: string, slug: string, page: number
     return challenges;
   } catch (error) {
     return [];
+  } finally {
+    await db.disconnect();
+  }
+}
+
+export const getChallengeRequests = async (language: string, slug: string, page: number): Promise<PaginateResult<IChallengeRequestSearch> | null> => {
+  try {
+    await db.connect();
+
+    const options = {
+      page,
+      limit: 2,
+      select: ` _id slug language difficulty reason createdAt`,
+    };
+
+    const challenges = await ChallengeRequest.paginate({
+      language: (!language ? { $exists: true } : language),
+      slug: (!slug ? { $exists: true } : { $regex: slug }),
+    }, options);
+
+    return challenges;
+  } catch (error) {
+    return null;
   } finally {
     await db.disconnect();
   }

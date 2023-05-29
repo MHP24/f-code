@@ -39,3 +39,12 @@ export interface IChallengeContext {
   language?: string;
   isNative?: boolean;
 }
+
+export interface IChallengeRequestSearch {
+  _id?: string;
+  slug: string;
+  language: string;
+  difficulty: number;
+  reason: 'create' | 'update';
+  createdAt: string;
+}

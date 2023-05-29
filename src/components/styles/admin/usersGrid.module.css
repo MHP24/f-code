@@ -5,5 +5,5 @@
 }
 
 .scroller {
-  height: 80vh !important;
+  min-height: 90vh !important;
 }

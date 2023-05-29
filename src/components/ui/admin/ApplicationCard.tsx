@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export const ApplicationCard: FC<ISearchCreatorRequest> = ({ _id, subject, createdAt, userId: { username, picture } }) => {
   return (
-    <Link className={styles.card} href={`/admin/applications/detail/${_id}`}>
+    <Link className={`${styles.card} animate__animated animate__fadeIn`} href={`/admin/applications/detail/${_id}`}>
       <div className={styles.userData}>
         <Image
           className={styles.userPicture}

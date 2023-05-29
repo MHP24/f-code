@@ -1,0 +1,11 @@
+.challengesGrid {
+  margin: 1.3em auto;
+  overflow-y: auto;
+  height: 70vh;
+  overflow-y: scroll;
+  border-spacing: 0 .7em;
+}
+
+.scroller {
+  min-height: 90vh !important;
+}

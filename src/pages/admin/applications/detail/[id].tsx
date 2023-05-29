@@ -219,12 +219,7 @@ export const getServerSideProps: GetServerSideProps = async (req) => {
     const { id = '' } = req.params as { id: string };
 
     const application = await CreatorRequest.findById(id).select('-__v -createdAt -updatedAt -staffId').lean();
-
-    console.log({ application });
-
     const { data: profile } = await fCodeApi.get(`/users/profile/${application.userId}`);
-
-    console.log( { profile });
 
     if (!application || application.closed) {
       return {

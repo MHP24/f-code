@@ -56,7 +56,7 @@ export const UserCard: FC<Props> = ({ picture, _id, username, email, provider, r
   }
 
   return (
-    <div className={styles.userCard}>
+    <div className={`${styles.userCard} animate__animated animate__fadeIn`}>
       <div className={`${styles.userData} ${styles.userProfileData}`}>
         <Image
           className={styles.userImage}
