@@ -15,7 +15,7 @@ interface Props {
 export const CreatorChallengeGrid: FC<Props> = ({ data, size, setSize, hasMore, isLoading }) => {
   const targetId = useId();
   return (
-    data?.length === 0 && !isLoading ?
+    (!data || data?.length === 0) && !isLoading ?
       <NoResults />
       :
       (

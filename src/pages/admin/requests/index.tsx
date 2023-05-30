@@ -17,8 +17,6 @@ const RequestsPage = () => {
 
   const data = usePagination<IChallengeRequestSearch>(`/admin/challenges/search?slug=${inputSearch}`);
 
-  console.log(data.data);
-
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const { slug } = data;
     setInputSearch(slug.trim()

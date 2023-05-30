@@ -26,7 +26,7 @@ const searchChallengeRequests = async (req: NextApiRequest, res: NextApiResponse
     const challenges = await dbChallenges.getChallengeRequests(`${language}`, `${slug}`, pageValidated);
 
     if (!challenges) return res.status(404).json({ error: 'Not found' });
-    res.status(!challenges.docs.length ? 404 : 200).json(challenges);
+    res.status(challenges.docs.length === 0 ? 404 : 200).json(challenges);
   } catch (error) {
     console.error({ error });
     return res.status(400).json({ error: 'Unexpected error' });
