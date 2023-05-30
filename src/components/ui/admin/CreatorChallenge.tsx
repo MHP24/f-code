@@ -33,7 +33,7 @@ export const CreatorChallenge: FC<IChallengeRequestSearch> = ({ _id, slug, langu
 
       <div className={styles.challengeData}>
         <p className={styles.challengeName}>{slug.replace(/\_+/gi, ' ').replace(/^\w/gi, w => w.toLocaleUpperCase())}</p>
-        <p className={styles.challengeDate}>{`${new Date(createdAt).toUTCString().split(' ').slice(0, -1).join(' ')}`}</p>
+        <p className={styles.challengeDate}>{`${new Date(createdAt!).toUTCString().split(' ').slice(0, -1).join(' ')}`}</p>
         <ul className={styles.challengeDetails}>
           < li className={`${styles.challengeDetail} ${difficulties[difficulty].class} ${styles.difficultyTag}`}>{`${difficulties[difficulty].tag}`}</li>
           <li className={`${styles.challengeDetail} ${styles.reason} ${reason === 'update' ? styles.update : styles.create}`}>

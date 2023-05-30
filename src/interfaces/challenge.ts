@@ -46,5 +46,5 @@ export interface IChallengeRequestSearch {
   language: string;
   difficulty: number;
   reason: 'create' | 'update';
-  createdAt: string;
+  createdAt?: string;
 }

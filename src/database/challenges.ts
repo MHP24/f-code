@@ -36,9 +36,11 @@ export const getChallengeRequests = async (language: string, slug: string, page:
       page,
       limit: 2,
       select: ` _id slug language difficulty reason createdAt`,
+      sort: { createdAt: 1 },
     };
 
     const challenges = await ChallengeRequest.paginate({
+      status: 1,
       language: (!language ? { $exists: true } : language),
       slug: (!slug ? { $exists: true } : { $regex: slug }),
     }, options);
