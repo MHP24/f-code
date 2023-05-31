@@ -9,6 +9,9 @@ import remarkGfm from 'remark-gfm';
 import Editor from '@monaco-editor/react';
 import { Button, Modal } from '@/components/ui';
 import { useState } from 'react';
+import axios from 'axios';
+import { toaster } from '@/utils';
+import { Toaster } from 'react-hot-toast';
 
 interface Props {
   data: IChallengeRequestSearch;
@@ -45,22 +48,33 @@ const ChallengeRequestDetailPage: NextPage<Props> = ({ data }) => {
     })
   }
 
-  const confirmAction = async (status: string, reason: string) => {
+  const confirmAction = async (status: string) => {
     try {
+      const actionResult = await fCodeApi.post(`/admin/challenges/close/${data._id}`, {
+        approved: status === 'approve'
+      });
 
-      console.log({ status, reason });
+      const { data: { id } } = actionResult;
+
+      toaster(`Challenge #${id} closed successfully!`, true);
+
 
     } catch (error) {
-    } finally {
+      toaster(axios.isAxiosError(error) ?
+        `${error.response?.data.error}`
+        : 'Failed closing request', false);
     }
   }
-
 
   return (
     <AdminLayout
       pageDescription='Request details'
       title='Request details'
     >
+      <Toaster
+        position='bottom-left'
+        reverseOrder={false}
+      />
 
       <Modal
         open={modal.isOpen}
@@ -76,7 +90,7 @@ const ChallengeRequestDetailPage: NextPage<Props> = ({ data }) => {
               size={.8}
               text='Confirm'
               w={100}
-              fn={() => confirmAction(modal.content, data.reason)}
+              fn={() => confirmAction(modal.content)}
             />
 
             <Button
