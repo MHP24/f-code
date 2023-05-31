@@ -35,7 +35,10 @@ export const getChallengeRequests = async (language: string, slug: string, page:
     const options = {
       page,
       limit: 2,
-      select: ` _id slug language difficulty reason createdAt`,
+      select: `
+        _id slug language difficulty reason createdAt
+        ${slug && language && 'instructions functionName parametersCount parameters cases code tags creatorId'}
+      `,
       sort: { createdAt: 1 },
     };
 

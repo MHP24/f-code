@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { AdminLayout } from '@/components/layouts';
-import { CreatorChallenge, CreatorChallengeGrid, FormInput } from '@/components/ui';
+import { CreatorChallengeGrid, FormInput } from '@/components/ui';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styles from '@/styles/admin/requests.module.css';
 import { usePagination } from '@/hooks';

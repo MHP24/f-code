@@ -40,11 +40,7 @@ export interface IChallengeContext {
   isNative?: boolean;
 }
 
-export interface IChallengeRequestSearch {
-  _id?: string;
-  slug: string;
-  language: string;
-  difficulty: number;
-  reason: 'create' | 'update';
+export interface IChallengeRequestSearch extends IChallengeRequest {
+  code: string;
   createdAt?: string;
 }

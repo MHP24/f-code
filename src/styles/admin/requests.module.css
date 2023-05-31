@@ -2,3 +2,178 @@
   margin-top: 2em;
   max-width: 30rem;
 }
+
+.requestDetailContainer {
+  height: 90vh;
+  overflow: scroll;
+}
+
+.step {
+  margin: 8em auto;
+  max-width: 60rem;
+}
+
+.basicDetails {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 2em;
+  margin-top: 4em;
+}
+
+.basic {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.title {
+  font-size: var(--fs-4);
+  text-align: center;
+}
+
+.tags {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.tag,
+.reason,
+.difficultyTag {
+  padding: .2em .5em;
+  user-select: none;
+  text-transform: capitalize;
+  border-radius: var(--br-1);
+  transition: .3s background-color;
+}
+
+.tag {
+  background-color: var(--c5);
+}
+
+.difficultyTag {
+  text-shadow: var(--t-sh-black);
+  width: min-content;
+}
+
+.easy {
+  background-color: var(--c-easy);
+}
+
+.medium {
+  background-color: var(--c-medium);
+}
+
+
+.hard {
+  background-color: var(--c-hard);
+}
+
+
+.insane {
+  background-color: var(--c-insane);
+}
+
+.create {
+  background-color: var(--c1);
+}
+
+.update {
+  background-color: var(--c-pending);
+}
+
+
+.tag:hover {
+  opacity: .9;
+}
+
+.instructions {
+  background-color: var(--c2);
+  padding: .7em;
+  border-radius: var(--br-1);
+  max-width: 50rem;
+  margin: auto;
+  margin-top: -3em;
+  border: var(--c5) 1px solid;
+}
+
+.subtitle {
+  font-size: var(--fs-3);
+  margin-bottom: 1em;
+}
+
+.codeDetails {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: min-content;
+  height: 70vh;
+}
+
+@media (max-width: 62rem) {
+  .codeDetails {
+    grid-template-columns: 1fr;
+    justify-content: center;
+    gap: 4em;
+    margin-bottom: 4rem;
+    height: 140vh;
+  }
+}
+
+.container {
+  width: 100%;
+  padding: 1em;
+  overflow-y: scroll;
+  height: 70vh;
+}
+
+.codeDetail {
+  display: grid;
+  width: 100%;
+  margin-top: .4em;
+  grid-template-columns: .5fr 1fr;
+  gap: .5em;
+}
+
+.detailName,
+.detailContent {
+  font-size: var(--fs-1);
+}
+
+.detailName {
+  font-weight: var(--fs-w-3);
+}
+
+.editor {
+  padding: .5em;
+  background-color: var(--c-editor-bg-1);
+  border-radius: var(--br-1);
+}
+
+.codeCases {
+  margin-top: 2em;
+}
+
+.case {
+  list-style: none;
+  margin-top: 1em;
+}
+
+.actionsContainer {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1.5em;
+  margin-top: 2em;
+
+}
+
+.requirements {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: .3em;
+}
+
+.requeriment {
+  font-size: var(--fs-1);
+}

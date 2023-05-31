@@ -15,10 +15,10 @@ const difficulties: IDifficulties = {
   4: { tag: 'Insane', class: styles.insane },
 };
 
-export const CreatorChallenge: FC<IChallengeRequestSearch> = ({ _id, slug, language, difficulty, reason, createdAt }) => {
+export const CreatorChallenge: FC<IChallengeRequestSearch> = ({ slug, language, difficulty, reason, createdAt }) => {
   return (
     <Link
-      href={`/admin/requests/detail/${_id}`}
+      href={`/admin/requests/${language}/${slug.toLowerCase()}`}
       className={`${styles.challengeCard} animate__animated animate__fadeIn`}
     >
       <div className={styles.imageContainer}>
