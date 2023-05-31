@@ -21,9 +21,14 @@ const challengeRequest = new Schema({
   status: { type: Number, default: 1, required: true },
   reason: { type: String, required: true },
   creatorId: {
-    type: String,
+    type: Schema.Types.ObjectId,
     ref: 'User',
     required: true,
+  },
+  staffId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: false,
   },
 }, {
   timestamps: true,

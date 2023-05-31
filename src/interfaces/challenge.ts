@@ -23,6 +23,7 @@ export interface IChallengeRequest extends IChallenge {
   solution: string;
   reason: 'create' | 'update';
   status: number;
+  staffId: string;
   updatedAt: string;
 }
 
