@@ -4,7 +4,7 @@ import { handleJavaScriptValidation, handleTypeScriptValidation, handlePythonVal
 interface Props {
   functionName: string;
   parameters: string[];
-  cases: { case: string }[];
+  cases: { call: string }[];
   code: string;
   language: string;
 }

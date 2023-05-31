@@ -52,7 +52,9 @@ const SubmitPage = () => {
       casesArray[caseNumber - 1][paramNumber - 1] = rest[key];
     });
 
-    const cases = casesArray.map((element) => {
+    const casesCleaned = casesArray.map(arr => arr.slice(0, paramCount));
+
+    const cases = casesCleaned.map((element) => {
       return { call: `${functionName}(${element.join(', ')})` }
     })
 
@@ -76,7 +78,7 @@ const SubmitPage = () => {
         instructions,
         tags,
         difficulty: difficulty.value,
-        caseSchema: casesArray,
+        caseSchema: casesCleaned,
         reason: 'create'
       };
 

@@ -1,8 +1,8 @@
+import { handleValidation } from '@/compilers/helpers/validatorHandler';
 import { db } from '@/database';
 import { IChallengeRequest } from '@/interfaces';
 import { ChallengeRequest } from '@/models';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import csv from 'csv-parser' ;
 
 type Data = {
   error: string
@@ -22,42 +22,45 @@ const closeChallengeRequest = async (req: NextApiRequest, res: NextApiResponse<D
     await db.connect();
 
     const { approved } = req.body;
-    console.log({ approved });
     if (!(typeof approved === 'boolean')) return res.status(400).json({ error: 'Summary invalid' });
 
     const { id } = req.query;
 
-    console.log({ id });
 
     const challenge: IChallengeRequest | null = await ChallengeRequest.findById(id);
     if (!challenge || challenge.status > 1) return res.status(404).json({ error: 'Invalid challenge' });
 
-    const { parametersCount, cases, functionName, ...rest } = challenge;
+    const { parametersCount, caseSchema, cases: newCases, functionName, parameters, language, code } = challenge;
 
-    const newCases = cases.map(({ call }) => {
-      const output = call.replace(/\w+\(([^)]+)\)/g, '$1');
-      return [output];
-    })
-
-    const separatedArray = newCases.map(([element]) => {
-      const params = element.split(',').map(param => param.trim().replace(/^['"]|['"]$/g, ''));
-      return params;
+    const randomCases = Array(3/** caseSchema[0].length*/).fill('').map(_ => {
+      return (
+        Array(caseSchema[0].length).fill('').map((_, i) => {
+          const caseRandom = Math.floor(Math.random() * caseSchema.length);
+          return caseSchema[caseRandom][i];
+        })
+      )
     });
 
-    separatedArray.forEach(e => console.log(e.length))
+    console.log({ caseID: newCases });
 
+    const cases = [
+      ...newCases.map(cse => ({ call: cse.call })),
+      ...randomCases.map(element => ({ call: `${functionName}(${element.join(', ')})` }))
+    ];
 
+    const { hasError, data } = await handleValidation({
+      cases,
+      functionName,
+      parameters,
+      language,
+      code: code!
+    });
 
-    console.log({ separatedArray });
+    console.log({ cases });
 
-    const opArray = separatedArray.map(element => {
-      console.log((`${functionName}(${element.join(', ')})`));
-      return (`${functionName}(${element.join(', ')})`);
-    })
+    console.log({ hasError, data });
 
-
-    // res.status(200).json({ challenge });
-    res.status(200).json({ error: 'no' });
+    res.status(200).json(data);
   } catch (error) {
     console.error({ error });
     res.status(400).json({ error: 'Unexpected error' });
