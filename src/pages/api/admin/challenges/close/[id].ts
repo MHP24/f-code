@@ -1,9 +1,10 @@
 import { handleValidation } from '@/compilers/helpers/validatorHandler';
 import { db } from '@/database';
-import { IChallengeRequest } from '@/interfaces';
+import { IChallengeRequest, ISession } from '@/interfaces';
 import { Challenge, ChallengeRequest, User } from '@/models';
 import mongoose from 'mongoose';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { getSession } from 'next-auth/react';
 
 type Data = {
   error: string
@@ -30,10 +31,13 @@ const closeChallengeRequest = async (req: NextApiRequest, res: NextApiResponse<D
     const challenge: IChallengeRequest | null = await ChallengeRequest.findById(id);
     if (!challenge || challenge.status > 1) return res.status(404).json({ error: 'Invalid challenge' });
 
-    //GET ID FROM SESSION TO SAVE AS STAFFID
+    const session = await getSession({ req });
+    if (!session) return res.status(400).json({ error: 'Unauthorized action' });
+
+    const { user } = session as ISession;
 
     if (!approved) {
-      await ChallengeRequest.findByIdAndUpdate(id, { status: 2 });
+      await ChallengeRequest.findByIdAndUpdate(id, { status: 2, staffId: new mongoose.Types.ObjectId(`${user._id}`) });
       return res.status(200).json({ id: `${id}` });
     }
 
@@ -43,7 +47,7 @@ const closeChallengeRequest = async (req: NextApiRequest, res: NextApiResponse<D
       instructions, difficulty, code, tags
     } = challenge;
 
-    const randomCases = Array(3/** caseSchema[0].length*/).fill('').map(_ => {
+    const randomCases = Array(3).fill('').map(_ => {
       return (
         Array(caseSchema[0].length).fill('').map((_, i) => {
           const caseRandom = Math.floor(Math.random() * caseSchema.length);
@@ -99,10 +103,14 @@ const closeChallengeRequest = async (req: NextApiRequest, res: NextApiResponse<D
         instructions,
         difficulty,
         tags,
-        caseSchema: publishCaseSchema
+        caseSchema: publishCaseSchema,
       }).save();
 
-      await ChallengeRequest.findByIdAndUpdate(id, { status: 3 });
+
+      await ChallengeRequest.findByIdAndUpdate(id, {
+        status: 3,
+        staffId: new mongoose.Types.ObjectId(`${user._id}`)
+      });
       await User.updateOne({ _id: creatorId }, { $inc: { challengesCreated: 1 } });
       return res.status(200).json({ id: `${id}` });
     }
@@ -113,7 +121,8 @@ const closeChallengeRequest = async (req: NextApiRequest, res: NextApiResponse<D
         solution: code,
         instructions,
         tags,
-        caseSchema: publishCaseSchema
+        caseSchema: publishCaseSchema,
+        staffId: new mongoose.Types.ObjectId(`${user._id}`)
       });
       await ChallengeRequest.findByIdAndUpdate(id, { status: 3 });
       return res.status(200).json({ id: `${id}` });
