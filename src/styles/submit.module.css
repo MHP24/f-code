@@ -114,6 +114,13 @@
   height: 100%;
 }
 
+.case {
+  display: flex;
+  max-width: 400px;
+  overflow-x: auto;
+  gap: 1em;
+}
+
 .results {
   background-color: var(--c2);
   overflow: scroll;

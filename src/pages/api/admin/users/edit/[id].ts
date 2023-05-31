@@ -1,8 +1,6 @@
 import { db } from '@/database';
-import { ISession } from '@/interfaces';
 import { User } from '@/models';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getSession } from 'next-auth/react';
 
 type Data = {
   error: string

@@ -16,6 +16,7 @@ const challengeRequest = new Schema({
       expectedOutput: Schema.Types.Mixed,
     }], required: true
   },
+  caseSchema: { type: Schema.Types.Mixed, required: true },
   code: { type: String, required: true },
   tags: { type: [String], required: true },
   status: { type: Number, default: 1, required: true },

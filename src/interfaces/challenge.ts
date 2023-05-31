@@ -42,6 +42,6 @@ export interface IChallengeContext {
 }
 
 export interface IChallengeRequestSearch extends IChallengeRequest {
-  code: string;
+  code?: string;
   createdAt?: string;
 }

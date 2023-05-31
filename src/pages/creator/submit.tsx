@@ -10,17 +10,13 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { regExValidators } from '@/utils';
 import { fCodeApi } from '@/api';
 import axios from 'axios';
-import { useRouter } from 'next/router';
 
 interface Inputs {
   challengeName: string;
-  parameterCount: number;
+  parameterCount: string;
   parameters: string;
   functionName: string;
-  case1: string;
-  case2: string;
-  case3: string;
-  case4: string;
+  [key: string]: string;
 };
 
 const SubmitPage = () => {
@@ -31,29 +27,46 @@ const SubmitPage = () => {
   const [instructions, setInstructions] = useState<string>('_Write your description here..._');
   const [code, setCode] = useState<string>('');
   const [outputs, setOutputs] = useState<{ execution: any }[] | null>(null);
-  const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
-  const router = useRouter();
-
+  const { register, watch, handleSubmit, formState: { errors } } = useForm<Inputs>({
+    defaultValues: {
+      parameterCount: '1'
+    }
+  });
+  const paramCount = Number(watch('parameterCount'));
 
   const onSubmit: SubmitHandler<Inputs> = async (formData) => {
-    if (!code || !instructions || tags.length < 2) return;
 
+    const {
+      challengeName, parameterCount,
+      parameters, functionName, ...rest } = formData;
+
+    const casesArray: string[][] = [];
+
+    Object.keys(rest).forEach(key => {
+      const [caseKey, paramKey] = key.split("param");
+      const caseNumber = Number(caseKey.slice(4));
+      const paramNumber = Number(paramKey);
+      if (!casesArray[caseNumber - 1]) {
+        casesArray[caseNumber - 1] = [];
+      }
+      casesArray[caseNumber - 1][paramNumber - 1] = rest[key];
+    });
+
+    const cases = casesArray.map((element) => {
+      return { call: `${functionName}(${element.join(', ')})` }
+    })
+
+    if (!code || !instructions || tags.length < 2) return;
     const initialData = {
       ...formData,
-      cases: [
-        { call: formData.case1 },
-        { call: formData.case2 },
-        { call: formData.case3 },
-        { call: formData.case4 }
-      ],
+      cases,
       code,
       technology: technology.value
     }
 
     try {
-      const { data: { outputs } } = await fCodeApi.post('/creators/challenges/test?type=create', initialData)
+      const { data: { outputs } } = await fCodeApi.post('/creators/challenges/test?type=create', initialData);
       setOutputs(outputs);
-      // setOutput(outputs.map(({ execution }: any) => `${execution}`).join(', \n'));
 
       const submitData = {
         ...initialData,
@@ -63,24 +76,13 @@ const SubmitPage = () => {
         instructions,
         tags,
         difficulty: difficulty.value,
+        caseSchema: casesArray,
         reason: 'create'
       };
 
       await fCodeApi.post('/creators/challenges/submit?type=create', submitData);
 
-
-      //TODO Redirect to creator pannel || show modal
-
-      // setTimeout(() => {
-      //   router.push('/challenges');
-      // }, 2000);
-
     } catch (error) {
-      // setOutput(
-      //   axios.isAxiosError(error) ?
-      //     `${error.response?.data.error}`
-      //     : 'Unexpected error'
-      // )
 
       setOutputs(
         [{
@@ -247,37 +249,30 @@ const SubmitPage = () => {
               <h3 className={styles.recommendationsTitle}>Test your solution</h3>
               <div className={styles.casesContainer}>
                 <div className={styles.cases}>
-                  <div>
-                    <FormInput
-                      placeHolder='exampleFunction()'
-                      {...register('case1', { required: true })}
-                    />
-                    {errors.case1?.type === 'required' && <ErrorLabel text={'This field is required'} />}
-                  </div>
 
-                  <div>
-                    <FormInput
-                      placeHolder='exampleFunction()'
-                      {...register('case2', { required: true })}
-                    />
-                    {errors.case2?.type === 'required' && <ErrorLabel text={'This field is required'} />}
-                  </div>
+                  {
 
-                  <div>
-                    <FormInput
-                      placeHolder='exampleFunction()'
-                      {...register('case3', { required: true })}
-                    />
-                    {errors.case3?.type === 'required' && <ErrorLabel text={'This field is required'} />}
-                  </div>
+                    Array(Number(4)).fill('').map((_, i) => {
+                      return (
+                        <div className={styles.case} key={`challenge-case-${i + 1}`}>
+                          {
+                            Array(Number(paramCount ?? 0 + 1)).fill('').map((_, j) => {
+                              return (
+                                <FormInput
+                                  key={`case${i + 1}param${j + 1}`}
+                                  placeHolder='?'
+                                  {...register(`case${i + 1}param${j + 1}`, { required: true })}
+                                />)
+                            })
 
-                  <div>
-                    <FormInput
-                      placeHolder='exampleFunction()'
-                      {...register('case4', { required: true })}
-                    />
-                    {errors.case4?.type === 'required' && <ErrorLabel text={'This field is required'} />}
-                  </div>
+                          }
+                        </div>
+                      )
+                    })
+
+                  }
+
+
                 </div>
 
                 <div className={styles.results}>
