@@ -34,15 +34,17 @@ const handleSubmit = async (req: NextApiRequest, res: NextApiResponse<Data>) => 
       language: technology.toLowerCase()
     });
 
-    if (req.query.type === 'create' && challenge) {
+    if (type === 'create' && challenge) {
       return res.status(400).json({ error: 'This challenge already exists' });
     }
 
-    if (req.query.type === 'update' && !challenge) {
+    if (type === 'update' && !challenge) {
       return res.status(400).json({ error: 'This challenge does not exist' });
     }
 
     const { functionName, parameterCount, parameters, cases, code } = rest;
+
+    console.log({ functionName, parameterCount, parameters, cases, code });
 
     if (!functionName || !parameterCount || !parameters || !cases || !code) {
       return res.status(400).json({ error: 'Missing fields' });

@@ -14,19 +14,17 @@ import Editor from '@monaco-editor/react';
 import { fCodeApi } from '@/api';
 import axios from 'axios';
 
+
 interface Inputs {
-  challengeName: string;
-  case1: string;
-  case2: string;
-  case3: string;
-  case4: string;
+  [key: string]: string;
 };
+
 
 const Slug: NextPage<IChallenge> = (
   { _id, slug, tags: challengeTags,
     instructions: challengeInstructions,
     functionName, parameters,
-    solution, cases, language, difficulty
+    solution, caseSchema, language, difficulty
   }) => {
 
   const [instructions, setInstructions] = useState<string>(challengeInstructions);
@@ -36,37 +34,64 @@ const Slug: NextPage<IChallenge> = (
 
   const slugFormatted = slug.replace(/\_/g, ' ').replace(/^\w/, w => w.toUpperCase());
 
-  const { register, handleSubmit, formState: { errors } } = useForm<Inputs>({
+  let paramCases = {};
+
+  Array(4).fill('').forEach((_, i) => {
+    return Array((parameters.length ?? 0)).fill('').forEach((_, j) => {
+      const propertyName = `case${i + 1}param${j + 1}`;
+      const propertyValue = caseSchema[i][j];
+      const obj: Inputs = {};
+      obj[propertyName] = propertyValue;
+      paramCases = { ...paramCases, ...obj };
+    });
+  });
+
+
+  const { register, handleSubmit } = useForm<Inputs>({
     defaultValues: {
       challengeName: slugFormatted,
-      case1: cases[0].call,
-      case2: cases[1].call,
-      case3: cases[2].call,
-      case4: cases[3]?.call ?? ''
+      ...paramCases
+
     }
   });
 
   const onSubmit: SubmitHandler<Inputs> = async (formData) => {
-    if (!code || !instructions || tags.length < 2) return;
 
+    const {
+      challengeName, ...rest } = formData;
+
+    const casesArray: string[][] = [];
+
+    Object.keys(rest).forEach(key => {
+      const [caseKey, paramKey] = key.split("param");
+      const caseNumber = Number(caseKey.slice(4));
+      const paramNumber = Number(paramKey);
+      if (!casesArray[caseNumber - 1]) {
+        casesArray[caseNumber - 1] = [];
+      }
+      casesArray[caseNumber - 1][paramNumber - 1] = rest[key];
+    });
+
+    const casesCleaned = casesArray.map(arr => arr.slice(0, parameters.length));
+
+    const cases = casesCleaned.map((element) => {
+      return { call: `${functionName}(${element.join(', ')})` }
+    })
+
+    if (!code || !instructions || tags.length < 2) return;
     const initialData = {
       ...formData,
-      cases: [
-        { call: formData.case1 },
-        { call: formData.case2 },
-        { call: formData.case3 },
-        { call: formData.case4 }
-      ],
+      challengeName: slug,
+      cases,
       code,
-      functionName,
-      parameterCount: parameters.length,
-      parameters: `${parameters.join(', ')}`,
       technology: language,
-      difficulty
+      parameterCount: parameters.length,
+      parameters: parameters.join(', '),
+      functionName
     }
 
     try {
-      const { data: { outputs } } = await fCodeApi.post('/creators/challenges/test?type=update', initialData)
+      const { data: { outputs } } = await fCodeApi.post('/creators/challenges/test?type=update', initialData);
       setOutputs(outputs);
 
       const submitData = {
@@ -76,7 +101,8 @@ const Slug: NextPage<IChallenge> = (
         }),
         instructions,
         tags,
-        reason: 'update'
+        difficulty,
+        caseSchema: casesCleaned,
       };
 
       await fCodeApi.post('/creators/challenges/submit?type=update', submitData);
@@ -112,19 +138,6 @@ const Slug: NextPage<IChallenge> = (
 
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.formStep1Update}>
-          <div className={styles.formBasicUpdate}>
-            <div className={styles.challengeName}>
-              <FormInput
-                placeHolder='example name'
-                label='Challenge name'
-                {...register('challengeName', { pattern: regExValidators.charactersNumbersSpaces, required: true })}
-              />
-
-              {errors.challengeName?.type === 'required' && <ErrorLabel text={'This field is required'} />}
-              {errors.challengeName?.type === 'pattern' && <ErrorLabel text={'Invalid challenge name'} />}
-            </div>
-          </div>
-
           <TagSelector
             setTagsSelected={setTags}
             tagsSelected={tags}
@@ -186,37 +199,29 @@ const Slug: NextPage<IChallenge> = (
               <h3 className={styles.recommendationsTitle}>Test your solution</h3>
               <div className={styles.casesContainer}>
                 <div className={styles.cases}>
-                  <div>
-                    <FormInput
-                      placeHolder='exampleFunction()'
-                      {...register('case1', { required: true })}
-                    />
-                    {errors.case1?.type === 'required' && <ErrorLabel text={'This field is required'} />}
-                  </div>
 
-                  <div>
-                    <FormInput
-                      placeHolder='exampleFunction()'
-                      {...register('case2', { required: true })}
-                    />
-                    {errors.case2?.type === 'required' && <ErrorLabel text={'This field is required'} />}
-                  </div>
+                  {
 
-                  <div>
-                    <FormInput
-                      placeHolder='exampleFunction()'
-                      {...register('case3', { required: true })}
-                    />
-                    {errors.case3?.type === 'required' && <ErrorLabel text={'This field is required'} />}
-                  </div>
+                    Array(Number(4)).fill('').map((_, i) => {
+                      return (
+                        <div className={styles.case} key={`challenge-case-${i + 1}`}>
+                          {
+                            Array(Number(parameters.length ?? 0 + 1)).fill('').map((_, j) => {
+                              return (
+                                <FormInput
+                                  key={`case${i + 1}param${j + 1}`}
+                                  placeHolder='?'
+                                  {...register(`case${i + 1}param${j + 1}`, { required: true })}
+                                />)
+                            })
+                          }
+                        </div>
+                      )
+                    })
 
-                  <div>
-                    <FormInput
-                      placeHolder='exampleFunction()'
-                      {...register('case4', { required: true })}
-                    />
-                    {errors.case4?.type === 'required' && <ErrorLabel text={'This field is required'} />}
-                  </div>
+                  }
+
+
                 </div>
 
                 <div className={styles.results}>
@@ -273,7 +278,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, params }) =>
 
     const challenge = await Challenge
       .findOne({ creatorId: user._id, language, slug })
-      .select('_id slug tags instructions functionName parameters solution cases difficulty')
+      .select('_id slug tags instructions functionName parameters solution caseSchema difficulty')
       .lean();
 
     if (!challenge) {
@@ -291,11 +296,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req, params }) =>
       props: {
         ...rest,
         _id: _id.toString(),
-        cases: cases.map(({ call }) => {
-          return {
-            call
-          }
-        }),
         language
       }
     }

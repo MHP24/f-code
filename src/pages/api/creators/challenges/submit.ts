@@ -52,7 +52,8 @@ const submit = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       language: technology,
       parameters: parameters.replace(/\s+/g, '').split(','),
       parametersCount: Number(parameterCount),
-      creatorId: user!._id
+      creatorId: user!._id,
+      reason: type
     }).save();
 
     res.status(200).json({ status: 'Request sent successfully' });

@@ -11,6 +11,7 @@ export interface IChallenge {
   instructions: string;
   functionName: string;
   parameters: string[];
+  caseSchema: string[];
   cases: ICaseSchema[];
   solution: string;
   tags: string[];
@@ -20,7 +21,7 @@ export interface IChallenge {
 }
 
 export interface IChallengeRequest extends IChallenge {
-  caseSchema: string[];
+  // caseSchema: string[];
   parametersCount: number;
   solution: string;
   reason: 'create' | 'update';

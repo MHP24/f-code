@@ -79,7 +79,6 @@ const SubmitPage = () => {
         tags,
         difficulty: difficulty.value,
         caseSchema: casesCleaned,
-        reason: 'create'
       };
 
       await fCodeApi.post('/creators/challenges/submit?type=create', submitData);

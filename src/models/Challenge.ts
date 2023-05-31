@@ -15,11 +15,12 @@ const challengeSchema = new Schema({
       expectedOutput: Schema.Types.Mixed,
     }], required: true
   },
+  caseSchema: { type: Schema.Types.Mixed, required: true },
   solution: { type: String, required: true },
   tags: { type: [String], required: true },
   active: { type: Boolean, default: true, required: true },
   creatorId: {
-    type: String,
+    type: Schema.Types.ObjectId,
     ref: 'User',
     required: true,
   },
