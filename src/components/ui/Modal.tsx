@@ -21,7 +21,7 @@ export const Modal: FC<PropsWithChildren<Props>> =
         {
           open &&
           <div className={styles.modal}>
-            <div className={`${styles.modalContent} animate__animated animate__fadeIn`}>
+            <div className={`${styles.modalContent} animate__animated animate__zoomIn`}>
               <button
                 className={styles.closeBtn}
                 onClick={() => setModal((prev) => ({ ...prev, isOpen: false }))}

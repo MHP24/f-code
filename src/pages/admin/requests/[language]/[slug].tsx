@@ -7,7 +7,8 @@ import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import Editor from '@monaco-editor/react';
-import { Button } from '@/components/ui';
+import { Button, Modal } from '@/components/ui';
+import { useState } from 'react';
 
 interface Props {
   data: IChallengeRequestSearch;
@@ -26,13 +27,70 @@ const difficulties: IDifficulties = {
 
 
 const ChallengeRequestDetailPage: NextPage<Props> = ({ data }) => {
+  const [modal, setModal] = useState({
+    isOpen: false,
+    content: '',
+  });
 
-  console.log({ data });
+  const closeModal = () => {
+    setModal({ ...modal, isOpen: false })
+  }
+
+
+  const closeApplication = (approved: boolean) => {
+    setModal({
+      ...modal,
+      isOpen: true,
+      content: approved ? 'approve' : 'reject'
+    })
+  }
+
+  const confirmAction = async (status: string, reason: string) => {
+    try {
+
+      console.log({ status, reason });
+
+    } catch (error) {
+    } finally {
+    }
+  }
+
+
   return (
     <AdminLayout
       pageDescription='Request details'
       title='Request details'
     >
+
+      <Modal
+        open={modal.isOpen}
+        setModal={setModal}
+      >
+        <div>
+          <p className={styles.message}>
+            {`Are you sure to ${modal.content} ${data.reason} action for 
+            "${data.slug.replace(/\_/g, ' ').replace(/^\w/, w => w.toUpperCase())}" ?`}
+          </p>
+          <div className={styles.modalActions}>
+            <Button
+              size={.8}
+              text='Confirm'
+              w={100}
+              fn={() => confirmAction(modal.content, data.reason)}
+            />
+
+            <Button
+              size={.8}
+              text='Cancel'
+              w={100}
+              variant
+              fn={() => closeModal()}
+            />
+
+          </div>
+        </div>
+      </Modal>
+
       <div className={styles.requestDetailContainer}>
         <section className={`${styles.step} ${styles.basicDetails}`}>
           <div className={styles.basic}>
@@ -141,6 +199,7 @@ const ChallengeRequestDetailPage: NextPage<Props> = ({ data }) => {
               text='Approve'
               size={.9}
               w={150}
+              fn={() => closeApplication(true)}
             />
 
             <Button
@@ -148,6 +207,7 @@ const ChallengeRequestDetailPage: NextPage<Props> = ({ data }) => {
               size={.9}
               variant
               w={150}
+              fn={() => closeApplication(false)}
             />
           </div>
         </section>

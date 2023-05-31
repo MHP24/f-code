@@ -124,12 +124,12 @@ code {
   font-weight: var(--fs-w-2);
 }
 
-.monaco-editor-background {
-  background-color:red;
+.animate__animated.animate__fadeIn{
+  --animate-duration: .3s;
 }
 
-.animate__animated.animate__fadeIn {
-  --animate-duration: .3s;
+.animate__zoomIn  {
+  --animate-duration: .25s
 }
 
 @media (max-width: 43rem) {

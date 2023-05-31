@@ -177,3 +177,15 @@
 .requeriment {
   font-size: var(--fs-1);
 }
+
+.message {
+  text-align: center;
+  font-size: var(--fs-1);
+}
+
+.modalActions {
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+  margin-top: 2em;
+}

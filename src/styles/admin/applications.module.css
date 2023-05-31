@@ -114,6 +114,7 @@
 /* Modal */
 .message {
   text-align: center;
+  font-size: var(--fs-1);
 }
 
 
