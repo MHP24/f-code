@@ -13,3 +13,4 @@ export * from './creator';
 export * from './report';
 export * from './creatorRequest';
 export * from './profile';
+export * from './dashboard';
