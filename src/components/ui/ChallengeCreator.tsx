@@ -23,9 +23,10 @@ interface Props {
   slug: string;
   language: string;
   difficulty: number;
+  isEditable?: boolean;
 }
 
-export const ChallengeCreator: FC<Props> = ({ _id, slug, language, difficulty }) => {
+export const ChallengeCreator: FC<Props> = ({ _id, slug, language, difficulty, isEditable = true }) => {
   const handleDownload = async () => {
     try {
       const { data } = await fCodeApi.get<IChallengeReport[]>(`/reports/challenges/${_id}`);
@@ -61,14 +62,21 @@ export const ChallengeCreator: FC<Props> = ({ _id, slug, language, difficulty })
           />
         </Link>
 
-        <Link href={`/creator/edit/${language}/${slug}`} className={styles.option}>
-          <Image
-            width={25}
-            height={25}
-            alt='edit'
-            src={'/illustrations/edit.svg'}
-          />
-        </Link>
+        {
+          isEditable &&
+
+          <Link href={`/creator/edit/${language}/${slug}`} className={styles.option}>
+            <Image
+              width={25}
+              height={25}
+              alt='edit'
+              src={'/illustrations/edit.svg'}
+            />
+          </Link>
+
+        }
+
+
 
         <button className={styles.option}
           onClick={handleDownload}

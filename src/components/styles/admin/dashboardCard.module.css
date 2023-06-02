@@ -1,0 +1,30 @@
+.dashboardCard {
+  padding: 1em;
+  background-color: var(--c2);
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 2em;
+  align-items: center;
+  width: 100%;
+  border-radius: var(--br-1);
+  transition: .2s background-color;
+}
+
+.dashboardCard:hover {
+  background-color: var(--c2-hover);
+}
+
+.image {
+  height: 100%;
+  width: 100%;
+}
+
+.title {
+  font-size: var(--fs-2);
+  font-weight: var(--fs-w-2);
+}
+
+.subtitle {
+  font-size: var(--fs-4);
+  font-weight: var(--fs-w-1);
+}

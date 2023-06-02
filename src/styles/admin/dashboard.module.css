@@ -1,0 +1,132 @@
+.rootDashboard {
+  overflow: auto;
+  height: 100vh;
+  scrollbar-width: none !important;
+  gap: 5em;
+  padding-bottom: 4em;
+}
+
+.rootDashboard::-webkit-scrollbar {
+  display: none;
+}
+
+.rootDashboard {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.counters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2em;
+}
+
+.greet {
+  margin-top: 1em;
+  font-size: var(--fs-4);
+}
+
+.greetMsg {
+  font-size: var(--fs-2);
+  margin-bottom: 1em;
+  font-weight: var(--fs-w-1);
+}
+
+.dashboardCentral {
+  display: grid;
+  grid-template-columns: 1fr .4fr;
+  gap: 2em;
+  margin: 0;
+}
+
+.dashboardGraph {
+  height: 50vh;
+  width: 100%;
+  background-color: var(--c2);
+  border: var(--c3) 1px solid;
+  padding: 1em;
+  border-radius: var(--br-1);
+}
+
+.hr {
+  opacity: .1;
+}
+
+.lisItem {
+  list-style: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.title {
+  font-size: var(--fs-3);
+  font-weight: var(--fs-w-3);
+  margin-bottom: 1em;
+}
+
+.dashboardData {
+  width: 100%;
+  margin-bottom: 4em;
+}
+
+.recentUsers,
+.recentChallenges {
+  display: flex;
+  flex-direction: column;
+  gap: .7em;
+}
+
+.recentUsers {
+  width: 100%;
+}
+
+.user {
+  display: grid;
+  grid-template-columns: 1fr .3fr;
+  background-color: var(--c2);
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  padding: .7em 1.5em;
+}
+
+.provider {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.userPicture {
+  border-radius: 50%;
+}
+
+.userCardSide {
+  display: flex;
+  gap: 2em;
+  align-items: center;
+  width: 100%;
+}
+
+.userData {
+  font-size: var(--fs-1);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.username {
+  font-weight: var(--fs-w-3);
+}
+
+.userDataRole {
+  font-weight: var(--fs-w-1);
+  text-transform: capitalize;
+  font-size: .8rem;
+}
+
+
+
+

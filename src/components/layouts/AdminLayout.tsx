@@ -47,14 +47,13 @@ export const AdminLayout: FC<PropsWithChildren<Props>> = ({ children, title, pag
                     alt={`${data?.user.username}`}
                     className={styles.profilePicture}
                   />
-                  {/* <p className={styles.profileUsername}>{`${data?.user.username}`.slice(0, 15)}</p> */}
                 </div>
               }
 
 
             </div>
           </header>
-          <div className={styles.childrenContainer}>
+          <div className={`${styles.childrenContainer} animate__animated animate__fadeIn`}>
             {children}
           </div>
         </main>

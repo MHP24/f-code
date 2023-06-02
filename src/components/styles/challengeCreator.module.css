@@ -20,6 +20,8 @@
 .dataContent {
   width: 100%;
   font-size: var(--fs-1);
+  white-space: nowrap;
+  overflow: hidden;
 } 
 
 .difficulty {
@@ -49,8 +51,11 @@
 
 
 .challengeOptions {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* display: grid; */
+  /* grid-template-columns: repeat(3, 1fr); */
+  display: flex;
+  justify-content: center;
+  gap: 1em;
   align-items: center;
   place-items: center;
 }
