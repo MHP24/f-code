@@ -1,14 +1,17 @@
 .challengePanel {
   display: flex;
   height: 93vh;
-  position: relative;
   display: grid;
   grid-template-columns: 1fr .7fr;
 }
 
+.editorContainer {
+  position: relative;
+}
+
 .editorLanguage {
   position: absolute;
-  z-index: 3;
+  z-index: 1;
   top: 2%;
   right: 3%;
   border-radius: var(--br-1);

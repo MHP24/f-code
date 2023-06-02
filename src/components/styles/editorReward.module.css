@@ -1,0 +1,11 @@
+.solveTitle {
+  text-align: center;
+  font-size: var(--fs-2);
+  margin-bottom: 1em;
+}
+
+.editorSolution {
+  background-color: var(--c-editor-bg-1);
+  padding: 1em;
+  border-radius: var(--br-1);
+}

@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import { TestDropdown } from '.';
+import { FC, useState } from 'react';
+import { EditorReward, Modal, TestDropdown } from '.';
 import styles from '../styles/testPanel.module.css';
 import { ISummaryCase } from '@/interfaces';
 
@@ -9,9 +9,9 @@ interface Props {
 }
 
 export const TestPanel: FC<Props> = ({ errors, cases }) => {
+
   return (
     <div className={`${styles.testPanel} animate__animated animate__fadeIn`}>
-
       {
         errors > 0 ?
           <h2 className={`${styles.title} ${styles.failedTitle}`}>{`✘ ${errors} test${errors > 1 ? 's' : ''} didn't pass`}</h2>

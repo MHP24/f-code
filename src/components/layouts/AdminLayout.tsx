@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren, useContext } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { AdminNavbar } from '../ui';

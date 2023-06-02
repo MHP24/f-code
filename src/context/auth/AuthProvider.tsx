@@ -39,7 +39,9 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
     }
   }
 
-  const logoutUser = () => signOut();
+  const logoutUser = () => signOut({
+    callbackUrl: '/'
+  });
 
   return (
     <AuthContext.Provider

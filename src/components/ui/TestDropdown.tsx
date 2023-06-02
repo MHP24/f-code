@@ -16,26 +16,28 @@ export const TestDropdown: FC<Props> = ({
   expectedType, caseStructure, output
 }) => {
   const [showContent, setshowContent] = useState<boolean>(false);
-
   const { isNative } = useContext(ChallengeContext);
 
   return (
     <div className={styles.testDropdown}>
-      <div className={`${styles.header} ${!showContent ? passed ? styles.headerSuccess : styles.headerFailed : ''}`}
-        onClick={() => setshowContent(!showContent)}
+      <div className={`${styles.header} ${caseNumber < 5 && !showContent ? passed ? styles.headerSuccess : styles.headerFailed : ''}`}
+        onClick={() => caseNumber < 5 && setshowContent(!showContent)}
         role='button'
       >
         <div className={passed ? styles.successCircle : styles.failedCircle}></div>
         <p className={passed ? styles.successTitle : styles.failedTitle}>{`Test #${caseNumber}`}</p>
         {
-          showContent ?
-            <p className={`${styles.arrow} ${passed ? styles.arrowSuccess : styles.arrowFailed}`}>{'︿'}</p>
+          caseNumber < 5 ?
+            showContent ?
+              <p className={`${styles.arrow} ${passed ? styles.arrowSuccess : styles.arrowFailed}`}>{'︿'}</p>
+              :
+              <p className={`${styles.arrow} ${passed ? styles.arrowSuccess : styles.arrowFailed}`}>{'﹀'}</p>
             :
-            <p className={`${styles.arrow} ${passed ? styles.arrowSuccess : styles.arrowFailed}`}>{'﹀'}</p>
+            <p>{'🔒'}</p>
         }
       </div>
       {
-        showContent && (
+        showContent && caseNumber < 5 && (
           <div className={styles.body}>
             <code className={styles.code}>
               <p>Test: {caseStructure}</p>

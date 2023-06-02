@@ -8,6 +8,7 @@ import { IExecutionState, IExecutionSummary } from '@/interfaces';
 interface Props {
   instructions: string;
   solveData: IExecutionState;
+  solution: string;
 }
 
 export const ChallengeData: FC<Props> = memo(({ instructions, solveData }) => {

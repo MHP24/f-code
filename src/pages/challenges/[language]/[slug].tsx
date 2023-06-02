@@ -1,11 +1,12 @@
-import { useContext, useRef } from 'react';
-import { AuthContext } from '@/context';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { GetServerSideProps, NextPage } from 'next';
+import Image from 'next/image';
+import { AuthContext } from '@/context';
 import { getSession } from 'next-auth/react';
 import Editor from '@monaco-editor/react';
 import { editor } from 'monaco-editor';
 import { ChallengeLayout } from '@/components/layouts';
-import { Button, ChallengeData } from '@/components/ui';
+import { Button, ChallengeData, EditorReward, Modal } from '@/components/ui';
 import { fCodeApi } from '@/api';
 import { buildFunction } from '@/utils';
 import { db } from '@/database';
@@ -13,7 +14,7 @@ import { Solve } from '@/models';
 import styles from '../../../styles/challenge.module.css';
 import { useRouter } from 'next/router';
 import { useSubmit } from '@/hooks';
-import Image from 'next/image';
+import { IExecutionSummary } from '@/interfaces';
 
 interface Props {
   _id: string;
@@ -24,11 +25,12 @@ interface Props {
   difficulty: number;
   initialValue: string;
   isCompleted: boolean;
+  solution: string;
 }
 
 const Challenge: NextPage<Props> = (
   { _id, creatorId, language, slug,
-    instructions, difficulty, initialValue, isCompleted }) => {
+    instructions, difficulty, initialValue, isCompleted, solution }) => {
 
   const { isLoggedIn, user } = useContext(AuthContext);
   const { submitCode, execution } = useSubmit(language);
@@ -36,6 +38,25 @@ const Challenge: NextPage<Props> = (
   const router = useRouter();
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
   const handleEditor = (editor: editor.IStandaloneCodeEditor) => editorRef.current = editor;
+
+  console.log('Render...')
+
+  const [modal, setModal] = useState({
+    isOpen: false,
+    content: ''
+  });
+
+  console.log({ modal });
+
+  useEffect(() => {
+    if (!execution.isExecuting) {
+      const { data } = execution as { data: IExecutionSummary };
+      setModal(prevModal => ({
+        ...prevModal,
+        isOpen: data.errors === 0,
+      }))
+    }
+  }, [execution])
 
   return (
     <ChallengeLayout
@@ -46,6 +67,19 @@ const Challenge: NextPage<Props> = (
       isCompleted={isCompleted}
     >
       <div className={styles.challengePanel}>
+
+
+        <Modal
+          open={modal.isOpen}
+          setModal={setModal}
+        >
+          <EditorReward
+            solution={solution}
+            language={language}
+            title='Challenge completed! Here you have another solution!'
+          />
+        </Modal>
+
         <div className={styles.editorContainer}>
           <Image
             className={styles.editorLanguage}
@@ -94,6 +128,7 @@ const Challenge: NextPage<Props> = (
         <ChallengeData
           instructions={instructions}
           solveData={execution}
+          solution={solution}
         />
 
 

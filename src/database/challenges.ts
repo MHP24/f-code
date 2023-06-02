@@ -11,7 +11,7 @@ export const getChallenges = async (language: string, slug: string, page: number
       limit: 2,
       select: `
         _id slug language difficulty tags
-        ${slug && language && 'creatorId instructions functionName cases parameters'}
+        ${slug && language && 'creatorId instructions functionName cases parameters solution'}
       `,
     };
     const challenges = await Challenge.paginate({

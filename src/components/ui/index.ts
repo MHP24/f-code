@@ -28,6 +28,7 @@ export * from './Modal';
 export * from './NavbarChallenge';
 export * from './ChallengeProfile';
 export * from './LanguageProgress';
+export * from './EditorReward';
 
 
 export * from './admin';
