@@ -112,13 +112,23 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  overflow-x: auto;
 }
 
 .case {
+  gap: 2em;
   display: flex;
-  max-width: 400px;
-  overflow-x: auto;
-  gap: 1em;
+  justify-content: center;
+  background-color: var(--c2);
+}
+
+.case > * {
+  min-width: 250px;
+}
+
+.caseNoBg {
+  justify-content: flex-start;
+  background-color: transparent;
 }
 
 .results {

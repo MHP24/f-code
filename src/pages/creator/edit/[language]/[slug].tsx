@@ -204,13 +204,13 @@ const Slug: NextPage<IChallenge> = (
 
                     Array(Number(4)).fill('').map((_, i) => {
                       return (
-                        <div className={styles.case} key={`challenge-case-${i + 1}`}>
+                        <div className={`${styles.case} ${parameters.length > 1 && styles.caseNoBg}`} key={`challenge-case-${i + 1}`}>
                           {
                             Array(Number(parameters.length ?? 0 + 1)).fill('').map((_, j) => {
                               return (
                                 <FormInput
                                   key={`case${i + 1}param${j + 1}`}
-                                  placeHolder='?'
+                                  placeHolder={`Case ${i + 1}, Arg ${j + 1}`}
                                   {...register(`case${i + 1}param${j + 1}`, { required: true })}
                                 />)
                             })
