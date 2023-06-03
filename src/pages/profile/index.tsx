@@ -1,15 +1,16 @@
-import { NextPage } from 'next';
-import { MainLayout } from '@/components/layouts';
-import { useSession } from 'next-auth/react';
 import { useContext, useEffect, useState } from 'react';
+import { NextPage } from 'next';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { Toaster } from 'react-hot-toast';
+import { useSession } from 'next-auth/react';
+import { MainLayout } from '@/components/layouts';
 import { IProfileData, ISession } from '@/interfaces';
 import { fCodeApi } from '@/api';
 import styles from '@/styles/profile.module.css';
 import { Button, ChallengeProfile, LanguageProgress, LeaderboardCard } from '@/components/ui';
-import Image from 'next/image';
 import { AuthContext } from '@/context';
-import { useRouter } from 'next/router';
-
+import { toaster } from '@/utils';
 
 interface IStateProfile {
   isLoading: boolean;
@@ -17,7 +18,6 @@ interface IStateProfile {
 }
 
 const ProfilePage: NextPage = () => {
-
   const [profileData, setProfileData] = useState<IStateProfile>({
     isLoading: true,
     data: null
@@ -25,6 +25,7 @@ const ProfilePage: NextPage = () => {
 
   const { user: userQuery } = useRouter().query;
   const session = useSession();
+  const userData = session?.data as ISession;
   const { logoutUser } = useContext(AuthContext);
 
 
@@ -34,10 +35,10 @@ const ProfilePage: NextPage = () => {
         if (session.data || userQuery) {
           const { user } = session.data as ISession;
           const { data } = await fCodeApi.get(`/users/profile/${userQuery ?? user._id}`);
-          setProfileData({ ...profileData, data, isLoading: false });
+          setProfileData(prevProfileData => ({ ...prevProfileData, data, isLoading: false }));
         }
       } catch (error) {
-        setProfileData({ ...profileData, data: null, isLoading: false });
+        setProfileData(prevProfileData => ({ ...prevProfileData, data: null, isLoading: false }));
       }
 
     })();
@@ -53,6 +54,10 @@ const ProfilePage: NextPage = () => {
         !profileData.isLoading && (
           profileData.data ?
             <div className={`${styles.profileContainer} animate__animated animate__fadeIn`}>
+              <Toaster
+                position='bottom-left'
+                reverseOrder={false}
+              />
               <h2 className={styles.profileTitle}>{`${profileData.data.profile.username}'s performance`}</h2>
               <section className={styles.section}>
                 <div className={styles.profileHeaderContainer}>
@@ -65,12 +70,31 @@ const ProfilePage: NextPage = () => {
                       height={220}
                     />
 
-                    <Button
-                      size={0.9}
-                      text='Sign out'
-                      fn={() => logoutUser()}
-                      w={150}
-                    />
+                    <button
+                      className={styles.shareBtn}
+                      onClick={() => {
+                        navigator.clipboard.writeText(typeof window !== 'undefined' ?
+                          window.location + (!userQuery ? `?user=${userData.user._id}` : '') : '');
+                        toaster('Profile copied to clipboard', true);
+                      }}
+                    >
+                      <Image
+                        src={'/illustrations/share.svg'}
+                        alt='share'
+                        width={35}
+                        height={35}
+                      />
+                    </button>
+                    {
+                      ((!userQuery && userData.user._id) || (userData.user._id === userQuery)) && (
+                        <Button
+                          size={0.9}
+                          text='Sign out'
+                          fn={() => logoutUser()}
+                          w={150}
+                        />
+                      )
+                    }
                   </div>
 
                   <div className={`${styles.profileItem} ${styles.profileProgress}`}>

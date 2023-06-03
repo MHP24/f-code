@@ -58,6 +58,23 @@
   text-align: center;
 }
 
+.shareBtn {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  display: grid;
+  place-items: center;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  transition: opacity .3s;
+}
+
+.shareBtn:hover {
+  opacity: .7;
+}
+
 .profileProgress {
   width: 100%;
 }
