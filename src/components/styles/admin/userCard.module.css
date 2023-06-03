@@ -1,25 +1,31 @@
 .userCard {
   display: grid;
-  grid-template-columns: 1.3fr 1.3fr .8fr .3fr .7fr;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
   align-items: center;
   justify-content: center;
   justify-items: center;
   background-color: var(--c2);
   padding: 1em;
   margin-bottom: .7em;
-  gap: 2em;
+  gap: 1em;
   border-radius: var(--br-1);
+  z-index: 1000;
 }
 
 .userData {
   width: 100%;
-  /* border: 2px red solid; */
 }
 
 .userText {
   user-select: none;
   font-size: var(--fs-1);
+  overflow: hidden;
+  width: 100%;
   white-space: nowrap;
+}
+
+.userEmail {
+  text-align: center;
 }
 
 .userProfileData,
@@ -70,7 +76,8 @@
 /* extras */
 .currentRole {
   display: grid;
-  grid-template-columns: 5rem 15px;
+  width: 100%;
+  grid-template-columns: 1fr 15px;
   align-items: center;
   gap: .4em;
 }
@@ -78,15 +85,16 @@
 .roleSelector {
   cursor: pointer;
   position: relative;
-  /* width: 100%; */
 }
 
 .roles {
+  display: flex;
+  flex-direction: column;
   position: absolute;
+  top: 100%;
   margin-top: .2em;
-  background-color: rgba(0, 0, 0, .88);
+  background-color: var(--c4);
   width: 100%;
-  z-index: 3;
   border-radius: 0 0 var(--br-1) var(--br-1);
 }
 
@@ -102,11 +110,12 @@
 }
 
 .role:hover {
-  background-color: var(--c1);
+  background-color: var(--c2-hover);
 }
-/* 
-@media (max-width: 62rem) {
-  .userCard {
-    grid-template-columns: 2fr;
+
+@media (max-width: 62rem) { 
+  .userProfileData,
+  .providerData {
+    width: max-content;
   }
-} */
+}

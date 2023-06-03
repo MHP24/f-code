@@ -56,7 +56,7 @@ export const UserCard: FC<Props> = ({ picture, _id, username, email, provider, r
   }
 
   return (
-    <div className={`${styles.userCard} animate__animated animate__fadeIn`}>
+    <div className={styles.userCard}>
       <div className={`${styles.userData} ${styles.userProfileData}`}>
         <Image
           className={styles.userImage}
@@ -69,7 +69,7 @@ export const UserCard: FC<Props> = ({ picture, _id, username, email, provider, r
       </div>
 
       <div className={styles.userData}>
-        <p className={styles.userText}>{email.replace('@fcode', '')}</p>
+        <p className={`${styles.userText} ${styles.userEmail}`}>{email.replace('@fcode', '')}</p>
       </div>
 
       <div className={`${styles.userData} ${styles.providerData}`}>
@@ -80,7 +80,7 @@ export const UserCard: FC<Props> = ({ picture, _id, username, email, provider, r
           height={25}
           alt={provider}
         />
-        <p className={styles.userText}>{`${username}`.slice(0, 15)}</p>
+        <p className={styles.userText}>{`${username}`}</p>
       </div>
 
       <div className={`${styles.userData} ${styles.roleSelector}`} onClick={() => setShowDropdown(!showDropdown)}>
