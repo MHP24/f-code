@@ -13,10 +13,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-
 import styles from '@/styles/admin/dashboard.module.css';
-
-
 import useSWR from 'swr';
 import { useSession } from 'next-auth/react';
 
@@ -105,6 +102,7 @@ const DashboardPage = () => {
                     title: {
                       display: true,
                       text: 'Challenges available per programming language',
+                      color: '#FFF',
                       font: {
                         size: 20
                       }

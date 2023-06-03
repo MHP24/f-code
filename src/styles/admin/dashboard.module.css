@@ -39,9 +39,14 @@
   margin: 0;
 }
 
+@media (max-width: 90rem) {
+  .dashboardCentral {
+    grid-template-columns: 1fr;
+  }
+}
+
 .dashboardGraph {
   height: 50vh;
-  width: 100%;
   background-color: var(--c2);
   border: var(--c3) 1px solid;
   padding: 1em;
@@ -78,6 +83,10 @@
   display: flex;
   flex-direction: column;
   gap: .7em;
+}
+
+.recentChallenges {
+  align-items: center;
 }
 
 .recentUsers {
@@ -126,7 +135,3 @@
   text-transform: capitalize;
   font-size: .8rem;
 }
-
-
-
-
