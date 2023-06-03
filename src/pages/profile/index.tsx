@@ -22,8 +22,8 @@ const ProfilePage: NextPage = () => {
     isLoading: true,
     data: null
   });
-
-  const { user: userQuery } = useRouter().query;
+  const router = useRouter();
+  const { user: userQuery } = router.query;
   const session = useSession();
   const userData = session?.data as ISession;
   const { logoutUser } = useContext(AuthContext);
@@ -87,12 +87,25 @@ const ProfilePage: NextPage = () => {
                     </button>
                     {
                       ((!userQuery && userData.user._id) || (userData.user._id === userQuery)) && (
-                        <Button
-                          size={0.9}
-                          text='Sign out'
-                          fn={() => logoutUser()}
-                          w={150}
-                        />
+                        <>
+                          {
+                            userData.user.role === 'admin' && (
+                              <Button
+                                size={0.9}
+                                text='Dashboard'
+                                fn={() => router.push('/admin/dashboard')}
+                                w={150}
+                              />
+                            )
+                          }
+
+                          <Button
+                            size={0.9}
+                            text='Sign out'
+                            fn={() => logoutUser()}
+                            w={150}
+                          />
+                        </>
                       )
                     }
                   </div>
