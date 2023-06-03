@@ -33,8 +33,8 @@ const ProfilePage: NextPage = () => {
     (async () => {
       try {
         if (session.data || userQuery) {
-          const { user } = session.data as ISession;
-          const { data } = await fCodeApi.get(`/users/profile/${userQuery ?? user._id}`);
+          const userData = session?.data as ISession;
+          const { data } = await fCodeApi.get(`/users/profile/${userQuery ?? userData.user._id}`);
           setProfileData(prevProfileData => ({ ...prevProfileData, data, isLoading: false }));
         }
       } catch (error) {
@@ -46,9 +46,8 @@ const ProfilePage: NextPage = () => {
 
   return (
     <MainLayout
-      pageDescription={`FCode ${profileData.data?.profile.username}' s profile`}
-      title={`FCode | ${profileData.data?.profile.username}' s profile`}
-
+      pageDescription={`FCode ${profileData.data?.profile.username || 'Loading...'}' s profile`}
+      title={`FCode | ${profileData.data?.profile.username || 'Loading...'}' s profile`}
     >
       {
         !profileData.isLoading && (
@@ -74,7 +73,7 @@ const ProfilePage: NextPage = () => {
                       className={styles.shareBtn}
                       onClick={() => {
                         navigator.clipboard.writeText(typeof window !== 'undefined' ?
-                          window.location + (!userQuery ? `?user=${userData.user._id}` : '') : '');
+                          window.location + (!userQuery ? `?user=${userData?.user?._id}` : '') : '');
                         toaster('Profile copied to clipboard', true);
                       }}
                     >
@@ -86,7 +85,7 @@ const ProfilePage: NextPage = () => {
                       />
                     </button>
                     {
-                      ((!userQuery && userData.user._id) || (userData.user._id === userQuery)) && (
+                      ((!userQuery && userData?.user._id) || (userData?.user._id === userQuery)) && (
                         <>
                           {
                             userData.user.role === 'admin' && (
