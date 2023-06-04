@@ -42,7 +42,6 @@ const ChallengeRequestDetailPage: NextPage<Props> = ({ data }) => {
     setModal({ ...modal, isOpen: false })
   }
 
-
   const closeApplication = (approved: boolean) => {
     setModal({
       ...modal,
@@ -60,6 +59,7 @@ const ChallengeRequestDetailPage: NextPage<Props> = ({ data }) => {
       const { data: { id } } = actionResult;
 
       toaster(`Challenge #${id} closed successfully!`, true);
+      closeModal();
 
       setTimeout(() => {
         router.push('/admin/requests');

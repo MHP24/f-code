@@ -32,7 +32,6 @@
 
 }
 
-
 .profileUser {
   display: flex;
   flex-direction: column;
@@ -81,10 +80,17 @@
   font-weight: var(--fs-w-3);
 }
 
+.applicationDetails {
+  display: grid;
+  width: 100%;
+}
+
 .applicationDetail {
+  width: 100%;
   background-color: var(--c2);
   margin-top: 2em;
   padding: .5em;
+  word-wrap: break-word;
 }
 
 .detailText {
