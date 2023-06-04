@@ -6,19 +6,20 @@ import { Challenge } from '@/models';
 import { GetServerSideProps, NextPage } from 'next';
 import { getSession } from 'next-auth/react';
 import styles from '@/styles/submit.module.css';
-import { ErrorLabel, FormInput, TagSelector, MarkdownWriter, Button } from '@/components/ui';
+import { FormInput, TagSelector, MarkdownWriter, Button } from '@/components/ui';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { regExValidators } from '@/utils';
 import { useState } from 'react';
 import Editor from '@monaco-editor/react';
 import { fCodeApi } from '@/api';
 import axios from 'axios';
+import { toaster } from '@/utils';
+import { Toaster } from 'react-hot-toast';
+import { useRouter } from 'next/router';
 
 
 interface Inputs {
   [key: string]: string;
 };
-
 
 const Slug: NextPage<IChallenge> = (
   { _id, slug, tags: challengeTags,
@@ -31,6 +32,8 @@ const Slug: NextPage<IChallenge> = (
   const [code, setCode] = useState<string>(solution);
   const [tags, setTags] = useState<string[]>(challengeTags);
   const [outputs, setOutputs] = useState<{ execution: any }[] | null>(null);
+
+  const router = useRouter();
 
   const slugFormatted = slug.replace(/\_/g, ' ').replace(/^\w/, w => w.toUpperCase());
 
@@ -51,15 +54,12 @@ const Slug: NextPage<IChallenge> = (
     defaultValues: {
       challengeName: slugFormatted,
       ...paramCases
-
     }
   });
 
   const onSubmit: SubmitHandler<Inputs> = async (formData) => {
 
-    const {
-      challengeName, ...rest } = formData;
-
+    const { challengeName, ...rest } = formData;
     const casesArray: string[][] = [];
 
     Object.keys(rest).forEach(key => {
@@ -106,15 +106,24 @@ const Slug: NextPage<IChallenge> = (
       };
 
       await fCodeApi.post('/creators/challenges/submit?type=update', submitData);
+      toaster('Success!, Redirecting to your creator panel...', true);
+
+      setTimeout(() => {
+        router.push('/creator');
+      }, 4500);
 
     } catch (error) {
+      const errorData = axios.isAxiosError(error) ?
+        `${error.response?.data.error}`
+        : 'Unexpected error';
+
       setOutputs(
         [{
-          execution: axios.isAxiosError(error) ?
-            `${error.response?.data.error}`
-            : 'Unexpected error'
+          execution: errorData
         }]
-      )
+      );
+
+      toaster(errorData, false);
     }
   }
 
@@ -124,6 +133,11 @@ const Slug: NextPage<IChallenge> = (
       pageDescription={`FCode - Edit challenge ${slugFormatted}`}
       title={`FCode - Edit ${slugFormatted}`}
     >
+      <Toaster
+        position='bottom-left'
+        reverseOrder={false}
+      />
+
       <div className={styles.challengeHeader}>
         <Image
           src={`/techs/${language.toLowerCase()}.svg`}

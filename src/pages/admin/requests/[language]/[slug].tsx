@@ -12,6 +12,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { toaster } from '@/utils';
 import { Toaster } from 'react-hot-toast';
+import { useRouter } from 'next/router';
 
 interface Props {
   data: IChallengeRequestSearch;
@@ -34,6 +35,8 @@ const ChallengeRequestDetailPage: NextPage<Props> = ({ data }) => {
     isOpen: false,
     content: '',
   });
+
+  const router = useRouter();
 
   const closeModal = () => {
     setModal({ ...modal, isOpen: false })
@@ -58,7 +61,9 @@ const ChallengeRequestDetailPage: NextPage<Props> = ({ data }) => {
 
       toaster(`Challenge #${id} closed successfully!`, true);
 
-
+      setTimeout(() => {
+        router.push('/admin/requests');
+      }, 3000);
     } catch (error) {
       toaster(axios.isAxiosError(error) ?
         `${error.response?.data.error}`

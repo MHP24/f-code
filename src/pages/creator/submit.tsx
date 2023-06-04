@@ -7,9 +7,11 @@ import { difficulties, technologies } from '@/mocks';
 import { ISelect } from '@/interfaces';
 import styles from '@/styles/submit.module.css';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { regExValidators } from '@/utils';
+import { regExValidators, toaster } from '@/utils';
 import { fCodeApi } from '@/api';
 import axios from 'axios';
+import { useRouter } from 'next/router';
+import { Toaster } from 'react-hot-toast';
 
 interface Inputs {
   challengeName: string;
@@ -32,6 +34,9 @@ const SubmitPage = () => {
       parameterCount: '1'
     }
   });
+
+  const router = useRouter();
+
   const paramCount = Number(watch('parameterCount'));
 
   const onSubmit: SubmitHandler<Inputs> = async (formData) => {
@@ -83,6 +88,11 @@ const SubmitPage = () => {
 
       await fCodeApi.post('/creators/challenges/submit?type=create', submitData);
 
+      toaster('Success!, Redirecting to your creator panel...', true);
+
+      setTimeout(() => {
+        router.push('/creator');
+      }, 4500);
     } catch (error) {
 
       setOutputs(
@@ -91,7 +101,19 @@ const SubmitPage = () => {
             `${error.response?.data.error}`
             : 'Unexpected error'
         }]
-      )
+      );
+
+      const errorData = axios.isAxiosError(error) ?
+        `${error.response?.data.error}`
+        : 'Unexpected error';
+
+      setOutputs(
+        [{
+          execution: errorData
+        }]
+      );
+
+      toaster(errorData, false);
     }
   }
 
@@ -100,6 +122,10 @@ const SubmitPage = () => {
       pageDescription={'Create a new challenge for fcode users'}
       title={'FCode - Create a challenge'}
     >
+      <Toaster
+        position='bottom-left'
+        reverseOrder={false}
+      />
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className={styles.formStep1}>
           <div className={styles.formBasic}>

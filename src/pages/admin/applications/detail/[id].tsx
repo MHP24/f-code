@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toaster } from '@/utils';
 import { Toaster } from 'react-hot-toast';
+import { useRouter } from 'next/router';
 
 interface Props {
   application: ICreatorRequest;
@@ -29,6 +30,7 @@ const ApplicationDetailPage: NextPage<Props> = ({ application, profile: { profil
     content: '',
   });
 
+  const router = useRouter();
   const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
 
   const closeModal = () => {
@@ -51,6 +53,10 @@ const ApplicationDetailPage: NextPage<Props> = ({ application, profile: { profil
         summary
       });
       toaster(`#${profile.id} closed successfully`, true);
+
+      setTimeout(() => {
+        router.push('/admin/applications');
+      }, 3000);
     } catch (error) {
       toaster(`Failed closing #${profile.id}`, false);
     } finally {
