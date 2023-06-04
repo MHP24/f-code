@@ -67,7 +67,7 @@ const ApplicationDetailPage: NextPage<Props> = ({ application, profile: { profil
   return (
     <AdminLayout
       pageDescription={`Creator application details`}
-      title={`Application #${application._id}`}
+      title={`Application`}
     >
       <Toaster
         position='bottom-left'

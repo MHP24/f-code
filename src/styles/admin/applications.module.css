@@ -15,8 +15,8 @@
 
 .actions {
   position: fixed;
-  top: 5%;
-  right: 5%;
+  bottom: 5%;
+  right: 2%;
   display: flex;
   gap: 1em;
 }
