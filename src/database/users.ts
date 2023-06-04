@@ -4,10 +4,16 @@ import bcrypt from 'bcryptjs';
 import { PaginateResult } from 'mongoose';
 import { IUser } from '@/interfaces';
 
+export const checkBannedUser = async (email: string, provider: string) => {
+  const user = await User.findOne({ email, provider: provider !== 'credentials' ? provider : 'f-code' });
+  return user?.active ?? true;
+}
+
 export const checkUser = async (email: string, password: string) => {
   try {
     await db.connect();
     const user = await User.findOne({ email });
+
     if (!user || !bcrypt.compareSync(password, user.password!)) return null;
 
     const { _id, username, picture, role } = user;
@@ -17,7 +23,7 @@ export const checkUser = async (email: string, password: string) => {
       username,
       email: email.toLocaleLowerCase(),
       picture,
-      role
+      role,
     };
 
   } catch (error) {
@@ -32,8 +38,9 @@ export const oAuthenticate = async (email: string, username: string, picture: st
   try {
     await db.connect();
     const user = await User.findOne({ email, provider });
+
     if (user) {
-      //TODO: Validate change...
+      if (!user.active) return null;
       await User.updateOne({ _id: user._id }, { picture, username }); //Update in case new picture or username from provider
       const { _id, role } = user;
       return {
