@@ -49,7 +49,6 @@ const Slug: NextPage<IChallenge> = (
     });
   });
 
-
   const { register, handleSubmit } = useForm<Inputs>({
     defaultValues: {
       challengeName: slugFormatted,

@@ -129,6 +129,17 @@ const SubmitPage = () => {
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className={styles.formStep1}>
           <div className={styles.formBasic}>
+
+            <div className={styles.challengeTech}>
+              <Image
+                src={`/techs/${technology.label.toLowerCase()}.svg`}
+                alt='Select a language'
+                width={130}
+                height={130}
+                className={styles.languageImage}
+              />
+            </div>
+
             <div className={styles.challengeName}>
               <FormInput
                 placeHolder='example name'
@@ -140,14 +151,7 @@ const SubmitPage = () => {
               {errors.challengeName?.type === 'pattern' && <ErrorLabel text={'Invalid challenge name'} />}
             </div>
 
-            <div className={styles.challengeTech}>
-              <Image
-                src={`/techs/${technology.label.toLowerCase()}.svg`}
-                alt='Select a language'
-                width={130}
-                height={130}
-              />
-            </div>
+
 
             <div className={styles.difficulties}>
               <FormSelect
