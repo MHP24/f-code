@@ -39,14 +39,10 @@ const Challenge: NextPage<Props> = (
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
   const handleEditor = (editor: editor.IStandaloneCodeEditor) => editorRef.current = editor;
 
-  console.log('Render...')
-
   const [modal, setModal] = useState({
     isOpen: false,
     content: ''
   });
-
-  console.log({ modal });
 
   useEffect(() => {
     if (!execution.isExecuting) {

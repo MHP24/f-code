@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, useContext } from 'react';
+import { FC, PropsWithChildren, useContext, useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { AdminNavbar } from '../ui';
@@ -15,6 +15,7 @@ export const AdminLayout: FC<PropsWithChildren<Props>> = ({ children, title, pag
 
   const session = useSession();
   const data = session.data as ISession | undefined;
+  const [showNav, setShowNav] = useState(true);
 
   return (
     <>
@@ -26,7 +27,7 @@ export const AdminLayout: FC<PropsWithChildren<Props>> = ({ children, title, pag
       </Head>
 
       <div className={styles.layoutBody}>
-        <AdminNavbar />
+        <AdminNavbar isOpening={showNav} />
 
         <main className={styles.main}>
           <header className={styles.header}>
@@ -50,8 +51,19 @@ export const AdminLayout: FC<PropsWithChildren<Props>> = ({ children, title, pag
                 </div>
               }
 
-
+              <button
+                onClick={() => setShowNav(!showNav)}
+                className={styles.navigatorBtn}
+              >
+                <Image
+                  src={'/illustrations/right-menu.svg'}
+                  alt='menu'
+                  width={40}
+                  height={40}
+                />
+              </button>
             </div>
+
           </header>
           <div className={`${styles.childrenContainer} animate__animated animate__fadeIn`}>
             {children}

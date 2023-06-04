@@ -4,9 +4,8 @@ import { Logo } from '../Logo';
 import { Button } from '../Button';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useContext } from 'react';
+import { FC, useContext } from 'react';
 import { AuthContext } from '@/context';
-
 
 const OPTIONS = [
   { image: 'dashboard', route: 'dashboard' },
@@ -15,15 +14,18 @@ const OPTIONS = [
   { image: 'code', route: 'requests' },
 ]
 
+interface Props {
+  isOpening?: boolean;
+}
 
-export const AdminNavbar = () => {
+export const AdminNavbar: FC<Props> = ({ isOpening = true }) => {
 
   const router = useRouter();
   const currentRouteName = router.pathname.split('/').at(2);
   const { logoutUser } = useContext(AuthContext);
 
   return (
-    <nav className={styles.nav}>
+    <nav className={`${styles.nav} animate__animated ${isOpening ? 'animate__fadeInLeft' : 'animate__fadeOutLeft'}`}>
       <div className={styles.navHeader}>
         <Logo
           isPrimary

@@ -124,11 +124,27 @@ code {
   font-weight: var(--fs-w-2);
 }
 
-.animate__animated.animate__fadeIn{
+.animate__animated.animate__fadeIn {
   --animate-duration: .3s;
 }
 
-.animate__zoomIn  {
+.animate__fadeOutLeft,
+.animate__fadeInLeft {
+  --animate-duration: .5s;
+}
+
+@media (min-width: 62rem) {
+  .animate__fadeInLeft,
+  .animate__fadeOutLeft {
+    --animate-duration: -1s;
+  }
+
+  .animate__fadeOutLeft {
+    animation: reverse;
+  }
+}
+
+.animate__zoomIn {
   --animate-duration: .25s
 }
 

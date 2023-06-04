@@ -5,11 +5,10 @@
   top: 0;
   left: 0;
   max-width: 14rem;
-  /* border: 2px red solid; */
   background-color: var(--c2);
   background-color: rgba(0, 0, 0, 0.422);
-  border-right: #ffffff22 1px solid;;
-
+  border-right: #ffffff22 1px solid;
+  ;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -79,17 +78,23 @@
 }
 
 .currentOption {
-  /* border-left: 4px var(--c3) solid; */
   border-radius: .34rem;
-  /* background-color: #f3f3f357; */
   background-color: #ffffff0b;
   box-shadow: -5px 0px 0px 0px black, 5px 0px 0px 0px black;
   backdrop-filter: blur(3px);
-
 }
 
 .optionLink {
   text-decoration: none;
   font-size: var(--fs-1);
   font-weight: var(--fs-w-2);
+}
+
+
+@media (max-width: 62rem) {
+  .nav {
+    position: fixed;
+    z-index: 2;
+    background-color: rgba(0 0 0 /.9);
+  }
 }

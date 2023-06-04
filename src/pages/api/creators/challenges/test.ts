@@ -44,8 +44,6 @@ const handleSubmit = async (req: NextApiRequest, res: NextApiResponse<Data>) => 
 
     const { functionName, parameterCount, parameters, cases, code } = rest;
 
-    console.log({ functionName, parameterCount, parameters, cases, code });
-
     if (!functionName || !parameterCount || !parameters || !cases || !code) {
       return res.status(400).json({ error: 'Missing fields' });
     }
