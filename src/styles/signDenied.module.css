@@ -1,0 +1,22 @@
+.container {
+  margin-top: 10em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  padding: 2em;
+  background-color: var(--c2);
+  border: var(--c3) 2px solid;
+  border-radius: var(--br-1);
+  box-shadow: var(--b-sh-3);
+  display: flex;
+  flex-direction: column;
+  gap: 3em;
+}
+
+.title {
+  font-size: var(--fs-3);
+}
