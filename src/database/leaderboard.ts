@@ -24,18 +24,20 @@ export const getLeaderboard = async (limit: number): Promise<ILeaderboard[]> => 
               username: 1,
               picture: 1,
               score: 1,
-              challengesCreated: 1
+              challengesCreated: 1,
+              active: 1
             },
           }]
         }
       },
       {
         $match: {
-          user: { $ne: [] }
+          user: { $ne: [] },
+          'user.active': true
         }
       },
       { $sort: { 'user.score': -1 } },
-      { $limit: limit }
+      { $limit: limit },
     ]);
     return leaderboard;
   } catch (error) {
@@ -53,7 +55,7 @@ export const getRanking = async (id: string): Promise<IRanking | undefined> => {
     const userScore = await User.findById(id).select('score').lean();
 
     if (userScore) {
-      const userRanking = await User.find({ score: { $gt: userScore.score } }).count();
+      const userRanking = await User.find({ score: { $gt: userScore.score }, active: true }).count();
       return {
         userScore: userScore.score,
         rank: userRanking + 1
