@@ -107,17 +107,22 @@ const ProfilePage: NextPage = () => {
                     }
 
                     <div className={styles.profileActions}>
-                      <button
-                        className={styles.actionBtn}
-                        onClick={reportUser}
-                      >
-                        <Image
-                          src={'/illustrations/danger.svg'}
-                          alt='report'
-                          width={28}
-                          height={28}
-                        />
-                      </button>
+                      {
+
+                        userQuery && (userData?.user?._id !== userQuery) && (
+                          <button
+                            className={styles.actionBtn}
+                            onClick={reportUser}
+                          >
+                            <Image
+                              src={'/illustrations/danger.svg'}
+                              alt='report'
+                              width={28}
+                              height={28}
+                            />
+                          </button>
+                        )
+                      }
 
                       <button
                         className={styles.actionBtn}

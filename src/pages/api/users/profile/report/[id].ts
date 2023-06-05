@@ -25,7 +25,7 @@ const reportUser = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     const { id } = req.query;
 
     const session = await getSession({ req });
-    if (!session) return res.status(401).json({ error: 'Unauthorized action' });
+    if (!session) return res.status(401).json({ error: 'You must sign in to report' });
 
     const userData = await User.findOne({ _id: id, active: true }).select('picture username').lean();
     if (!userData) return res.status(404).json({ error: 'This user does not exist' });
