@@ -2,7 +2,8 @@ import { db } from '.';
 import { User } from '@/models';
 import bcrypt from 'bcryptjs';
 import { PaginateResult } from 'mongoose';
-import { IUser } from '@/interfaces';
+import { IUser, IUserActionReport } from '@/interfaces';
+import { UserReport } from '@/models/UserReport';
 
 export const checkBannedUser = async (email: string, provider: string) => {
   const user = await User.findOne({ email, provider: provider !== 'credentials' ? provider : 'f-code' });
@@ -88,6 +89,28 @@ export const getUsers = async (search: string, page: number): Promise<PaginateRe
     return users;
   } catch (error) {
     return [];
+  } finally {
+    await db.disconnect();
+  }
+}
+
+export const getUsersReported = async (query: string, page: number): Promise<PaginateResult<IUserActionReport> | null> => {
+  try {
+    await db.connect();
+    const options = {
+      page,
+      limit: 2,
+      select: `_id picture username userId reporterId createdAt`,
+      sort: { createdAt: 1 },
+      active: true
+    };
+    const users = await UserReport.paginate({
+      username: (!query ? { $exists: true } : { $regex: query })
+    }, options);
+    return users;
+  } catch (error) {
+    console.error({ error });
+    return null;
   } finally {
     await db.disconnect();
   }
