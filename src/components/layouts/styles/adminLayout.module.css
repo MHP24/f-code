@@ -1,23 +1,25 @@
 .layoutBody {
   display: flex;
   scrollbar-width: none;
-  height: 100vh;
-  overflow: hidden;
 }
 
 .main {
   margin-left: 14rem;
-  overflow: hidden;
+  min-height: 120vh;
   width: 100%;
 }
 
 .header {
   width: 100%;
   padding: 0 2em;
+  position: sticky;
+  top: 0;
+  right: 0;
+  z-index: 3;
   display: flex;
   justify-content: space-between;
-  border-bottom: #ffffff22 1px solid;
-  background-color: rgba(0 0 0 /.04);
+  background-color: rgba(0, 0, 0, 0.422);
+  backdrop-filter: blur(3px);
   align-items: center;
 }
 
@@ -27,9 +29,23 @@
 }
 
 .childrenContainer {
-  margin: 1em 2em;
+  margin: 2em;
 }
 
+@media (max-width: 62rem) {
+  .childrenContainer {
+    margin: 5em 2em;
+  }
+}
+
+.headerStart {
+  /* display: flex; */
+  /* align-items: center; */
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  align-items: center;
+  gap: 2em;
+}
 
 .headerEnd {
   display: flex;
@@ -87,8 +103,8 @@
 @media (max-width: 62rem) {
   .layoutBody {
     scrollbar-width: none;
-    height: 100vh;
-    overflow: hidden;
+    /* height: 100vh; */
+    /* overflow: hidden; */
   }
 
   .main {
@@ -99,5 +115,11 @@
 
   .navigatorBtn {
     display: block;
+
+
+  }
+
+  .header {
+    position: fixed;
   }
 }

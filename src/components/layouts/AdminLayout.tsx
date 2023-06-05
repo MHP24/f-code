@@ -1,21 +1,23 @@
-import { FC, PropsWithChildren, useContext, useState } from 'react';
+import { FC, PropsWithChildren, ReactNode, useContext, useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { AdminNavbar } from '../ui';
 import styles from './styles/adminLayout.module.css';
 import { useSession } from 'next-auth/react';
 import { ISession } from '@/interfaces';
+import { JsxChild } from 'typescript';
 
 interface Props {
   title: string;
   pageDescription: string;
+  formComponent?: ReactNode;
 }
 
-export const AdminLayout: FC<PropsWithChildren<Props>> = ({ children, title, pageDescription }) => {
+export const AdminLayout: FC<PropsWithChildren<Props>> = ({ children, title, pageDescription, formComponent }) => {
 
   const session = useSession();
   const data = session.data as ISession | undefined;
-  const [showNav, setShowNav] = useState(true);
+  const [showNav, setShowNav] = useState(false);
 
   return (
     <>
@@ -33,6 +35,7 @@ export const AdminLayout: FC<PropsWithChildren<Props>> = ({ children, title, pag
           <header className={styles.header}>
             <div className={styles.headerStart}>
               <h2 className={styles.pageTitle}>{title}</h2>
+              {formComponent}
             </div>
             <div className={styles.headerEnd}>
 

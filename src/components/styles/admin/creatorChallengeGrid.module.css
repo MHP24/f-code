@@ -1,13 +1,9 @@
 .challengesGrid {
   width: 100%;
   margin: 2em auto;
-  height: 70vh;
-  overflow-y: scroll;
 }
 
 .scroller {
-  min-height: 90vh !important;
-  scrollbar-width: none;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
   gap: 1em;

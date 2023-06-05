@@ -1,24 +1,24 @@
 import { FC } from 'react';
+import { IChallengeSearch } from '@/interfaces';
+import { ChallengeCreator, NoResults } from '@/components/ui';
+import styles from '../../../styles/admin/challenges.module.css';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { NoResults, ApplicationCard } from '@/components/ui';
-import { ISearchCreatorRequest } from '@/interfaces';
-import styles from '../../styles/admin/applicationsGrid.module.css';
 
 interface Props {
-  data: ISearchCreatorRequest[] | undefined;
+  data: IChallengeSearch[] | undefined;
   size: number;
   setSize: (size: number | ((_size: number) => number)) => Promise<any[] | undefined>;
   hasMore?: boolean;
   isLoading?: boolean;
 }
 
-export const ApplicationsGrid: FC<Props> = ({ data, size, setSize, hasMore, isLoading }) => {
+export const AdminChallengesGrid: FC<Props> = ({ data, setSize, size, hasMore, isLoading }) => {
   return (
     data?.length === 0 && !isLoading ?
       <NoResults />
       :
       (
-        <div className={styles.applicationsGrid}>
+        <div className={styles.challengesGrid}>
           <InfiniteScroll
             next={() => setSize(size + 1)}
             hasMore={!hasMore}
@@ -28,8 +28,12 @@ export const ApplicationsGrid: FC<Props> = ({ data, size, setSize, hasMore, isLo
           >
 
             {
-              data?.map(application => {
-                return <ApplicationCard key={`application-dashboard-${application._id}`} {...application} />
+              data?.map((challenge, i) => {
+                return <ChallengeCreator
+                  key={`challenge-admin-dashboard-reports-${i}`}
+                  {...challenge}
+                  isEditable={false}
+                />
               })
             }
           </InfiniteScroll>

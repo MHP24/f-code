@@ -81,8 +81,7 @@ const ApplicationDetailPage: NextPage<Props> = ({ application, profile: { profil
       />
 
 
-      <div className={styles.rootApplication}>
-
+      <>
         <Modal
           open={modal.isOpen}
           setModal={setModal}
@@ -210,7 +209,7 @@ const ApplicationDetailPage: NextPage<Props> = ({ application, profile: { profil
             }
           </div>
         </section>
-      </div>
+      </>
 
     </AdminLayout>
   )

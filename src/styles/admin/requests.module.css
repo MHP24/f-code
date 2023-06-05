@@ -1,11 +1,6 @@
 .form {
-  margin-top: 2em;
   max-width: 30rem;
-}
-
-.requestDetailContainer {
-  height: 90vh;
-  overflow: scroll;
+  transform: scale(.9);
 }
 
 .step {

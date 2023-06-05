@@ -21,23 +21,23 @@ const ApplicationsPage = () => {
     const { search } = data;
     setInputSearch(search.trim());
   };
-  
+
   return (
     <AdminLayout
       pageDescription='Creator applications dashboard'
       title='Applications'
+      formComponent={
+        <form
+          className={styles.form}
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <FormInput
+            placeHolder='Search by application ID'
+            {...register('search', { required: false })}
+          />
+        </form>
+      }
     >
-      <form
-        className={styles.form}
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <FormInput
-          placeHolder='Search by application ID'
-          {...register('search', { required: false })}
-        />
-      </form>
-
-
       <ApplicationsGrid {...data} />
 
     </AdminLayout>

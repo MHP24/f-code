@@ -27,17 +27,17 @@ const UsersPage = () => {
     <AdminLayout
       pageDescription='User dashboard'
       title='Users'
+      formComponent={
+        <form
+          className={styles.form}
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <FormInput
+            placeHolder='Search by username'
+            {...register('search', { required: false })}
+          />
+        </form>}
     >
-      <form
-        className={styles.form}
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <FormInput
-          placeHolder='Search by username'
-          {...register('search', { required: false })}
-        />
-      </form>
-
       <UserGrid {...data} />
 
     </AdminLayout>

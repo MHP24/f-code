@@ -23,6 +23,7 @@ const getAllChallenges = async (req: NextApiRequest, res: NextApiResponse<Data>)
     const pageValidated = page.match(regExValidators.numbersOnly) ? Number(page) : 1;
 
     const challenges = await getChallenges(language, slug, pageValidated);
+
     challenges.length === 0 && res.status(404).json({ error: 'No challenges available for now :(' });
     res.status(200).json(challenges!);
   } catch (error) {

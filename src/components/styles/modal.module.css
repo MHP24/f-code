@@ -54,6 +54,6 @@
 
 .modalBody {
   max-height: 50vh;
-  overflow: scroll;
+  overflow-y: auto;
   scrollbar-width: thin;
 }

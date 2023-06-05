@@ -12,7 +12,6 @@ interface IUserSession {
 
 export async function middleware(req: NextRequest) {
   const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
-
   const url = req.nextUrl;
 
   if (url.pathname === '/profile') {
@@ -33,12 +32,14 @@ export async function middleware(req: NextRequest) {
 
   const { user } = session as { user: IUserSession };
 
-  if (url.pathname === '/creator'
-    || url.pathname === '/creator/apply'
-  ) return NextResponse.next();
+  if (url.pathname.startsWith('/creator')) {
+    if (url.pathname === '/creator' || url.pathname === '/creator/apply') return NextResponse.next();;
+    if (user.role !== 'user') return NextResponse.next();
+    return NextResponse.redirect(new URL('/creator/apply', req.url));
+  }
 
   if (url.pathname.startsWith('/api/creators')) {
-    if (user.role === 'user') {
+    if (user.role === 'user' && url.pathname !== '/api/creators/applications/apply') {
       return new NextResponse(
         JSON.stringify({ error: 'Authorization failed' }),
         { status: 401, headers: { 'content-type': 'application/json' } },
@@ -48,7 +49,7 @@ export async function middleware(req: NextRequest) {
   }
 
   if (user.role !== 'admin') {
-    if (url.pathname.startsWith('/api')) {
+    if (url.pathname.startsWith('/api/admin')) {
       return new NextResponse(
         JSON.stringify({ error: 'Authorization failed' }),
         { status: 401, headers: { 'content-type': 'application/json' } },
@@ -63,7 +64,7 @@ export async function middleware(req: NextRequest) {
 export const config = {
   matcher: [
     '/admin/:path*',
-    '/api/admin/:path*',
+    // '/api/admin/:path*',
     '/creator/:path*',
     '/api/creators/:path*',
     '/profile'

@@ -1,0 +1,32 @@
+.form {
+  /* margin-to/sp: 2em; */
+  margin: auto;
+  width: 100%;
+  max-width: 35rem;
+  transform: scale(.9);
+  /* right: ; */
+
+}
+
+.challengesGrid {
+  margin-top: 2em;
+  /* height: 70vh !important; */
+  /* overflow: scroll !important; */
+}
+
+.scroller {
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-auto-rows: min-content;
+  gap: 1em;
+  /* height: 90vh !important; */
+}
+
+@media (max-width: 62rem) {
+  .scroller {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

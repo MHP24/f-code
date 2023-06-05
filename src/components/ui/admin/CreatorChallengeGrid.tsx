@@ -1,4 +1,4 @@
-import { FC, useId } from 'react';
+import { FC } from 'react';
 import { IChallengeRequestSearch } from '@/interfaces';
 import { CreatorChallenge, NoResults } from '@/components/ui';
 import styles from '../../styles/admin/creatorChallengeGrid.module.css';
@@ -13,20 +13,18 @@ interface Props {
 }
 
 export const CreatorChallengeGrid: FC<Props> = ({ data, size, setSize, hasMore, isLoading }) => {
-  const targetId = useId();
   return (
     (!data || data?.length === 0) && !isLoading ?
       <NoResults />
       :
       (
-        <div className={styles.challengesGrid} id={targetId}>
+        <div className={styles.challengesGrid}>
           <InfiniteScroll
             next={() => setSize(size + 1)}
             hasMore={!hasMore}
             loader={<p></p>}
             dataLength={data?.length ?? 0}
             className={styles.scroller}
-            scrollableTarget={targetId}
           >
             {
               data?.map((challenge, i) => {

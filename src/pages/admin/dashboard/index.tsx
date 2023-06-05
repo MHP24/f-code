@@ -48,8 +48,7 @@ const DashboardPage = () => {
     >
       {
         !isLoading && data &&
-        <div className={styles.rootDashboard}>
-
+        <>
           <section className={styles.dashboardData}>
             <h2 className={styles.greet}>{`Welcome ${userData?.user.username}!`}</h2>
             <p className={styles.greetMsg}>Here is the latest FCode activity</p>
@@ -167,7 +166,7 @@ const DashboardPage = () => {
               }
             </ul>
           </section>
-        </div>
+        </>
       }
     </AdminLayout >
   )

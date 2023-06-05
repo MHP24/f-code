@@ -17,11 +17,10 @@ export interface IChallenge {
   tags: string[];
   active: boolean;
   creatorId: string;
-  code?: string; //CHECK IN CASE BUGS
+  code?: string;
 }
 
 export interface IChallengeRequest extends IChallenge {
-  // caseSchema: string[];
   parametersCount: number;
   solution: string;
   reason: 'create' | 'update';

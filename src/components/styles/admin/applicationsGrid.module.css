@@ -1,15 +1,11 @@
 .applicationsGrid {
   width: 100%;
   margin: 2em auto;
-  height: 70vh;
-  overflow-y: scroll;
 }
 
 .scroller {
-  height: 80vh !important;
-  scrollbar-width: none;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 2em;
   grid-auto-rows: 18rem;
 }

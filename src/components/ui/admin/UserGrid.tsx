@@ -27,7 +27,7 @@ export const UserGrid: FC<Props> = ({ data, setSize, size, hasMore, isLoading })
             loader={<p></p>}
             dataLength={data?.length ?? 0}
             className={styles.scroller}
-            scrollableTarget={targetId}
+            // scrollableTarget={targetId}
           >
 
             {

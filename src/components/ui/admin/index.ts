@@ -6,3 +6,4 @@ export * from './ApplicationsGrid';
 export * from './CreatorChallenge';
 export * from './CreatorChallengeGrid';
 export * from './DashboardCard';
+export * from './AdminChallengesGrid';

@@ -30,20 +30,18 @@ const RequestsPage = () => {
     <AdminLayout
       pageDescription='Challenge change Applications'
       title='Requests'
+      formComponent={
+        <form
+          className={styles.form}
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <FormInput
+            placeHolder='Search...'
+            {...register('slug', { required: false })}
+          />
+        </form>
+      }
     >
-      <form
-        className={styles.form}
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <FormInput
-          placeHolder='Search...'
-          {...register('slug', { required: false })}
-        />
-
-
-      </form>
-
-
       <CreatorChallengeGrid {...data} />
     </AdminLayout>
   );

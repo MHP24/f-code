@@ -1,6 +1,6 @@
 .form {
-  margin-top: 2em;
   max-width: 30rem;
+  transform: scale(.9);
 }
 
 .userDetails {
@@ -19,17 +19,6 @@
   right: 2%;
   display: flex;
   gap: 1em;
-}
-
-@media (max-width: 62rem) {
-  .rootApplication {
-    height: 100vh;
-    overflow-y: auto;
-    scrollbar-width: none;
-    padding: 0 2em;
-    margin: auto;
-  }
-
 }
 
 .profileUser {

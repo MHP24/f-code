@@ -6,15 +6,6 @@
   padding-bottom: 4em;
 }
 
-.rootDashboard::-webkit-scrollbar {
-  display: none;
-}
-
-.rootDashboard {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
 .counters {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
