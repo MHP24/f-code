@@ -13,6 +13,7 @@ const OPTIONS = [
   { image: 'applications', route: 'applications' },
   { image: 'code', route: 'requests' },
   { image: 'medal', route: 'challenges' },
+  { image: 'danger', route: 'reports' },
 ]
 
 interface Props {

@@ -11,6 +11,7 @@ import styles from '@/styles/profile.module.css';
 import { Button, ChallengeProfile, LanguageProgress, LeaderboardCard } from '@/components/ui';
 import { AuthContext } from '@/context';
 import { toaster } from '@/utils';
+import axios from 'axios';
 
 interface IStateProfile {
   isLoading: boolean;
@@ -44,6 +45,17 @@ const ProfilePage: NextPage = () => {
     })();
   }, [session, userQuery]);
 
+  const reportUser = async () => {
+    try {
+      await fCodeApi.post(`/users/profile/report/${profileData.data?.profile.id}`);
+      toaster('User reported successfully', true);
+    } catch (error) {
+      toaster(axios.isAxiosError(error) ?
+        `${error.response?.data.error}`
+        : 'Unexpected error', false);
+    }
+  }
+
   return (
     <MainLayout
       pageDescription={`FCode ${profileData.data?.profile.username || 'Loading...'}' s profile`}
@@ -69,21 +81,7 @@ const ProfilePage: NextPage = () => {
                       height={220}
                     />
 
-                    <button
-                      className={styles.shareBtn}
-                      onClick={() => {
-                        navigator.clipboard.writeText(typeof window !== 'undefined' ?
-                          window.location + (!userQuery ? `?user=${userData?.user?._id}` : '') : '');
-                        toaster('Profile copied to clipboard', true);
-                      }}
-                    >
-                      <Image
-                        src={'/illustrations/share.svg'}
-                        alt='share'
-                        width={35}
-                        height={35}
-                      />
-                    </button>
+
                     {
                       ((!userQuery && userData?.user._id) || (userData?.user._id === userQuery)) && (
                         <>
@@ -107,6 +105,36 @@ const ProfilePage: NextPage = () => {
                         </>
                       )
                     }
+
+                    <div className={styles.profileActions}>
+                      <button
+                        className={styles.actionBtn}
+                        onClick={reportUser}
+                      >
+                        <Image
+                          src={'/illustrations/danger.svg'}
+                          alt='report'
+                          width={28}
+                          height={28}
+                        />
+                      </button>
+
+                      <button
+                        className={styles.actionBtn}
+                        onClick={() => {
+                          navigator.clipboard.writeText(typeof window !== 'undefined' ?
+                            window.location + (!userQuery ? `?user=${userData?.user?._id}` : '') : '');
+                          toaster('Profile copied to clipboard', true);
+                        }}
+                      >
+                        <Image
+                          src={'/illustrations/share.svg'}
+                          alt='share'
+                          width={28}
+                          height={28}
+                        />
+                      </button>
+                    </div>
                   </div>
 
                   <div className={`${styles.profileItem} ${styles.profileProgress}`}>

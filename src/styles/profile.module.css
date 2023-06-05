@@ -58,20 +58,27 @@
   text-align: center;
 }
 
-.shareBtn {
+.profileActions {
+  /* position: absolute; */
+  /* top: 7em; */
+  /* right: 10em; */
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
+
+.actionBtn {
   cursor: pointer;
   background-color: transparent;
   border: none;
   outline: none;
   display: grid;
   place-items: center;
-  position: absolute;
-  top: 5%;
-  right: 5%;
+
   transition: opacity .3s;
 }
 
-.shareBtn:hover {
+.actionBtn:hover {
   opacity: .7;
 }
 

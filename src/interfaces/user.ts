@@ -12,3 +12,14 @@ export interface IUser {
   createdAt?: string;
   updatedAt?: string;
 }
+
+export interface IUserActionReport {
+  _id: string;
+  picture: string;
+  username: string;
+  userId: string;
+  reporterId: string;
+  active: boolean;
+  staffId?: string;
+  createdAt: string;
+}
