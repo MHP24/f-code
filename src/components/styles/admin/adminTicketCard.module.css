@@ -1,0 +1,63 @@
+.card {
+  margin-top: 2em;
+  width: 100%;
+  max-width: 350px;
+  background-color: var(--c2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: .7em;
+  gap: 1em;
+}
+
+.cardGroup {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.cardData {
+  white-space: nowrap;
+  font-size: var(--fs-1);
+  margin: auto;
+}
+
+.username {
+  max-width: 100%;
+  margin-left: 0;
+  overflow: hidden;
+}
+
+.cardImage {
+  border-radius: 50%;
+}
+
+.cardActions {
+  display: flex;
+  gap: 2em;
+}
+
+.action {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  transition: opacity .3s;
+}
+
+.action:hover {
+  opacity: .7;
+}
+
+.actionText {
+  font-size: var(--fs-4);
+}
+
+.actionTextNo {
+  text-shadow: var(--t-sh-2);
+}
+
+.actionTextYes {
+  text-shadow: var(--t-sh-3);
+}
