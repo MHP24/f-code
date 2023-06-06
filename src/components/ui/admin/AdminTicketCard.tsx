@@ -44,7 +44,7 @@ export const AdminTicketCard: FC<IUserActionReport> = ({ _id, username, picture,
 
 
   return (
-    <div className={`${styles.card} animate__animated animate__fadeIn`}>
+    <>
       <Toaster
         position='bottom-left'
         reverseOrder={false}
@@ -75,37 +75,39 @@ export const AdminTicketCard: FC<IUserActionReport> = ({ _id, username, picture,
           </div>
         </div>
       </Modal>
-      <p className={styles.cardData}>{`#${_id}`}</p>
-      <div className={styles.cardGroup}>
-        <Image
-          className={styles.cardImage}
-          src={picture}
-          alt={username.slice(0, 4)}
-          width={40}
-          height={40}
-        />
-        <p className={`${styles.cardData} ${styles.username}`}>{username}</p>
+      <div className={`${styles.card} animate__animated animate__fadeIn`}>
+        <p className={styles.cardData}>{`#${_id}`}</p>
+        <div className={styles.cardGroup}>
+          <Image
+            className={styles.cardImage}
+            src={picture}
+            alt={username.slice(0, 4)}
+            width={40}
+            height={40}
+          />
+          <p className={`${styles.cardData} ${styles.username}`}>{username}</p>
+        </div>
+        <p className={styles.cardData}>{userId}</p>
+        <p className={styles.cardData}>{createdAt}</p>
+
+        <div className={styles.cardActions}>
+          <button
+            className={styles.action}
+            onClick={() => closeReport(false)}
+          >
+            <p className={`${styles.actionText} ${styles.actionTextNo}`}>{'✘'}</p>
+          </button>
+
+          <button
+            className={styles.action}
+            onClick={() => closeReport(true)}
+          >
+            <p className={`${styles.actionText} ${styles.actionTextYes}`}>{'✔'}</p>
+          </button>
+        </div>
+
+        <p className={styles.cardData}>{`By: #${reporterId}`}</p>
       </div>
-      <p className={styles.cardData}>{userId}</p>
-      <p className={styles.cardData}>{createdAt}</p>
-
-      <div className={styles.cardActions}>
-        <button
-          className={styles.action}
-          onClick={() => closeReport(false)}
-        >
-          <p className={`${styles.actionText} ${styles.actionTextNo}`}>{'✘'}</p>
-        </button>
-
-        <button
-          className={styles.action}
-          onClick={() => closeReport(true)}
-        >
-          <p className={`${styles.actionText} ${styles.actionTextYes}`}>{'✔'}</p>
-        </button>
-      </div>
-
-      <p className={styles.cardData}>{`By: #${reporterId}`}</p>
-    </div>
+    </>
   )
 }
