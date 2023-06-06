@@ -99,13 +99,13 @@ export const getUsersReported = async (query: string, page: number): Promise<Pag
     await db.connect();
     const options = {
       page,
-      limit: 2,
+      limit: 22,
       select: `_id picture username userId reporterId createdAt`,
       sort: { createdAt: 1 },
-      active: true
     };
     const users = await UserReport.paginate({
-      username: (!query ? { $exists: true } : { $regex: query })
+      username: (!query ? { $exists: true } : { $regex: query }),
+      active: true
     }, options);
     return users;
   } catch (error) {
