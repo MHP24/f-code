@@ -17,8 +17,8 @@ export const getUserProfile = async (_id: string): Promise<IProfileData | null> 
   try {
     await db.connect();
     const userId = new mongoose.Types.ObjectId(`${_id}`);
-    const userData = await User.findById(_id).select('picture username -_id').lean();
-    if(!userData) return null;
+    const userData = await User.findOne({ _id, active: true }).select('picture username -_id').lean();
+    if (!userData) return null;
     const userRanking = await dbLeaderboard.getRanking(`${_id}`);
 
     const techCount = await Solve.aggregate([

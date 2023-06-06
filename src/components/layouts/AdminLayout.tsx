@@ -35,7 +35,9 @@ export const AdminLayout: FC<PropsWithChildren<Props>> = ({ children, title, pag
           <header className={styles.header}>
             <div className={styles.headerStart}>
               <h2 className={styles.pageTitle}>{title}</h2>
-              {formComponent}
+              <div className={styles.formComponent}>
+                {formComponent}
+              </div>
             </div>
             <div className={styles.headerEnd}>
 

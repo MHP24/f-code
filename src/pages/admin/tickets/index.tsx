@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { usePagination } from '@/hooks';
 import { AdminLayout } from '@/components/layouts'
-import { AdminTicketCard, FormInput } from '@/components/ui';
+import { AdminTicketCard, AdminTicketsGrid, FormInput } from '@/components/ui';
 import { IUserActionReport } from '@/interfaces';
 import styles from '@/styles/admin/tickets.module.css';
 
@@ -39,12 +39,7 @@ const ReportsPage = () => {
         </div>
       }
     >
-      {
-        data.data?.map((report, i) => {
-          return <AdminTicketCard key={`user-report-${report._id}-i-dashboard`} {...report} />
-        })
-      }
-
+      <AdminTicketsGrid {...data} />
     </AdminLayout>
   )
 }

@@ -107,7 +107,7 @@ export const getUsersReported = async (query: string, page: number): Promise<Pag
     await db.connect();
     const options = {
       page,
-      limit: 22,
+      limit: 2,
       select: `_id picture username userId reporterId createdAt`,
       sort: { createdAt: 1 },
     };

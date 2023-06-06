@@ -39,8 +39,6 @@
 }
 
 .headerStart {
-  /* display: flex; */
-  /* align-items: center; */
   display: grid;
   grid-template-columns: 120px 1fr;
   align-items: center;
@@ -101,10 +99,16 @@
 
 
 @media (max-width: 62rem) {
+  .headerStart {
+    display: block;
+  }
+
+  .formComponent {
+    display: none;
+  }
+
   .layoutBody {
     scrollbar-width: none;
-    /* height: 100vh; */
-    /* overflow: hidden; */
   }
 
   .main {
@@ -121,5 +125,14 @@
 
   .header {
     position: fixed;
+  }
+}
+
+@media (max-width: 43rem) {
+  .pageTitle{
+    font-size: var(--fs-2);
+  }
+  .date {
+    display: none;
   }
 }

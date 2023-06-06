@@ -1,10 +1,10 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { getSession } from 'next-auth/react';
 import { db } from '@/database';
 import { ISession } from '@/interfaces';
 import { emailMsgs } from '@/mocks';
 import { User } from '@/models';
 import { UserReport } from '@/models/UserReport';
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { getSession } from 'next-auth/react';
 import nodemailer from 'nodemailer';
 
 type Data = {

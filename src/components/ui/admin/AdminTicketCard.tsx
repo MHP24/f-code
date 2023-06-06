@@ -44,7 +44,7 @@ export const AdminTicketCard: FC<IUserActionReport> = ({ _id, username, picture,
 
 
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} animate__animated animate__fadeIn`}>
       <Toaster
         position='bottom-left'
         reverseOrder={false}

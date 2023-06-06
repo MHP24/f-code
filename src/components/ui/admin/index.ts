@@ -8,3 +8,4 @@ export * from './CreatorChallengeGrid';
 export * from './DashboardCard';
 export * from './AdminChallengesGrid';
 export * from './AdminTicketCard';
+export * from './AdminTicketsGrid';

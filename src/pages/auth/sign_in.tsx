@@ -18,8 +18,8 @@ const SignIn: NextPage = () => {
     const { email, password } = data;
     try {
       await signIn('credentials', { email: `${email}@fcode`, password });
-    } catch (error) {
-      console.log({ error });
+    } catch(error) {
+      return null;
     }
   };
 
