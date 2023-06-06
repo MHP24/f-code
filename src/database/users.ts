@@ -85,7 +85,7 @@ export const getUsers = async (search: string, page: number): Promise<PaginateRe
     await db.connect();
     const options = {
       page,
-      limit: 2,
+      limit: Number(process.env.SEARCH_PER_PAGE),
       select: `
         _id email username picture provider role active`,
     };
@@ -107,7 +107,7 @@ export const getUsersReported = async (query: string, page: number): Promise<Pag
     await db.connect();
     const options = {
       page,
-      limit: 2,
+      limit: Number(process.env.SEARCH_PER_PAGE),
       select: `_id picture username userId reporterId createdAt`,
       sort: { createdAt: 1 },
     };

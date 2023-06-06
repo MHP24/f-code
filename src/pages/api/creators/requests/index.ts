@@ -25,7 +25,7 @@ const getRequests = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
     const options = {
       page: Number(page),
-      limit: 2,
+      limit: Number(process.env.SEARCH_PER_PAGE),
       select: `_id slug language status reason updatedAt`,
       sort: { updatedAt: -1 }
     };

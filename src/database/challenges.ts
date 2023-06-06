@@ -8,7 +8,7 @@ export const getChallenges = async (language: string, slug: string, page: number
     await db.connect();
     const options = {
       page,
-      limit: 2,
+      limit: Number(process.env.SEARCH_PER_PAGE),
       select: `
         _id slug language difficulty tags
         ${slug && language && 'creatorId instructions functionName cases parameters solution'}
@@ -34,7 +34,7 @@ export const getChallengeRequests = async (language: string, slug: string, page:
 
     const options = {
       page,
-      limit: 2,
+      limit: Number(process.env.SEARCH_PER_PAGE),
       select: `
         _id slug language difficulty reason createdAt
         ${slug && language && 'instructions functionName parametersCount parameters cases code tags creatorId'}

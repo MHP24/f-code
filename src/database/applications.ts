@@ -9,7 +9,7 @@ export const getApplicationns = async (query: string, page: number): Promise<Pag
 
     const options = {
       page,
-      limit: 2,
+      limit: Number(process.env.SEARCH_PER_PAGE),
       select: `_id subject createdAt`,
       populate: {
         path: 'userId',
