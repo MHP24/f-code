@@ -3,7 +3,6 @@ import { ISession } from '@/interfaces';
 import { emailMsgs } from '@/mocks';
 import { User } from '@/models';
 import { UserReport } from '@/models/UserReport';
-// import { sendEmail } from '@/utils';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/react';
 import nodemailer from 'nodemailer';

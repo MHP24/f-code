@@ -6,8 +6,16 @@ import { IUser, IUserActionReport } from '@/interfaces';
 import { UserReport } from '@/models/UserReport';
 
 export const checkBannedUser = async (email: string, provider: string) => {
-  const user = await User.findOne({ email, provider: provider !== 'credentials' ? provider : 'f-code' });
-  return user?.active ?? true;
+  try {
+    await db.connect();
+    const user = await User.findOne({ email, provider: provider !== 'credentials' ? provider : 'f-code' });
+    return user?.active ?? true;
+  } catch (error) {
+    console.error({ error });
+    return false;
+  } finally {
+    await db.disconnect();
+  }
 }
 
 export const checkUser = async (email: string, password: string) => {

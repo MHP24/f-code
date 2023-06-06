@@ -33,7 +33,7 @@ export const authOptions = {
   pages: {
     signIn: '/auth/sign_in',
     signUp: '/auth/sign_up',
-    error: '/auth/sign_denied'
+    error: '/auth/sign_error'
   },
 
   /* Config */
