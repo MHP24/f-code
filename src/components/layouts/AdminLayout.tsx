@@ -1,11 +1,10 @@
-import { FC, PropsWithChildren, ReactNode, useContext, useState } from 'react';
+import { FC, PropsWithChildren, ReactNode, useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { AdminNavbar } from '../ui';
 import styles from './styles/adminLayout.module.css';
 import { useSession } from 'next-auth/react';
 import { ISession } from '@/interfaces';
-import { JsxChild } from 'typescript';
 
 interface Props {
   title: string;

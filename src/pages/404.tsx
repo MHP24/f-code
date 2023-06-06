@@ -1,8 +1,13 @@
-import React from 'react'
+import styles from '@/styles/404.module.css';
+import Link from 'next/link';
 
 const NotFound = () => {
   return (
-    <div>404</div>
+    <div className={styles.noPage}>
+      <p className={styles.notFound}>{'404'}</p>
+      <p className={styles.notFoundText}>{`We couldn't find the page`}</p>
+      <Link href={'/'} className={styles.link}>Return to Home</Link>
+    </div>
   );
 }
 

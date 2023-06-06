@@ -59,9 +59,6 @@
 }
 
 .profileActions {
-  /* position: absolute; */
-  /* top: 7em; */
-  /* right: 10em; */
   display: flex;
   gap: 1em;
   align-items: center;
