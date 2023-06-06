@@ -13,7 +13,7 @@ const SignDeniedPage = () => {
           size={70}
           column
         />
-        <h1 className={styles.title}>{query.error ?? 'Error on sign in'}</h1>
+        <h1 className={styles.title}>{query?.error === 'AccessDenied' ? 'You are permanently banned from FCode check your email for more information.' : query.error}</h1>
       </div>
     </section>
   )

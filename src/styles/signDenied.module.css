@@ -15,8 +15,12 @@
   display: flex;
   flex-direction: column;
   gap: 3em;
+  width: 100%;
+  max-width: 43rem;
 }
 
 .title {
-  font-size: var(--fs-3);
+  font-size: var(--fs-2);
+  text-align-last: center;
+  font-weight: var(--fs-w-2);
 }
