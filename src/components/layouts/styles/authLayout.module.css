@@ -20,12 +20,15 @@
   height: calc(100vh - 4.5rem);
 }
 
+.video {
+  object-fit: cover;
+  box-shadow: var(--b-sh-2-low);
+}
+
 .contentImageContainer {
   position: absolute;
   height: 100%;
   width: 100%;
-  border-right: var(--c3) .05rem solid;
-  box-shadow: var(--b-sh-2);
 }
 
 .contentImageContainer::after {

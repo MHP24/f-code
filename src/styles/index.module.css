@@ -36,8 +36,12 @@
   border-radius: var(--br-4);
   height: 550px;
   max-height: 90vh;
-  border: .12rem var(--c3) solid;
-  box-shadow: var(--b-sh-1);
+}
+
+.videoHero {
+  border-radius: var(--br-2);
+  object-fit: cover;
+
 }
 
 .heroRight {

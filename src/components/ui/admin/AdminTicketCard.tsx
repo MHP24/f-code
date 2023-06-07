@@ -88,7 +88,7 @@ export const AdminTicketCard: FC<IUserActionReport> = ({ _id, username, picture,
           <p className={`${styles.cardData} ${styles.username}`}>{username}</p>
         </div>
         <p className={styles.cardData}>{userId}</p>
-        <p className={styles.cardData}>{createdAt}</p>
+        <p className={styles.cardData}>{new Date(createdAt).toUTCString()}</p>
 
         <div className={styles.cardActions}>
           <button

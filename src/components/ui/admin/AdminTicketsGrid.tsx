@@ -17,22 +17,22 @@ export const AdminTicketsGrid: FC<Props> = ({ data, size, setSize, hasMore, isLo
     (!data || data?.length === 0) && !isLoading ?
       <NoResults />
       :
-      (
-        <div className={styles.ticketsGrid}>
-          <InfiniteScroll
-            next={() => setSize(size + 1)}
-            hasMore={!hasMore}
-            loader={<p></p>}
-            dataLength={data?.length ?? 0}
-            className={styles.scroller}
-          >
-            {
-              data?.map((report, i) => {
-                return <AdminTicketCard key={`user-report-${report._id}-i-dashboard`} {...report} />
-              })
-            }
-          </InfiniteScroll>
-        </div>
-      )
+
+      <div className={styles.ticketsGrid}>
+        <InfiniteScroll
+          next={() => setSize(size + 1)}
+          hasMore={!hasMore}
+          loader={<p></p>}
+          dataLength={data?.length ?? 0}
+          className={styles.scroller}
+        >
+          {
+            data?.map((report, i) => {
+              return <AdminTicketCard key={`user-report-${report._id}-i-dashboard`} {...report} />
+            })
+          }
+        </InfiniteScroll>
+      </div>
+
   );
 }

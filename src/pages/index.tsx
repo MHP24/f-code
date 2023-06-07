@@ -2,15 +2,28 @@ import { MainLayout } from '@/components/layouts';
 import { Button, DualCard, FeatureCard } from '@/components/ui';
 import styles from '@/styles/index.module.css';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 export default function Home() {
+
+  const { push } = useRouter();
 
   return (
     <MainLayout title={'F-Code Home'} pageDescription={'F-Code Home Page'}>
       <section className={`${styles.hero} animate__animated animate__fadeIn`}>
         <div className={styles.heroContainer}>
           <div className={styles.heroLeft}>
-            <div className={styles.heroPicture}></div>
+            <div className={styles.heroPicture}>
+              <video
+                className={styles.videoHero}
+                src='/videos/hero.mp4'
+                autoPlay muted
+                loop
+                width={'100%'}
+                height={'100%'}
+              >
+              </video>
+            </div>
             <p className={styles.challengeCount}>{'+50 Challenges'}</p>
           </div>
 
@@ -27,7 +40,7 @@ export default function Home() {
               text={'Get Started'}
               size={1.2}
               w={260}
-              fn={() => { }}
+              fn={() => push('/challenges')}
             />
           </div>
         </div>
