@@ -14,7 +14,6 @@ export const handleTypeScriptValidation = (
 ): HandlerValidation => {
   const fnValidation = validateJavaScriptFunction({ functionName, parameters, code: transpileCode(code) });
   if (fnValidation.hasError) return fnValidation;
-  
   const { data: { functionExec } } = fnValidation as { data: IFunctionValidation };
   const executionData = validateJavaScriptCode({ functionExec, cases });
   return executionData;

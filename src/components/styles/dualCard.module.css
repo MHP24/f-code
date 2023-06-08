@@ -35,7 +35,7 @@
 }
 
 .video {
-  aspect-ratio: 16/9;
+  aspect-ratio: 16/8.5;
   border: var(--c3) .12rem solid; 
   box-shadow: var(--b-sh-1);
   background-color: var(--c2);

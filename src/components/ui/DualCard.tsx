@@ -38,6 +38,15 @@ export const DualCard: FC<Props> = ({ title, description, reverse = false }) => 
 
               <div className={styles.sideB}>
                 <div className={styles.video}>
+                  <video
+                    className={styles.videoPlayer}
+                    src='/videos/demo1.mp4'
+                    autoPlay muted
+                    loop
+                    width={'100%'}
+                    height={'100%'}
+                  >
+                  </video>
                 </div>
               </div>
             </div>

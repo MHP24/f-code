@@ -1,14 +1,14 @@
 export const technologies = [
   {
-    label: "JavaScript",
-    value: "javascript"
+    label: 'JavaScript',
+    value: 'javascript'
   },
   {
-    label: "TypeScript",
-    value: "typescript"
+    label: 'TypeScript',
+    value: 'typescript'
   },
   {
-    label: "Python",
-    value: "python"
+    label: 'Python',
+    value: 'python'
   }
 ];

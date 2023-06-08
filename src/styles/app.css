@@ -145,7 +145,7 @@ code {
 }
 
 .animate__zoomIn {
-  --animate-duration: .5s
+  --animate-duration: .35s
 }
 
 @media (max-width: 43rem) {
