@@ -49,26 +49,10 @@ export const Footer = () => {
         </Link>
       </div>
 
-      <div className={styles.terms}>
-        <Link
-          className={styles.termLink}
-          href={'/terms/terms_of_use'}>
-          Terms of use
-        </Link>
-        <br />
-        <Link
-          className={styles.termLink}
-          href={'/terms/privacy_policy'}>
-          Privacy policy
-        </Link>
-      </div>
-
       <hr className={styles.hr} />
       <p className={styles.copyright}>
         2023 F-Code
       </p>
-
-
-    </footer>
+  </footer>
   );
 }

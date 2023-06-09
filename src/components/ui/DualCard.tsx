@@ -6,10 +6,11 @@ interface Props {
   reverse?: boolean;
   title: string;
   description: string;
+  videoRef: string;
 }
 
 
-export const DualCard: FC<Props> = ({ title, description, reverse = false }) => {
+export const DualCard: FC<Props> = ({ title, description, reverse = false, videoRef }) => {
   return (
     <>
       {
@@ -18,7 +19,17 @@ export const DualCard: FC<Props> = ({ title, description, reverse = false }) => 
           (
             <div className={styles.cardReverse}>
               <div className={styles.sideB}>
-                <div className={styles.video}></div>
+                <div className={styles.video}>
+                  <video
+                    className={styles.videoPlayer}
+                    src={`/videos/${videoRef}.mp4`}
+                    autoPlay muted
+                    loop
+                    width={'100%'}
+                    height={'100%'}
+                  >
+                  </video>
+                </div>
               </div>
               <div className={styles.sideA}>
                 <h3 className={styles.title}>{title}</h3>
@@ -40,7 +51,7 @@ export const DualCard: FC<Props> = ({ title, description, reverse = false }) => 
                 <div className={styles.video}>
                   <video
                     className={styles.videoPlayer}
-                    src='/videos/demo1.mp4'
+                    src={`/videos/${videoRef}.mp4`}
                     autoPlay muted
                     loop
                     width={'100%'}

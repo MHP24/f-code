@@ -17,8 +17,6 @@ export const Modal: FC<PropsWithChildren<Props>> =
     { open, setModal, children }
   ) => {
 
-    const portalRoot = document.getElementById('root-modal');
-
     return (
       <>
         {
@@ -50,7 +48,7 @@ export const Modal: FC<PropsWithChildren<Props>> =
                 </div>
 
               </div>
-            </div >, portalRoot!)
+            </div >, document.getElementById('root-modal')!)
         }
       </>
     );

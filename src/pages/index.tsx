@@ -16,7 +16,7 @@ export default function Home() {
             <div className={styles.heroPicture}>
               <video
                 className={styles.videoHero}
-                src='/videos/hero.mp4'
+                src='/videos/1.mp4'
                 autoPlay muted
                 loop
                 width={'100%'}
@@ -24,7 +24,7 @@ export default function Home() {
               >
               </video>
             </div>
-            <p className={styles.challengeCount}>{'+50 Challenges'}</p>
+            <p className={styles.challengeCount}>{'+12 Challenges'}</p>
           </div>
 
           <div className={styles.heroRight}>
@@ -50,13 +50,31 @@ export default function Home() {
         <div className={styles.cubeContainer}>
           <div className={styles.cube}>
             <div className={styles.top}>
-              <p className={styles.cubeTitle}>Logic</p>
+              <Image
+                className={styles.cubeImage}
+                src={'/illustrations/medal.svg'}
+                width={150}
+                height={150}
+                alt='medal'
+              />
             </div>
             <div className={styles.bottom}>
-              <p className={styles.cubeTitle}>Efficiency</p>
+              <Image
+                className={styles.cubeImage}
+                src={'/illustrations/code.svg'}
+                width={150}
+                height={150}
+                alt='code'
+              />
             </div>
             <div className={styles.left}>
-              <p className={styles.cubeTitle}>Algorithms</p>
+              <Image
+                className={styles.cubeImage}
+                src={'/techs/vscode.svg'}
+                width={150}
+                height={150}
+                alt='vscode'
+              />
             </div>
             <div className={styles.right}>
               <Image
@@ -99,10 +117,12 @@ export default function Home() {
         <DualCard
           title={'Focus on what really matters, the code'}
           description={'Practice and evaluate your knowledge automatically, receiving feedback from your solutions.'}
+          videoRef={'demo1'}
         />
         <DualCard
           title={'Discover and acquire new skills'}
           description={'We have an awesome repertory, with different types of exercises to measure your capabilities.'}
+          videoRef={'demo2'}
         />
       </section>
 

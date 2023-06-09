@@ -30,14 +30,12 @@
   transform: scale(1.5);
 }
 
-.media,
-.termLink {
+.media {
   text-decoration: none;
   transition: .3s opacity;
 }
 
-.media:hover,
-.termLink:hover {
+.media:hover {
   opacity: .7;
 }
 
@@ -46,11 +44,6 @@
   opacity: .2;
 }
 
-.termLink {
-  line-height: 1.5;
-}
-
-.termLink,
 .copyright {
   font-size: var(--fs-2);
 }
