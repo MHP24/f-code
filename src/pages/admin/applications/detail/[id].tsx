@@ -54,9 +54,7 @@ const ApplicationDetailPage: NextPage<Props> = ({ application, profile: { profil
       });
       toaster(`#${profile.id} closed successfully`, true);
 
-      setTimeout(() => {
-        router.push('/admin/applications');
-      }, 3000);
+      router.push('/admin/applications');
     } catch (error) {
       toaster(`Failed closing #${profile.id}`, false);
     } finally {

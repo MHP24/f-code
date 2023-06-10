@@ -61,9 +61,7 @@ const ChallengeRequestDetailPage: NextPage<Props> = ({ data }) => {
       toaster(`Challenge #${id} closed successfully!`, true);
       closeModal();
 
-      setTimeout(() => {
-        router.push('/admin/requests');
-      }, 3000);
+      router.push('/admin/requests');
     } catch (error) {
       toaster(axios.isAxiosError(error) ?
         `${error.response?.data.error}`

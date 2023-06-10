@@ -24,6 +24,7 @@
 }
 
 .pageTitle {
+  white-space: nowrap;
   font-size: var(--fs-3);
   font-weight: var(--fs-w-2);
 }
