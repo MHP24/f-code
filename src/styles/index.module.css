@@ -213,10 +213,10 @@
 /* Explore */
 .explore {
   background-color: var(--c2);
-  padding: 4em;
+  padding: 4em 3em;
   display: flex;
   flex-direction: column;
-  gap: 4em;
+  gap: 2em;
 }
 
 .exploreTitle {
@@ -232,8 +232,7 @@
 
 .exploreVideo {
   width: 100%;
-  height: 550px;
-  aspect-ratio: 21/9;
+  object-fit: cover;
 }
 
 @media (max-width: 62rem) {

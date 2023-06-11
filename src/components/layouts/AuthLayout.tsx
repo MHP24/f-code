@@ -39,7 +39,7 @@ export const AuthLayout: FC<PropsWithChildren<Props>> = ({ children, title, page
             <div className={styles.contentImageContainer}>
               <video
                 className={styles.video}
-                src='/videos/2.mp4'
+                src='/videos/2.webm'
                 autoPlay muted
                 loop
                 width={'100%'}

@@ -16,7 +16,7 @@ export default function Home() {
             <div className={styles.heroPicture}>
               <video
                 className={styles.videoHero}
-                src='/videos/1.mp4'
+                src='/videos/1.webm'
                 autoPlay muted
                 loop
                 width={'100%'}
@@ -151,8 +151,15 @@ export default function Home() {
 
       <section className={styles.explore}>
         <h2 className={styles.exploreTitle}>Explore and <strong>learn yourself</strong></h2>
-        <div className={styles.exploreVideo}>
-        </div>
+        <video
+          className={styles.exploreVideo}
+          src='/videos/demo3.webm'
+          autoPlay muted
+          loop
+          width={'100%'}
+          height={'100%'}
+        >
+        </video>
       </section>
 
     </MainLayout >

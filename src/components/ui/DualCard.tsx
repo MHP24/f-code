@@ -22,7 +22,7 @@ export const DualCard: FC<Props> = ({ title, description, reverse = false, video
                 <div className={styles.video}>
                   <video
                     className={styles.videoPlayer}
-                    src={`/videos/${videoRef}.mp4`}
+                    src={`/videos/${videoRef}.webm`}
                     autoPlay muted
                     loop
                     width={'100%'}
@@ -51,7 +51,7 @@ export const DualCard: FC<Props> = ({ title, description, reverse = false, video
                 <div className={styles.video}>
                   <video
                     className={styles.videoPlayer}
-                    src={`/videos/${videoRef}.mp4`}
+                    src={`/videos/${videoRef}.webm`}
                     autoPlay muted
                     loop
                     width={'100%'}
